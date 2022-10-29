@@ -32,11 +32,6 @@ const FavouriteItemsCard = ({item, deleteFavouriteItems}) => {
             </p>
         </div>
         
-        <div>
-          <Link to={`/product/${item.product}`}>
-           <button className='favouritesButton' onClick={() => deleteFavouriteItems(item.product)}>Add To Cart</button>
-           </Link>
-        </div>
 
     </div>
     )

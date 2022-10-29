@@ -39,14 +39,10 @@ const About = () => {
                           lineHeight: "1.2",
                         }}
                       >
-                        Welcome to Nest
+                        Chào mừng bạn đến với 
                       </span>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                        do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor in reprehenderit in voluptate id est laborum.
+                       Trang 
                       </p>
                       <p>
                         lus ferri velit sanctus cu, sed at soleat accusata. Dictas
@@ -64,7 +60,7 @@ const About = () => {
                 {/* 2nd verse */}
                 <div className="second">
                   <div className="heading">
-                    <h2>What We Provide?</h2>
+                    <h2>Chúng tôi cung cấp những gì?</h2>
                   </div>
                   <div className="row flex">
                     <div className="col__3">
