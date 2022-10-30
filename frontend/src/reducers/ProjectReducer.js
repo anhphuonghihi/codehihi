@@ -1,30 +1,30 @@
 import {
-  ALL_PRODUCT_FAIL,
-  ALL_PRODUCT_REQUEST,
-  ALL_PRODUCT_SUCCESS,
+  ALL_PROJECT_FAIL,
+  ALL_PROJECT_REQUEST,
+  ALL_PROJECT_SUCCESS,
   CLEAR_ERRORS,
-  PRODUCT_DETAILS_FAIL,
-  PRODUCT_DETAILS_REQUEST,
-  PRODUCT_DETAILS_SUCCESS,
+  PROJECT_DETAILS_FAIL,
+  PROJECT_DETAILS_REQUEST,
+  PROJECT_DETAILS_SUCCESS,
   NEW_REVIEW_REQUEST,
   NEW_REVIEW_SUCCESS,
   NEW_REVIEW_RESET,
   NEW_REVIEW_FAIL,
-  ADMIN_PRODUCT_REQUEST,
-  ADMIN_PRODUCT_SUCCESS,
-  ADMIN_PRODUCT_FAIL,
-  NEW_PRODUCT_REQUEST,
-  NEW_PRODUCT_SUCCESS,
-  NEW_PRODUCT_FAIL,
-  NEW_PRODUCT_RESET,
-  DELETE_PRODUCT_REQUEST,
-  UPDATE_PRODUCT_REQUEST,
-  DELETE_PRODUCT_SUCCESS,
-  UPDATE_PRODUCT_SUCCESS,
-  DELETE_PRODUCT_FAIL,
-  UPDATE_PRODUCT_FAIL,
-  DELETE_PRODUCT_RESET,
-  UPDATE_PRODUCT_RESET,
+  ADMIN_PROJECT_REQUEST,
+  ADMIN_PROJECT_SUCCESS,
+  ADMIN_PROJECT_FAIL,
+  NEW_PROJECT_REQUEST,
+  NEW_PROJECT_SUCCESS,
+  NEW_PROJECT_FAIL,
+  NEW_PROJECT_RESET,
+  DELETE_PROJECT_REQUEST,
+  UPDATE_PROJECT_REQUEST,
+  DELETE_PROJECT_SUCCESS,
+  UPDATE_PROJECT_SUCCESS,
+  DELETE_PROJECT_FAIL,
+  UPDATE_PROJECT_FAIL,
+  DELETE_PROJECT_RESET,
+  UPDATE_PROJECT_RESET,
   DELETE_REVIEW_REQUEST,
   DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_FAIL,
@@ -36,13 +36,13 @@ import {
 
 export const projectsReducer = (state = { projects: [] }, action) => {
   switch (action.type) {
-    case ALL_PRODUCT_REQUEST:
-    case ADMIN_PRODUCT_REQUEST:
+    case ALL_PROJECT_REQUEST:
+    case ADMIN_PROJECT_REQUEST:
       return {
         loading: true,
         projects: [],
       };
-    case ALL_PRODUCT_SUCCESS:
+    case ALL_PROJECT_SUCCESS:
       return {
         loading: false,
         projects: action.payload.projects,
@@ -51,14 +51,14 @@ export const projectsReducer = (state = { projects: [] }, action) => {
         filteredProjectsCount: action.payload.filteredProjectsCount,
       };
 
-    case ADMIN_PRODUCT_SUCCESS:
+    case ADMIN_PROJECT_SUCCESS:
       return {
         loading: false,
         projects: action.payload,
       };
 
-    case ALL_PRODUCT_FAIL:
-    case ADMIN_PRODUCT_FAIL:
+    case ALL_PROJECT_FAIL:
+    case ADMIN_PROJECT_FAIL:
       return {
         loading: false,
         error: action.payload,
@@ -73,19 +73,19 @@ export const projectsReducer = (state = { projects: [] }, action) => {
   }
 };
 
-export const productDetailsReducer = (state = { product: {} }, action) => {
+export const projectDetailsReducer = (state = { project: {} }, action) => {
   switch (action.type) {
-    case PRODUCT_DETAILS_REQUEST:
+    case PROJECT_DETAILS_REQUEST:
       return {
         loading: true,
         ...state,
       };
-    case PRODUCT_DETAILS_SUCCESS:
+    case PROJECT_DETAILS_SUCCESS:
       return {
         loading: false,
-        product: action.payload,
+        project: action.payload,
       };
-    case PRODUCT_DETAILS_FAIL:
+    case PROJECT_DETAILS_FAIL:
       return {
         loading: false,
         error: action.payload,
@@ -135,26 +135,26 @@ export const newReviewReducer = (state = {}, action) => {
 };
 
 // New Project ----Admin
-export const newProjectReducer = (state = { product: {} }, action) => {
+export const newProjectReducer = (state = { project: {} }, action) => {
   switch (action.type) {
-    case NEW_PRODUCT_REQUEST:
+    case NEW_PROJECT_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case NEW_PRODUCT_SUCCESS:
+    case NEW_PROJECT_SUCCESS:
       return {
         loading: false,
         success: action.payload.success,
-        product: action.payload.product,
+        project: action.payload.project,
       };
-    case NEW_PRODUCT_FAIL:
+    case NEW_PROJECT_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-    case NEW_PRODUCT_RESET:
+    case NEW_PROJECT_RESET:
       return {
         ...state,
         success: false,
@@ -172,38 +172,38 @@ export const newProjectReducer = (state = { product: {} }, action) => {
 // Delete Project
 export const deleteProjectReducer = (state = {}, action) => {
   switch (action.type) {
-    case DELETE_PRODUCT_REQUEST:
-    case UPDATE_PRODUCT_REQUEST:
+    case DELETE_PROJECT_REQUEST:
+    case UPDATE_PROJECT_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case DELETE_PRODUCT_SUCCESS:
+    case DELETE_PROJECT_SUCCESS:
       return {
         ...state,
         loading: false,
         isDeleted: action.payload,
       };
 
-    case UPDATE_PRODUCT_SUCCESS:
+    case UPDATE_PROJECT_SUCCESS:
       return {
         ...state,
         loading: false,
         isUpdated: action.payload,
       };
-    case DELETE_PRODUCT_FAIL:
-    case UPDATE_PRODUCT_FAIL:
+    case DELETE_PROJECT_FAIL:
+    case UPDATE_PROJECT_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-    case DELETE_PRODUCT_RESET:
+    case DELETE_PROJECT_RESET:
       return {
         ...state,
         isDeleted: false,
       };
-    case UPDATE_PRODUCT_RESET:
+    case UPDATE_PROJECT_RESET:
       return {
         ...state,
         isUpdated: false,
@@ -219,7 +219,7 @@ export const deleteProjectReducer = (state = {}, action) => {
 };
 
 // All reviews --- Admin
-export const productReviewsReducer = (state = { reviews: [] }, action) => {
+export const projectReviewsReducer = (state = { reviews: [] }, action) => {
   switch (action.type) {
     case ALL_REVIEW_REQUEST:
       return {

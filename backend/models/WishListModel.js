@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
 const wishListSchema = new mongoose.Schema({
-  productName: {
+  projectName: {
     type: String,
     required: [true, "Vui lòng nhập tên đồ án"],
   },
-  productPrice: {
+  projectPrice: {
     type: Number,
     required: [true, "Vui lòng nhập giá đồ án"],
   },
-  productImage: {
+  projectImage: {
     type: String,
     required: [true, "Vui lòng nhập ảnh đồ án"],
   },
@@ -21,7 +21,7 @@ const wishListSchema = new mongoose.Schema({
     type: String,
     required: [true, "Vui lòng nhập id người dùng"],
   },
-  productId:{
+  projectId: {
     type: String,
     required: [true, "Vui lòng nhập id đồ án"],
   },

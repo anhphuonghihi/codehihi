@@ -20,16 +20,16 @@ router
   .get(isAuthenticatedUser, authorizeRoles("admin"), getAdminProjects);
 
 router
-  .route("/product/new")
+  .route("/project/new")
   .post(isAuthenticatedUser, authorizeRoles("admin"), createProject);
 
 router
-  .route("/product/:id")
+  .route("/project/:id")
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateProject)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProject)
   .get(getSingleProject);
 
-router.route("/product/review").post(isAuthenticatedUser,
+router.route("/project/review").post(isAuthenticatedUser,
   createProjectReview
 );
 

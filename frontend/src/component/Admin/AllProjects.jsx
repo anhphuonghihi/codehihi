@@ -14,7 +14,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { ToastContainer, toast } from 'react-toastify';
-import { DELETE_PRODUCT_RESET } from "../../constans/ProjectConstans";
+import { DELETE_PROJECT_RESET } from "../../constans/ProjectConstans";
 
 
 const AllProjects = ({ history }) => {
@@ -44,7 +44,7 @@ const AllProjects = ({ history }) => {
     if (isDeleted) {
       toast.success("Đồ án đã được xóa thành công");
       history.push("/dashboard");
-      dispatch({ type: DELETE_PRODUCT_RESET });
+      dispatch({ type: DELETE_PROJECT_RESET });
     }
     dispatch(getAdminProject());
   }, [dispatch, alert, error, history,]);
@@ -84,7 +84,7 @@ const AllProjects = ({ history }) => {
       renderCell: (params) => {
         return (
           <Fragment>
-            <Link to={`/edit/product/${params.getValue(params.id, "id")}`}>
+            <Link to={`/edit/project/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
 
@@ -119,15 +119,15 @@ const AllProjects = ({ history }) => {
 
       <div className="dashboard">
         <SideBar />
-        <div className="productListContainer">
-          <h1 id="productListHeading">ALL PRODUCTS</h1>
+        <div className="projectListContainer">
+          <h1 id="projectListHeading">ALL PROJECTS</h1>
 
           <DataGrid
             rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
-            className="productListTable"
+            className="projectListTable"
             autoHeight
           />
         </div>

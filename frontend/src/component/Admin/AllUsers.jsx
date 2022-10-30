@@ -122,15 +122,15 @@ const AllUsers = ({ history }) => {
 
       <div className="dashboard">
         <SideBar />
-        <div className="productListContainer">
-          <h1 id="productListHeading">ALL USERS</h1>
+        <div className="projectListContainer">
+          <h1 id="projectListHeading">ALL USERS</h1>
 
           <DataGrid
             rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
-            className="productListTable"
+            className="projectListTable"
             autoHeight
           />
         </div>

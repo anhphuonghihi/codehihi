@@ -1,25 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "@material-ui/lab";
-const ProjectCard = ({ product }) => {
+const ProjectCard = ({ project }) => {
   const options = {
-    value: product.ratings,
+    value: project.ratings,
     readOnly: true,
     precision: 0.5,
   };
 
   return (
     <>
-      <Link className="ProjectCard" to={`/product/${product._id}`}>
+      <Link className="ProjectCard" to={`/project/${project._id}`}>
         <img
-          src={product.images[0].url}
-          alt={product.name}
+          src={project.images[0].url}
+          alt={project.name}
           className="ProjectImg"
         />
-        <p className="productName">{product.name}</p>
+        <p className="projectName">{project.name}</p>
         <div>
           <Rating {...options} />
-          <span>({product.numOfReviews} Reviews)</span>
+          <span>({project.numOfReviews} Reviews)</span>
         </div>
         <div
           style={{
@@ -36,9 +36,9 @@ const ProjectCard = ({ product }) => {
                 paddingBottom: "0",
               }}
             >
-              {product.offerPrice > 0 ? `$${product.offerPrice}` : ""}
+              {project.offerPrice > 0 ? `$${project.offerPrice}` : ""}
             </h1>
-            <span className="p__Price">{`$${product.price}`}</span>
+            <span className="p__Price">{`$${project.price}`}</span>
           </div>
         </div>
       </Link>

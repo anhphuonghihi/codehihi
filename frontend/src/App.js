@@ -56,7 +56,7 @@ function App() {
       {isAuthenticated && <UserData user={user} />}
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/product/:id" component={ProjectDetails} />
+        <Route exact path="/project/:id" component={ProjectDetails} />
         <Route exact path="/login" component={LoginSignup} />
         <Route exact path="/about" component={About} />
         <Route exact path="/project" component={Projects} />
@@ -75,9 +75,9 @@ function App() {
         <ProtectedRoute exact path="/me/update/info" component={EditProfile} />
 
         <ProtectedRoute isAdmin={true} exact path="/dashboard" component={Dashboard} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/product" component={CreateProject} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/project" component={CreateProject} />
         <ProtectedRoute isAdmin={true} exact path="/admin/projects" component={AllProjects} />
-        <ProtectedRoute isAdmin={true} exact path="/edit/product/:id" component={EditProject} />
+        <ProtectedRoute isAdmin={true} exact path="/edit/project/:id" component={EditProject} />
 
         <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />
         <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />

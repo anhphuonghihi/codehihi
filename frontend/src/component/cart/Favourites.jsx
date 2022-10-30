@@ -15,7 +15,7 @@ const Favourite = ({ history }) => {
   const dispatch = useDispatch();
 
   const { loading } = useSelector(
-    (state) => state.productDetails
+    (state) => state.projectDetails
   );
   const { favouriteItems } = useSelector((state) => state.favourite);
 
@@ -47,7 +47,7 @@ const Favourite = ({ history }) => {
                 </div>
                 {favouriteItems &&
                   favouriteItems.map((item) => (
-                    <div className="favouritesContainer" key={item.product}>
+                    <div className="favouritesContainer" key={item.project}>
                       <FavouriteItemsCard item={item} deleteFavouriteItems={deleteFavouriteItems} />
                     </div>
                   ))

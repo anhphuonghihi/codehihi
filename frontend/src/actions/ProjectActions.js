@@ -1,30 +1,30 @@
 import axios from "axios";
 import {
-  ADMIN_PRODUCT_FAIL,
-  ADMIN_PRODUCT_REQUEST,
-  ADMIN_PRODUCT_SUCCESS,
-  ALL_PRODUCT_FAIL,
-  ALL_PRODUCT_REQUEST,
-  ALL_PRODUCT_SUCCESS,
+  ADMIN_PROJECT_FAIL,
+  ADMIN_PROJECT_REQUEST,
+  ADMIN_PROJECT_SUCCESS,
+  ALL_PROJECT_FAIL,
+  ALL_PROJECT_REQUEST,
+  ALL_PROJECT_SUCCESS,
   CLEAR_ERRORS,
-  DELETE_PRODUCT_FAIL,
-  DELETE_PRODUCT_REQUEST,
-  DELETE_PRODUCT_SUCCESS,
+  DELETE_PROJECT_FAIL,
+  DELETE_PROJECT_REQUEST,
+  DELETE_PROJECT_SUCCESS,
   DELETE_REVIEW_FAIL,
   DELETE_REVIEW_REQUEST,
   DELETE_REVIEW_SUCCESS,
-  NEW_PRODUCT_FAIL,
-  NEW_PRODUCT_REQUEST,
-  NEW_PRODUCT_SUCCESS,
+  NEW_PROJECT_FAIL,
+  NEW_PROJECT_REQUEST,
+  NEW_PROJECT_SUCCESS,
   NEW_REVIEW_FAIL,
   NEW_REVIEW_REQUEST,
   NEW_REVIEW_SUCCESS,
-  PRODUCT_DETAILS_FAIL,
-  PRODUCT_DETAILS_REQUEST,
-  PRODUCT_DETAILS_SUCCESS,
-  UPDATE_PRODUCT_FAIL,
-  UPDATE_PRODUCT_REQUEST,
-  UPDATE_PRODUCT_SUCCESS,
+  PROJECT_DETAILS_FAIL,
+  PROJECT_DETAILS_REQUEST,
+  PROJECT_DETAILS_SUCCESS,
+  UPDATE_PROJECT_FAIL,
+  UPDATE_PROJECT_REQUEST,
+  UPDATE_PROJECT_SUCCESS,
   ALL_REVIEW_REQUEST,
   ALL_REVIEW_SUCCESS,
   ALL_REVIEW_FAIL
@@ -34,7 +34,7 @@ import {
 export const getProject = (keyword = "", currentPage = 1, category) => async (dispatch) => {
   try {
     dispatch({
-      type: ALL_PRODUCT_REQUEST
+      type: ALL_PROJECT_REQUEST
     });
 
     let link = `/api/v2/projects?keyword=${keyword}&page=${currentPage}`;
@@ -45,12 +45,12 @@ export const getProject = (keyword = "", currentPage = 1, category) => async (di
     const { data } = await axios.get(link);
 
     dispatch({
-      type: ALL_PRODUCT_SUCCESS,
+      type: ALL_PROJECT_SUCCESS,
       payload: data,
     })
   } catch (error) {
     dispatch({
-      type: ALL_PRODUCT_FAIL,
+      type: ALL_PROJECT_FAIL,
       payload: error.response.data.message,
     })
   }
@@ -60,17 +60,17 @@ export const getProject = (keyword = "", currentPage = 1, category) => async (di
 // Get All Projects Details
 export const getProjectDetails = (id) => async (dispatch) => {
   try {
-    dispatch({ type: PRODUCT_DETAILS_REQUEST });
+    dispatch({ type: PROJECT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/v2/product/${id}`);
+    const { data } = await axios.get(`/api/v2/project/${id}`);
 
     dispatch({
-      type: PRODUCT_DETAILS_SUCCESS,
-      payload: data.product,
+      type: PROJECT_DETAILS_SUCCESS,
+      payload: data.project,
     });
   } catch (error) {
     dispatch({
-      type: PRODUCT_DETAILS_FAIL,
+      type: PROJECT_DETAILS_FAIL,
       payload: error.response.message,
     });
   }
@@ -86,7 +86,7 @@ export const newReview = (reviewData) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
 
-    const { data } = await axios.post(`/api/v2/product/review`, reviewData, config);
+    const { data } = await axios.post(`/api/v2/project/review`, reviewData, config);
 
     dispatch({
       type: NEW_REVIEW_SUCCESS,
@@ -102,27 +102,27 @@ export const newReview = (reviewData) => async (dispatch) => {
 
 
 // Create Project --------Admin
-export const createProject = (productData) => async (dispatch) => {
+export const createProject = (projectData) => async (dispatch) => {
   try {
-    dispatch({ type: NEW_PRODUCT_REQUEST });
+    dispatch({ type: NEW_PROJECT_REQUEST });
 
     const config = {
       headers: { "Content-Type": "application/json" },
     };
 
     const { data } = await axios.post(
-      `/api/v2/product/new`,
-      productData,
+      `/api/v2/project/new`,
+      projectData,
       config
     );
 
     dispatch({
-      type: NEW_PRODUCT_SUCCESS,
+      type: NEW_PROJECT_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: NEW_PRODUCT_FAIL,
+      type: NEW_PROJECT_FAIL,
       payload: error.response.data.message,
     });
   }
@@ -131,17 +131,17 @@ export const createProject = (productData) => async (dispatch) => {
 // Get Admin Projects -----Admin
 export const getAdminProject = () => async (dispatch) => {
   try {
-    dispatch({ type: ADMIN_PRODUCT_REQUEST });
+    dispatch({ type: ADMIN_PROJECT_REQUEST });
 
     const { data } = await axios.get("/api/v2/admin/projects");
 
     dispatch({
-      type: ADMIN_PRODUCT_SUCCESS,
+      type: ADMIN_PROJECT_SUCCESS,
       payload: data.projects,
     });
   } catch (error) {
     dispatch({
-      type: ADMIN_PRODUCT_FAIL,
+      type: ADMIN_PROJECT_FAIL,
       payload: error.response.data.message,
     });
   }
@@ -150,44 +150,44 @@ export const getAdminProject = () => async (dispatch) => {
 // Delete Project ------Admin
 export const deleteProject = (id) => async (dispatch) => {
   try {
-    dispatch({ type: DELETE_PRODUCT_REQUEST });
+    dispatch({ type: DELETE_PROJECT_REQUEST });
 
-    const { data } = await axios.delete(`/api/v2/product/${id}`);
+    const { data } = await axios.delete(`/api/v2/project/${id}`);
 
     dispatch({
-      type: DELETE_PRODUCT_SUCCESS,
+      type: DELETE_PROJECT_SUCCESS,
       payload: data.success,
     });
   } catch (error) {
     dispatch({
-      type: DELETE_PRODUCT_FAIL,
+      type: DELETE_PROJECT_FAIL,
       payload: error.response.data.message,
     });
   }
 };
 
 // Update Project
-export const updateProject = (id, productData) => async (dispatch) => {
+export const updateProject = (id, projectData) => async (dispatch) => {
   try {
-    dispatch({ type: UPDATE_PRODUCT_REQUEST });
+    dispatch({ type: UPDATE_PROJECT_REQUEST });
 
     const config = {
       headers: { "Content-Type": "application/json" },
     };
 
     const { data } = await axios.put(
-      `/api/v2/product/${id}`,
-      productData,
+      `/api/v2/project/${id}`,
+      projectData,
       config
     );
 
     dispatch({
-      type: UPDATE_PRODUCT_SUCCESS,
+      type: UPDATE_PROJECT_SUCCESS,
       payload: data.success,
     });
   } catch (error) {
     dispatch({
-      type: UPDATE_PRODUCT_FAIL,
+      type: UPDATE_PROJECT_FAIL,
       payload: error.response.data.message,
     });
   }
@@ -216,12 +216,12 @@ export const getAllReviews = (id) => async (dispatch) => {
 
 
 // Delete Review of a Project ------ Admin
-export const deleteReviews = (reviewId, productId) => async (dispatch) => {
+export const deleteReviews = (reviewId, projectId) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_REVIEW_REQUEST });
 
     const { data } = await axios.delete(
-      `/api/v2/reviews?id=${reviewId}&productId=${productId}`
+      `/api/v2/reviews?id=${reviewId}&projectId=${projectId}`
     );
 
     dispatch({

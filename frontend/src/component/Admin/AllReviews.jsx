@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import "./productReviews.css";
+import "./projectReviews.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   clearErrors,
@@ -23,23 +23,23 @@ const AllReviews = ({ history }) => {
   );
 
   const { error, reviews, loading } = useSelector(
-    (state) => state.productReviews
+    (state) => state.projectReviews
   );
 
-  const [productId, setProjectId] = useState("");
+  const [projectId, setProjectId] = useState("");
 
   const deleteReviewHandler = (reviewId) => {
-    dispatch(deleteReviews(reviewId, productId));
+    dispatch(deleteReviews(reviewId, projectId));
   };
 
-  const productReviewsSubmitHandler = (e) => {
+  const projectReviewsSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(getAllReviews(productId));
+    dispatch(getAllReviews(projectId));
   };
 
   useEffect(() => {
-    if (productId.length === 24) {
-      dispatch(getAllReviews(productId));
+    if (projectId.length === 24) {
+      dispatch(getAllReviews(projectId));
     }
     if (error) {
       toast.error(error);
@@ -56,7 +56,7 @@ const AllReviews = ({ history }) => {
       history.push("/admin/reviews");
       dispatch({ type: DELETE_REVIEW_RESET });
     }
-  }, [dispatch, alert, error, deleteError, history, isDeleted, productId]);
+  }, [dispatch, alert, error, deleteError, history, isDeleted, projectId]);
 
   const columns = [
     { field: "id", headerName: "Review ID", minWidth: 200, flex: 0.5 },
@@ -130,12 +130,12 @@ const AllReviews = ({ history }) => {
 
       <div className="dashboard">
         <SideBar />
-        <div className="productReviewsContainer">
+        <div className="projectReviewsContainer">
           <form
-            className="productReviewsForm"
-            onSubmit={productReviewsSubmitHandler}
+            className="projectReviewsForm"
+            onSubmit={projectReviewsSubmitHandler}
           >
-            <h1 className="productReviewsFormHeading">ALL REVIEWS</h1>
+            <h1 className="projectReviewsFormHeading">ALL REVIEWS</h1>
 
             <div>
               <Star />
@@ -143,7 +143,7 @@ const AllReviews = ({ history }) => {
                 type="text"
                 placeholder="Project Id"
                 required
-                value={productId}
+                value={projectId}
                 onChange={(e) => setProjectId(e.target.value)}
               />
             </div>
@@ -152,7 +152,7 @@ const AllReviews = ({ history }) => {
               id="createProjectBtn"
               type="submit"
               disabled={
-                loading ? true : false || productId === "" ? true : false
+                loading ? true : false || projectId === "" ? true : false
               }
             >
               Tìm kiếm
@@ -165,11 +165,11 @@ const AllReviews = ({ history }) => {
               columns={columns}
               pageSize={10}
               disableSelectionOnClick
-              className="productListTable"
+              className="projectListTable"
               autoHeight
             />
           ) : (
-            <h1 className="productReviewsFormHeading">No Reviews Found</h1>
+            <h1 className="projectReviewsFormHeading">No Reviews Found</h1>
           )}
         </div>
       </div>

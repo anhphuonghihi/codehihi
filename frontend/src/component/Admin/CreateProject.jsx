@@ -11,7 +11,7 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import DiscountIcon from "@material-ui/icons/LocalOffer";
 import SideBar from "./Sidebar";
-import { NEW_PRODUCT_RESET } from "../../constans/ProjectConstans";
+import { NEW_PROJECT_RESET } from "../../constans/ProjectConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
 const CreateProject = ({ history }) => {
@@ -48,7 +48,7 @@ const CreateProject = ({ history }) => {
     if (success) {
       toast.success("Đồ án đã được thêm thành công");
       history.push("/dashboard");
-      dispatch({ type: NEW_PRODUCT_RESET });
+      dispatch({ type: NEW_PROJECT_RESET });
     }
   }, [dispatch, alert, error, history, success]);
 

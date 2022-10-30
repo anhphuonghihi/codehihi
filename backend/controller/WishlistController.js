@@ -6,21 +6,21 @@ const ErrorHandler = require("../utils/ErrorHandler");
 // Add to wishlist
 exports.addToWishlist = catchAsyncErrors(async (req, res, next) => {
   const {
-    productName,
+    projectName,
     quantity,
-    productImage,
-    productPrice,
+    projectImage,
+    projectPrice,
     userId,
-    productId,
+    projectId,
     Stock,
   } = req.body;
   const wishList = await Wishlist.create({
-    productName,
+    projectName,
     quantity,
-    productImage,
-    productPrice,
+    projectImage,
+    projectPrice,
     userId,
-    productId,
+    projectId,
     Stock,
   });
 

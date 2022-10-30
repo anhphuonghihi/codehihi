@@ -6,8 +6,8 @@ import {
   deleteReviewReducer,
   newProjectReducer,
   newReviewReducer,
-  productDetailsReducer,
-  productReviewsReducer,
+  projectDetailsReducer,
+  projectReviewsReducer,
   projectsReducer,
 } from "./reducers/ProjectReducer";
 import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer";
@@ -16,7 +16,7 @@ import { favouriteReducer } from "./reducers/FavouriteReducer";
 
 const reducer = combineReducers({
   projects: projectsReducer,
-  productDetails: productDetailsReducer,
+  projectDetails: projectDetailsReducer,
   user: userReducer,
   profile: profileReducer,
   favourite: favouriteReducer,
@@ -26,7 +26,7 @@ const reducer = combineReducers({
   allUsers: allUsersReducer,
   userDetails: userDetailsReducer,
   deleteReview: deleteReviewReducer,
-  productReviews: productReviewsReducer,
+  projectReviews: projectReviewsReducer,
   forgotPassword: forgotPasswordReducer,
 });
 

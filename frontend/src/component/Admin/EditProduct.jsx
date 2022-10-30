@@ -12,14 +12,14 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 // eslint-disable-next-line
 import DiscountIcon from "@material-ui/icons/LocalOffer";
 import SideBar from "./Sidebar";
-import { UPDATE_PRODUCT_RESET } from "../../constans/ProjectConstans";
+import { UPDATE_PROJECT_RESET } from "../../constans/ProjectConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
 const UpdateProject = ({ history, match }) => {
 
   const dispatch = useDispatch();
 
-  const { error, product } = useSelector((state) => state.productDetails);
+  const { error, project } = useSelector((state) => state.projectDetails);
 
   const {
     loading,
@@ -49,18 +49,18 @@ const UpdateProject = ({ history, match }) => {
     "Others"
   ];
 
-  const productId = match.params.id;
+  const projectId = match.params.id;
 
   useEffect(() => {
-    if (product && product._id !== productId) {
-      dispatch(getProjectDetails(productId));
+    if (project && project._id !== projectId) {
+      dispatch(getProjectDetails(projectId));
     } else {
-      setName(product.name);
-      setDescription(product.description);
-      setPrice(product.price);
-      setCategory(product.category);
-      setStock(product.Stock);
-      setOldImages(product.images);
+      setName(project.name);
+      setDescription(project.description);
+      setPrice(project.price);
+      setCategory(project.category);
+      setStock(project.Stock);
+      setOldImages(project.images);
     }
     if (error) {
       toast.error(error);
@@ -75,7 +75,7 @@ const UpdateProject = ({ history, match }) => {
     if (isUpdated) {
       toast.success("Đồ án đã được sửathành công");
       history.push("/admin/projects");
-      dispatch({ type: UPDATE_PRODUCT_RESET });
+      dispatch({ type: UPDATE_PROJECT_RESET });
     }
   }, [
     dispatch,
@@ -83,8 +83,8 @@ const UpdateProject = ({ history, match }) => {
     error,
     history,
     isUpdated,
-    productId,
-    product,
+    projectId,
+    project,
     updateError,
   ]);
 
@@ -103,7 +103,7 @@ const UpdateProject = ({ history, match }) => {
     images.forEach((image) => {
       myForm.append("images", image);
     });
-    dispatch(updateProject(productId, myForm));
+    dispatch(updateProject(projectId, myForm));
   };
 
   const updateProjectImagesChange = (e) => {

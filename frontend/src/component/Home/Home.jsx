@@ -37,8 +37,8 @@ const Home = () => {
 
             <h2 className="homeHeading">Đồ án nổi bật</h2>
             <div className="container" id="container">
-              {projects && projects.map((product) => (
-                <ProjectCard key={product._id} product={product} />
+              {projects && projects.map((project) => (
+                <ProjectCard key={project._id} project={project} />
               ))}
             </div>
             <ToastContainer

@@ -29,7 +29,7 @@ const Sidebar = () => {
         <p className="Dashboard__item"><PostAddIcon /> All Projects</p>
       </Link>
 
-      <Link to="/admin/product">
+      <Link to="/admin/project">
         <p><AddIcon />Create Project</p>
       </Link>
       <Link to="/admin/users">

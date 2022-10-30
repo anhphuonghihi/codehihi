@@ -22,8 +22,8 @@ import Loading from "../../more/Loader";
 const ProjectDetails = ({ match, history }) => {
   const dispatch = useDispatch();
 
-  const { product, loading, error } = useSelector(
-    (state) => state.productDetails
+  const { project, loading, error } = useSelector(
+    (state) => state.projectDetails
   );
 
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -35,7 +35,7 @@ const ProjectDetails = ({ match, history }) => {
 
     myForm.set("rating", rating);
     myForm.set("comment", comment);
-    myForm.set("productId", match.params.id);
+    myForm.set("projectId", match.params.id);
 
     {
       isAuthenticated !== true ? history.push(`/login?redirect=/`) : <></>;
@@ -60,7 +60,7 @@ const ProjectDetails = ({ match, history }) => {
   }, [dispatch, match.params.id, error, alert]);
 
   const options = {
-    value: product.ratings,
+    value: project.ratings,
     readOnly: true,
     precision: 0.5,
   };
@@ -82,13 +82,13 @@ const ProjectDetails = ({ match, history }) => {
         <Loading />
       ) : (
         <>
-          <MetaData title={`${product.name}`} />
+          <MetaData title={`${project.name}`} />
           <Header />
           <div className="ProjectDetails">
             <div className="first__varse">
               <Carousel>
-                {product.images &&
-                  product.images.map((item, i) => (
+                {project.images &&
+                  project.images.map((item, i) => (
                     <img
                       className="CarouselImage"
                       key={i}
@@ -100,11 +100,11 @@ const ProjectDetails = ({ match, history }) => {
             </div>
             <div className="varse__2">
               <div className="detailsBlock-1">
-                <h2>{product.name}</h2>
+                <h2>{project.name}</h2>
               </div>
               <div className="detailsBlock-2">
                 <Rating {...options} />
-                <span>({product.numOfReviews} Reviews)</span>
+                <span>({project.numOfReviews} Reviews)</span>
               </div>
               <div className="detailsBlock">
                 <div
@@ -112,14 +112,14 @@ const ProjectDetails = ({ match, history }) => {
                     display: "flex",
                   }}
                 >
-                  <h1>{`$${product.price}`}</h1>
+                  <h1>{`$${project.price}`}</h1>
                   <h1 className="discountPrice">
-                    {product.offerPrice > 0 ? `$${product.offerPrice}` : ""}
+                    {project.offerPrice > 0 ? `$${project.offerPrice}` : ""}
                   </h1>
                 </div>
                 <p className="stock__meta" style={{ paddingBottom: ".5vmax" }}>
-                  <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                    {product.Stock < 1 ? "OutOfStock" : "InStock"}
+                  <b className={project.Stock < 1 ? "redColor" : "greenColor"}>
+                    {project.Stock < 1 ? "OutOfStock" : "InStock"}
                   </b>
                 </p>
                 <div
@@ -130,7 +130,7 @@ const ProjectDetails = ({ match, history }) => {
                   }}
                 >
                   <span>Description:</span>
-                  <p>{product.description}</p>
+                  <p>{project.description}</p>
                 </div>
                 <div
                   style={{
@@ -189,10 +189,10 @@ const ProjectDetails = ({ match, history }) => {
                 padding: "1vmax",
               }}
             >
-              {product.reviews && product.reviews[0] ? (
+              {project.reviews && project.reviews[0] ? (
                 <div className="review__option">
-                  {product.reviews &&
-                    product.reviews.map((review) => (
+                  {project.reviews &&
+                    project.reviews.map((review) => (
                       <ReviewCard review={review} />
                     ))}
                 </div>

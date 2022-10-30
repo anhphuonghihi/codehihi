@@ -30,11 +30,11 @@ exports.createProject = catchAsyncErrors(async (req, res, next) => {
   req.body.images = imagesLinks;
   req.body.user = req.user.id;
 
-  const product = await Project.create(req.body);
+  const project = await Project.create(req.body);
 
   res.status(201).json({
     success: true,
-    product,
+    project,
   });
 });
 
@@ -69,8 +69,8 @@ exports.getAllProjects = catchAsyncErrors(async (req, res) => {
 
 // Update Project ---Admin
 exports.updateProject = catchAsyncErrors(async (req, res, next) => {
-  let product = await Project.findById(req.params.id);
-  if (!product) {
+  let project = await Project.findById(req.params.id);
+  if (!project) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
 
@@ -84,8 +84,8 @@ exports.updateProject = catchAsyncErrors(async (req, res, next) => {
 
   if (images !== undefined) {
     // Delete image from cloudinary
-    for (let i = 0; i < product.images.length; i++) {
-      await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    for (let i = 0; i < project.images.length; i++) {
+      await cloudinary.v2.uploader.destroy(project.images[i].public_id);
     }
 
     const imagesLinks = [];
@@ -102,33 +102,33 @@ exports.updateProject = catchAsyncErrors(async (req, res, next) => {
     req.body.images = imagesLinks;
   }
 
-  product = await Project.findByIdAndUpdate(req.params.id, req.body, {
+  project = await Project.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
     useUnified: false,
   });
   res.status(200).json({
     success: true,
-    product,
+    project,
   });
 });
 
 // delete Project
 exports.deleteProject = catchAsyncErrors(async (req, res, next) => {
-  const product = await Project.findById(req.params.id);
+  const project = await Project.findById(req.params.id);
 
-  if (!product) {
+  if (!project) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
 
   // Deleting images from cloudinary
-  for (let i = 0; 1 < product.images.length; i++) {
+  for (let i = 0; 1 < project.images.length; i++) {
     const result = await cloudinary.v2.uploader.destroy(
-      product.images[i].public_id
+      project.images[i].public_id
     );
   }
 
-  await product.remove();
+  await project.remove();
 
   res.status(200).json({
     success: true,
@@ -138,19 +138,19 @@ exports.deleteProject = catchAsyncErrors(async (req, res, next) => {
 
 // single Project details
 exports.getSingleProject = catchAsyncErrors(async (req, res, next) => {
-  const product = await Project.findById(req.params.id);
-  if (!product) {
+  const project = await Project.findById(req.params.id);
+  if (!project) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
   res.status(200).json({
     success: true,
-    product,
+    project,
   });
 });
 
 // Create New Review or Update the review
 exports.createProjectReview = catchAsyncErrors(async (req, res, next) => {
-  const { rating, comment, productId } = req.body;
+  const { rating, comment, projectId } = req.body;
 
   const review = {
     user: req.user._id,
@@ -159,60 +159,60 @@ exports.createProjectReview = catchAsyncErrors(async (req, res, next) => {
     comment,
   };
 
-  const product = await Project.findById(productId);
+  const project = await Project.findById(projectId);
 
-  const isReviewed = product.reviews.find(
+  const isReviewed = project.reviews.find(
     (rev) => rev.user.toString() === req.user._id.toString()
   );
 
   if (isReviewed) {
-    product.reviews.forEach((rev) => {
+    project.reviews.forEach((rev) => {
       if (rev.user.toString() === req.user._id.toString())
         (rev.rating = rating), (rev.comment = comment);
     });
   } else {
-    product.reviews.push(review);
-    product.numOfReviews = product.reviews.length;
+    project.reviews.push(review);
+    project.numOfReviews = project.reviews.length;
   }
 
   let avg = 0;
 
-  product.reviews.forEach((rev) => {
+  project.reviews.forEach((rev) => {
     avg += rev.rating;
   });
 
-  product.ratings = avg / product.reviews.length;
+  project.ratings = avg / project.reviews.length;
 
-  await product.save({ validateBeforeSave: false });
+  await project.save({ validateBeforeSave: false });
 
   res.status(200).json({
     success: true,
   });
 });
 
-// Get All reviews of a single product
+// Get All reviews of a single project
 exports.getSingleProjectReviews = catchAsyncErrors(async (req, res, next) => {
-  const product = await Project.findById(req.query.id);
+  const project = await Project.findById(req.query.id);
 
-  if (!product) {
+  if (!project) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
 
   res.status(200).json({
     success: true,
-    reviews: product.reviews,
+    reviews: project.reviews,
   });
 });
 
 // Delete Review --Admin
 exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
-  const product = await Project.findById(req.query.productId);
+  const project = await Project.findById(req.query.projectId);
 
-  if (!product) {
+  if (!project) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
 
-  const reviews = product.reviews.filter(
+  const reviews = project.reviews.filter(
     (rev) => rev._id.toString() !== req.query.id.toString()
   );
 
@@ -233,7 +233,7 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
   const numOfReviews = reviews.length;
 
   await Project.findByIdAndUpdate(
-    req.query.productId,
+    req.query.projectId,
     {
       reviews,
       ratings,

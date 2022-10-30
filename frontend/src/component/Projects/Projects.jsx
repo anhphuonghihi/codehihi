@@ -81,7 +81,7 @@ const Projects = ({ match }) => {
                 Đồ án nổi bật
               </h2>
             }
-            <div className="sidebar__product" style={{
+            <div className="sidebar__project" style={{
               display: "flex",
               flex: 1,
             }}>
@@ -128,8 +128,8 @@ const Projects = ({ match }) => {
                   }}
                 >
                   {projects &&
-                    projects.map((product) => (
-                      <ProjectCard key={product.id} product={product} />
+                    projects.map((project) => (
+                      <ProjectCard key={project.id} project={project} />
                     ))}
                 </div>
               }

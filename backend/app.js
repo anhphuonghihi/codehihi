@@ -20,11 +20,11 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 // Route imports
-const product = require("./routes/ProjectRoute");
+const project = require("./routes/ProjectRoute");
 const user = require("./routes/UserRoute");
 const wishlist = require("./routes/WishListRoute");
 
-app.use("/api/v2", product);
+app.use("/api/v2", project);
 
 app.use("/api/v2", user);
 
