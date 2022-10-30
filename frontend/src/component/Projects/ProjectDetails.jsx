@@ -86,7 +86,7 @@ const ProjectDetails = ({ match, history }) => {
           <Header />
           <div className="ProjectDetails">
             <div className="first__varse">
-              <Carousel>
+              <Carousel >
                 {project.images &&
                   project.images.map((item, i) => (
                     <img
@@ -107,21 +107,6 @@ const ProjectDetails = ({ match, history }) => {
                 <span>({project.numOfReviews} Reviews)</span>
               </div>
               <div className="detailsBlock">
-                <div
-                  style={{
-                    display: "flex",
-                  }}
-                >
-                  <h1>{`$${project.price}`}</h1>
-                  <h1 className="discountPrice">
-                    {project.offerPrice > 0 ? `$${project.offerPrice}` : ""}
-                  </h1>
-                </div>
-                <p className="stock__meta" style={{ paddingBottom: ".5vmax" }}>
-                  <b className={project.Stock < 1 ? "redColor" : "greenColor"}>
-                    {project.Stock < 1 ? "OutOfStock" : "InStock"}
-                  </b>
-                </p>
                 <div
                   className="Description"
                   style={{

@@ -28,17 +28,7 @@ const ProjectCard = ({ project }) => {
           }}
         >
           <div className="offerPriceBox">
-            <h1
-              className="discountPrice"
-              style={{
-                paddingLeft: "2.5vmax",
-                fontSize: ".9vmax",
-                paddingBottom: "0",
-              }}
-            >
-              {project.offerPrice > 0 ? `$${project.offerPrice}` : ""}
-            </h1>
-            <span className="p__Price">{`$${project.price}`}</span>
+            <span className="p__Price">10 lượt tải xuống</span>
           </div>
         </div>
       </Link>

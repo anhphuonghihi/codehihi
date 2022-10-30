@@ -13,8 +13,8 @@ input {
 }
 
 img.CarouselImage {
-  width: 350px;
-  height: 350px;
+  width: 700px;
+  height: 400px;
   object-fit: contain;
 }
 
@@ -23,7 +23,7 @@ img.CarouselImage {
 }
 
 .varse__2 {
-  width: 50%;
+  width: 30%;
   overflow: hidden;
 }
 
