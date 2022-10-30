@@ -71,9 +71,15 @@ const Footer = () => {
         {/* Footer 3rd part */}
         <div className="footer__2nd__part">
           <h5>Theo dõi</h5>
-          <Link to="facebook.com"><h3>Facebook</h3></Link>
-          <Link to="/youtube.com"><h3>Youtube</h3></Link>
-          <Link to="/instagram.com"><h3>Instagram</h3></Link>
+          <a href="https://www.facebook.com/humg.edu" target="_blank">
+            <h3>Facebook</h3>
+          </a>
+          <a href="https://www.youtube.com/c/Tr%C6%B0%E1%BB%9Dng%C4%90HM%E1%BB%8F%C4%90%E1%BB%8Bach%E1%BA%A5t-HUMG/videos" target="_blank">
+            <h3>Youtube</h3>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank">
+            <h3>Instargam</h3>
+          </a>
         </div>
         {/* Footer 4th part */}
         <div className="footer__3rd__part">

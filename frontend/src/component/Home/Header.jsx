@@ -4,7 +4,6 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Header = () => {
-  const { cartItems } = useSelector((state) => state.cart);
   const { favouriteItems } = useSelector((state) => state.favourite);
 
   const switcherTab = useRef(null);

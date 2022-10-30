@@ -13,7 +13,6 @@ import "./Productdetails.css";
 import { Rating } from "@material-ui/lab";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { addItemsToCart } from "../../actions/CartAction";
 import { addFavouriteItemsToCart } from "../../actions/FavouriteAction";
 import ReviewCard from "./ReviewCard.jsx";
 import { NEW_REVIEW_RESET } from "../../constans/ProductConstans";
@@ -72,26 +71,6 @@ const ProductDetails = ({ match, history }) => {
   // Increase quantity
   const [quantity, setQuantity] = useState(1);
 
-  const increaseQuantity = () => {
-    if (product.Stock <= quantity) return toast.error("Product stock limited");
-    const qty = quantity + 1;
-    setQuantity(qty);
-  };
-
-  const decreaseQuantity = () => {
-    if (1 >= quantity) return;
-    const qty = quantity - 1;
-    setQuantity(qty);
-  };
-
-  const addToCartHandler = () => {
-    if (product.Stock > 0) {
-      dispatch(addItemsToCart(match.params.id, quantity));
-      toast.success("Product Added to cart");
-    } else {
-      toast.error("Product stock limited");
-    }
-  };
 
   const addToFavouriteHandler = () => {
     dispatch(addFavouriteItemsToCart(match.params.id, quantity));
@@ -138,14 +117,6 @@ const ProductDetails = ({ match, history }) => {
                   <h1 className="discountPrice">
                     {product.offerPrice > 0 ? `$${product.offerPrice}` : ""}
                   </h1>
-                </div>
-                <div className="detailsBlock-3-1">
-                  <span className="quantity">Quantity</span>
-                  <div className="detailsBlock-3-1-1">
-                    <button onClick={decreaseQuantity}>-</button>
-                    <input type="number" readOnly value={quantity} />
-                    <button onClick={increaseQuantity}>+</button>
-                  </div>{" "}
                 </div>
                 <p className="stock__meta" style={{ paddingBottom: ".5vmax" }}>
                   <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
@@ -194,39 +165,6 @@ const ProductDetails = ({ match, history }) => {
                     >
                       Add to wishlist
                     </span>
-                  </div>
-
-                  <div
-                    className="pointer flex"
-                    style={{
-                      padding: "10px 5px",
-                      alignItems: "center",
-                      backgroundColor: "#E4EAEC",
-                    }}
-                    onClick={addToCartHandler}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      class="bi bi-bag"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                    </svg>
-                    <button
-                      className="cartBtn"
-                      style={{
-                        opacity: 0.7,
-                        padding: "0px 5px",
-                        border: "none",
-                        cursor: "pointer",
-                        background: "none",
-                      }}
-                    >
-                      Add to Cart
-                    </button>
                   </div>
                 </div>
               </div>

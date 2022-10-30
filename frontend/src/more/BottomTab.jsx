@@ -12,7 +12,6 @@
     
     const BottomTab = () => {
 
-      const { cartItems } = useSelector((state) => state.cart);
       const { favouriteItems } = useSelector((state) => state.favourite);
 
       return (
@@ -36,36 +35,6 @@
             margin:"5px"
           }}
            />
-          </Link>
-          <Link to="/cart">
-            <div style={{
-              position:"relative"
-            }}>
-            <LocalMallIcon 
-             style={{
-              color:"#000",
-              fontSize:"35px",
-              margin:"5px",
-              opacity:".8"
-            }} 
-            />
-            
-             <span style={{
-              position:"absolute",
-              bottom:"70%",
-              left:"10%",
-              height:"20px",
-              width:"20px",
-              border:"none",
-              background:"tomato",
-              display:"flex",
-              alignItems:"center",
-              justifyContent:"center",
-              borderRadius:"50%",
-              color:"#fff",
-              fontWeight:"700"
-            }}>{cartItems.length}</span>
-            </div>
           </Link>
           <Link to="/favourites">
             <div style={{

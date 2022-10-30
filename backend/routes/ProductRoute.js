@@ -29,9 +29,9 @@ router
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProduct)
   .get(getSingleProduct);
 
-router.route("/product/review").post(isAuthenticatedUser, 
-  
-  );
+router.route("/product/review").post(isAuthenticatedUser,
+  createProductReview
+);
 
 router
   .route("/reviews")

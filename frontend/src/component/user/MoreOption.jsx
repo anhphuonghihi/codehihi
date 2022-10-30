@@ -34,7 +34,7 @@ const MoreOption = ({ history }) => {
 
   return (
     <>
-      <MetaData title="More Option" />
+      <MetaData title="Menu" />
       <div
         className="moreOption"
         style={{
@@ -89,14 +89,14 @@ const MoreOption = ({ history }) => {
                     fontSize: "14px",
                   }}
                 >
-                  view your profile
+                  Xem hồ sơ cá nhân
                 </span>
               </div>
             </div>
           </Link>
         )}
 
-        <Link to="/products">
+        <Link to="/project">
           <div
             style={{
               display: "flex",
@@ -116,7 +116,7 @@ const MoreOption = ({ history }) => {
                 color: "#000",
               }}
             >
-              Visit Shop
+              Đồ án
             </span>
           </div>
         </Link>
@@ -141,35 +141,11 @@ const MoreOption = ({ history }) => {
                 color: "#000",
               }}
             >
-              Search Products
+              Tìm kiếm
             </span>
           </div>
         </Link>
 
-        <Link to="/cart">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              padding: "7px 0",
-            }}
-          >
-            <LocalMallIcon
-              style={{
-                fontSize: "30px",
-                color: "#000",
-                marginRight: "10px",
-              }}
-            />
-            <span
-              style={{
-                color: "#000",
-              }}
-            >
-              View Cart
-            </span>
-          </div>
-        </Link>
 
         <Link to="/favourites">
           <div
@@ -191,88 +167,12 @@ const MoreOption = ({ history }) => {
                 color: "#000",
               }}
             >
-              View Favourite
-            </span>
-          </div>
-        </Link>
-        {isAuthenticated === false ? (
-          ""
-        ) : (
-          <Link to="/orders">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                padding: "7px 0",
-              }}
-            >
-              <ListAltIcon
-                style={{
-                  fontSize: "30px",
-                  color: "#000",
-                  marginRight: "10px",
-                }}
-              />
-              <span
-                style={{
-                  color: "#000",
-                }}
-              >
-                My Orders
-              </span>
-            </div>
-          </Link>
-        )}
-
-        <Link to="/commingsoon">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              padding: "7px 0",
-            }}
-          >
-            <Creator
-              style={{
-                fontSize: "30px",
-                color: "#000",
-                marginRight: "10px",
-              }}
-            />
-            <span
-              style={{
-                color: "#000",
-              }}
-            >
-              Create Own Shop
+              Yêu thích
             </span>
           </div>
         </Link>
 
-        <Link to="/commingsoon">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              padding: "7px 0",
-            }}
-          >
-            <ForumIcon
-              style={{
-                fontSize: "30px",
-                color: "#000",
-                marginRight: "10px",
-              }}
-            />
-            <span
-              style={{
-                color: "#000",
-              }}
-            >
-              Live chat support
-            </span>
-          </div>
-        </Link>
+
         {isAuthenticated === false ? (
           ""
         ) : (
@@ -296,7 +196,7 @@ const MoreOption = ({ history }) => {
                   color: "#000",
                 }}
               >
-                Change Password
+                Đổi mật khẩu
               </span>
             </div>
           </Link>
@@ -324,7 +224,7 @@ const MoreOption = ({ history }) => {
                   color: "#000",
                 }}
               >
-                Forgot Password
+                Quên mât khẩu
               </span>
             </div>
           </Link>
@@ -352,7 +252,7 @@ const MoreOption = ({ history }) => {
                   color: "#000",
                 }}
               >
-                Update Profile
+                Sửa thông tin
               </span>
             </div>
           </Link>
@@ -378,7 +278,7 @@ const MoreOption = ({ history }) => {
                 color: "#000",
               }}
             >
-              Contact Us
+              Liên hệ
             </span>
           </div>
         </Link>
@@ -403,7 +303,7 @@ const MoreOption = ({ history }) => {
                 color: "#000",
               }}
             >
-              User Rules
+              Quy tắc
             </span>
           </div>
         </Link>
@@ -428,7 +328,7 @@ const MoreOption = ({ history }) => {
                 color: "#000",
               }}
             >
-              Report us
+             Trợ giúp
             </span>
           </div>
         </Link>
@@ -456,7 +356,7 @@ const MoreOption = ({ history }) => {
                 color: "#000",
               }}
             >
-              Log Out
+              Đăng xuất
             </span>
           </div>
         )}

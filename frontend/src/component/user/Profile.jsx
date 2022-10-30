@@ -62,7 +62,6 @@ useEffect(() => {
             </div> 
                
               <div className="change__info">
-                  <Link to="/orders" className="settings">My Orders</Link>
                   <Link to="/me/update" className="settings">Change Password</Link>
               </div>
         </div>  

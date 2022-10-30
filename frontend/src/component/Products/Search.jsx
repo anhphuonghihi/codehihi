@@ -21,7 +21,7 @@ const Search = ({ history }) => {
       <form className="searchBox" onSubmit={searchSubmitHandler}>
         <input
           type="text"
-          placeholder="Search for items ..."
+          placeholder="Tên đồ án..."
           onChange={(e) => setKeyword(e.target.value)}
         />
         <svg

@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../../more/Metadata.js";
 import Loading from "../../more/Loader.js";
 import { getAdminProduct } from "../../actions/ProductActions.js";
-import { getAllOrders } from "../../actions/OrderAction.js";
 import { getAllUsers } from "../../actions/userAction.js";
 
 const Dashboard = () => {
@@ -18,8 +17,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   const { products,loading } = useSelector((state) => state.products);
-
-  const { orders } = useSelector((state) => state.AllOrders);
 
   const { users } = useSelector((state) => state.allUsers);
 
@@ -34,15 +31,11 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(getAdminProduct());
-        dispatch(getAllOrders());
         dispatch(getAllUsers());
       }, [dispatch]);    
 
     let totalAmount = 0;
-      orders &&
-        orders.forEach((item) => {
-          totalAmount += item.totalPrice;
-        });
+
 
     const lineState = {
         labels: ["Initial Amount", "Amount Earned"],
@@ -90,10 +83,7 @@ const Dashboard = () => {
                 <p>Product</p>
                 <p>{products && products.length}</p>
               </Link>
-              <Link to="/admin/orders">
-                <p>Orders</p>
-                <p>{orders && orders.length}</p>
-              </Link>
+
               <Link to="/admin/users">
                 <p>Users</p>
                 <p>{users && users.length}</p>

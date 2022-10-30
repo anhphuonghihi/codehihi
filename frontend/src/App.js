@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import Home from "./component/Home/Home";
 import WebFont from "webfontloader";
 import { useEffect } from 'react';
@@ -19,11 +19,6 @@ import Search from "./component/Products/Search";
 import Support from "./more/Support";
 import Favourites from './component/cart/Favourites';
 
-import axios from 'axios';
-import { useState } from 'react';
-import MyOrder from "./component/user/MyOrder";
-import MyOrderDetails from "./component/user/MyOrderDetails";
-import CommingSoon from "./more/CommingSoon";
 import Rules from "./more/Rules";
 import Contact from "./more/Contact";
 import MoreOption from "./component/user/MoreOption"
@@ -31,8 +26,6 @@ import Dashboard from './component/Admin/Dashboard';
 import CreateProduct from './component/Admin/CreateProduct';
 import AllProducts from "../../frontend/src/component/Admin/AllProducts";
 import EditProduct from "../../frontend/src/component/Admin/EditProduct";
-import AllOrder from "../../frontend/src/component/Admin/AllOrder";
-import UpdateOrder from "../../frontend/src/component/Admin/UpdateOrder";
 import AllUsers from "../../frontend/src/component/Admin/AllUsers";
 import UpdateUser from "../../frontend/src/component/Admin/UpdateUser";
 import AllReviews from "../../frontend/src/component/Admin/AllReviews";
@@ -80,21 +73,15 @@ function App() {
          <ProtectedRoute exact path="/me/update" component={UpdatePassword} />
          <ProtectedRoute exact path="/me/update/info" component={EditProfile} />
 
-         <ProtectedRoute exact path="/orders" component={MyOrder} />
-         <ProtectedRoute exact path="/order/:id" component={MyOrderDetails} />
          <ProtectedRoute isAdmin={true} exact path="/dashboard" component={Dashboard} />
          <ProtectedRoute isAdmin={true} exact path="/admin/product" component={CreateProduct} />
          <ProtectedRoute isAdmin={true} exact path="/admin/products" component={AllProducts} />
          <ProtectedRoute isAdmin={true} exact path="/edit/product/:id" component={EditProduct} />
-         <ProtectedRoute isAdmin={true} exact path="/admin/orders" component={AllOrder} />
-         <ProtectedRoute isAdmin={true} exact path="/admin/order/:id" component={UpdateOrder} />
+
          <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />
          <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />
          <ProtectedRoute isAdmin={true} exact path="/admin/reviews" component={AllReviews} />
-
-         <Route component={
-           window.location.pathname === "/process/payment" ? null : Notfound
-           } />
+         <Route exact path="*" component={Notfound} />
        </Switch>
      </Router>
 
