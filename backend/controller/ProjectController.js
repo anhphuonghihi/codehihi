@@ -1,11 +1,11 @@
-const Product = require("../models/ProductModel.js");
+const Project = require("../models/ProjectModel.js");
 const ErrorHandler = require("../utils/ErrorHandler.js");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Features = require("../utils/Features");
 const cloudinary = require("cloudinary");
 
-// create Product --Admin
-exports.createProduct = catchAsyncErrors(async (req, res, next) => {
+// create Project --Admin
+exports.createProject = catchAsyncErrors(async (req, res, next) => {
   let images = [];
 
   if (typeof req.body.images === "string") {
@@ -18,7 +18,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
   for (let i = 0; i < images.length; i++) {
     const result = await cloudinary.v2.uploader.upload(images[i], {
-      folder: "products",
+      folder: "projects",
     });
 
     imagesLinks.push({
@@ -30,7 +30,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   req.body.images = imagesLinks;
   req.body.user = req.user.id;
 
-  const product = await Product.create(req.body);
+  const product = await Project.create(req.body);
 
   res.status(201).json({
     success: true,
@@ -38,38 +38,38 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Get All Product (Admin)
-exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
-  const products = await Product.find();
+// Get All Project (Admin)
+exports.getAdminProjects = catchAsyncErrors(async (req, res, next) => {
+  const projects = await Project.find();
 
   res.status(200).json({
     success: true,
-    products,
+    projects,
   });
 });
 
-// get All Products
-exports.getAllProducts = catchAsyncErrors(async (req, res) => {
+// get All Projects
+exports.getAllProjects = catchAsyncErrors(async (req, res) => {
   const resultPerPage = 8;
 
-  const productsCount = await Product.countDocuments();
+  const projectsCount = await Project.countDocuments();
 
-  const feature = new Features(Product.find(), req.query)
+  const feature = new Features(Project.find(), req.query)
     .search()
     .filter()
     .pagination(resultPerPage);
-  const products = await feature.query;
+  const projects = await feature.query;
   res.status(200).json({
     success: true,
-    products,
-    productsCount,
+    projects,
+    projectsCount,
     resultPerPage,
   });
 });
 
-// Update Product ---Admin
-exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
-  let product = await Product.findById(req.params.id);
+// Update Project ---Admin
+exports.updateProject = catchAsyncErrors(async (req, res, next) => {
+  let product = await Project.findById(req.params.id);
   if (!product) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
@@ -92,7 +92,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
     for (let i = 0; i < images.length; i++) {
       const result = await cloudinary.v2.uploader.upload(images[i], {
-        folder: "products",
+        folder: "projects",
       });
       imagesLinks.push({
         public_id: result.public_id,
@@ -102,7 +102,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     req.body.images = imagesLinks;
   }
 
-  product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+  product = await Project.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
     useUnified: false,
@@ -113,9 +113,9 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// delete Product
-exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
+// delete Project
+exports.deleteProject = catchAsyncErrors(async (req, res, next) => {
+  const product = await Project.findById(req.params.id);
 
   if (!product) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
@@ -136,9 +136,9 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// single Product details
-exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
+// single Project details
+exports.getSingleProject = catchAsyncErrors(async (req, res, next) => {
+  const product = await Project.findById(req.params.id);
   if (!product) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
@@ -149,7 +149,7 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Create New Review or Update the review
-exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
+exports.createProjectReview = catchAsyncErrors(async (req, res, next) => {
   const { rating, comment, productId } = req.body;
 
   const review = {
@@ -159,7 +159,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
     comment,
   };
 
-  const product = await Product.findById(productId);
+  const product = await Project.findById(productId);
 
   const isReviewed = product.reviews.find(
     (rev) => rev.user.toString() === req.user._id.toString()
@@ -191,8 +191,8 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Get All reviews of a single product
-exports.getSingleProductReviews = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.query.id);
+exports.getSingleProjectReviews = catchAsyncErrors(async (req, res, next) => {
+  const product = await Project.findById(req.query.id);
 
   if (!product) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
@@ -206,7 +206,7 @@ exports.getSingleProductReviews = catchAsyncErrors(async (req, res, next) => {
 
 // Delete Review --Admin
 exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.query.productId);
+  const product = await Project.findById(req.query.productId);
 
   if (!product) {
     return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
@@ -232,7 +232,7 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
 
   const numOfReviews = reviews.length;
 
-  await Product.findByIdAndUpdate(
+  await Project.findByIdAndUpdate(
     req.query.productId,
     {
       reviews,

@@ -25,12 +25,12 @@ const Sidebar = () => {
           <DashboardIcon /> Dashboard
         </p>
       </Link>
-      <Link to="/admin/products">
-        <p className="Dashboard__item"><PostAddIcon /> All Products</p>
+      <Link to="/admin/projects">
+        <p className="Dashboard__item"><PostAddIcon /> All Projects</p>
       </Link>
 
       <Link to="/admin/product">
-        <p><AddIcon />Create Product</p>
+        <p><AddIcon />Create Project</p>
       </Link>
       <Link to="/admin/users">
         <p>

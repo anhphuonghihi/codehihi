@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import "./newProduct.css";
+import "./newProject.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
@@ -135,7 +135,7 @@ const AllUsers = ({ history }) => {
           />
         </div>
       </div>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -145,7 +145,7 @@ const AllUsers = ({ history }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </Fragment>
   );
 };

@@ -32,29 +32,29 @@ import {
   ALL_REVIEW_REQUEST,
   ALL_REVIEW_SUCCESS,
   ALL_REVIEW_FAIL,
-} from "../constans/ProductConstans";
+} from "../constans/ProjectConstans";
 
-export const productsReducer = (state = { products: [] }, action) => {
+export const projectsReducer = (state = { projects: [] }, action) => {
   switch (action.type) {
     case ALL_PRODUCT_REQUEST:
     case ADMIN_PRODUCT_REQUEST:
       return {
         loading: true,
-        products: [],
+        projects: [],
       };
     case ALL_PRODUCT_SUCCESS:
       return {
         loading: false,
-        products: action.payload.products,
-        productsCount: action.payload.productsCount,
+        projects: action.payload.projects,
+        projectsCount: action.payload.projectsCount,
         resultPerPage: action.payload.resultPerPage,
-        filteredProductsCount: action.payload.filteredProductsCount,
+        filteredProjectsCount: action.payload.filteredProjectsCount,
       };
 
     case ADMIN_PRODUCT_SUCCESS:
       return {
         loading: false,
-        products: action.payload,
+        projects: action.payload,
       };
 
     case ALL_PRODUCT_FAIL:
@@ -100,7 +100,7 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
   }
 };
 
-// Product review
+// Project review
 export const newReviewReducer = (state = {}, action) => {
   switch (action.type) {
     case NEW_REVIEW_REQUEST:
@@ -134,8 +134,8 @@ export const newReviewReducer = (state = {}, action) => {
   }
 };
 
-// New Product ----Admin
-export const newProductReducer = (state = { product: {} }, action) => {
+// New Project ----Admin
+export const newProjectReducer = (state = { product: {} }, action) => {
   switch (action.type) {
     case NEW_PRODUCT_REQUEST:
       return {
@@ -169,8 +169,8 @@ export const newProductReducer = (state = { product: {} }, action) => {
   }
 };
 
-// Delete Product
-export const deleteProductReducer = (state = {}, action) => {
+// Delete Project
+export const deleteProjectReducer = (state = {}, action) => {
   switch (action.type) {
     case DELETE_PRODUCT_REQUEST:
     case UPDATE_PRODUCT_REQUEST:

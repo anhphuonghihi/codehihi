@@ -6,13 +6,13 @@ import {
   clearErrors,
   getAllReviews,
   deleteReviews,
-} from "../../actions/ProductActions";
+} from "../../actions/ProjectActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Star from "@material-ui/icons/Star";
 import SideBar from "./Sidebar";
-import { DELETE_REVIEW_RESET } from "../../constans/ProductConstans";
+import { DELETE_REVIEW_RESET } from "../../constans/ProjectConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
 const AllReviews = ({ history }) => {
@@ -26,7 +26,7 @@ const AllReviews = ({ history }) => {
     (state) => state.productReviews
   );
 
-  const [productId, setProductId] = useState("");
+  const [productId, setProjectId] = useState("");
 
   const deleteReviewHandler = (reviewId) => {
     dispatch(deleteReviews(reviewId, productId));
@@ -141,15 +141,15 @@ const AllReviews = ({ history }) => {
               <Star />
               <input
                 type="text"
-                placeholder="Product Id"
+                placeholder="Project Id"
                 required
                 value={productId}
-                onChange={(e) => setProductId(e.target.value)}
+                onChange={(e) => setProjectId(e.target.value)}
               />
             </div>
 
             <Button
-              id="createProductBtn"
+              id="createProjectBtn"
               type="submit"
               disabled={
                 loading ? true : false || productId === "" ? true : false
@@ -173,7 +173,7 @@ const AllReviews = ({ history }) => {
           )}
         </div>
       </div>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -183,7 +183,7 @@ const AllReviews = ({ history }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </Fragment>
   );
 };

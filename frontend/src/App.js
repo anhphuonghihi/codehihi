@@ -3,7 +3,7 @@ import Home from "./component/Home/Home";
 import WebFont from "webfontloader";
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ProductDetails from './component/Products/ProductDetails';
+import ProjectDetails from './component/Projects/ProjectDetails';
 import LoginSignup from "./component/Authentication/LoginSignup";
 import UserData from './more/UserData';
 import { useSelector } from 'react-redux';
@@ -14,8 +14,8 @@ import Profile from "./component/user/Profile";
 import UpdatePassword from './component/user/UpdatePassword';
 import EditProfile from './component/user/EditProfile';
 import About from './component/about/About';
-import Products from "./component/Products/Products";
-import Search from "./component/Products/Search";
+import Projects from "./component/Projects/Projects";
+import Search from "./component/Projects/Search";
 import Support from "./more/Support";
 import Favourites from './component/cart/Favourites';
 
@@ -23,9 +23,9 @@ import Rules from "./more/Rules";
 import Contact from "./more/Contact";
 import MoreOption from "./component/user/MoreOption"
 import Dashboard from './component/Admin/Dashboard';
-import CreateProduct from './component/Admin/CreateProduct';
-import AllProducts from "../../frontend/src/component/Admin/AllProducts";
-import EditProduct from "../../frontend/src/component/Admin/EditProduct";
+import CreateProject from './component/Admin/CreateProject';
+import AllProjects from "../../frontend/src/component/Admin/AllProjects";
+import EditProject from "../../frontend/src/component/Admin/EditProject";
 import AllUsers from "../../frontend/src/component/Admin/AllUsers";
 import UpdateUser from "../../frontend/src/component/Admin/UpdateUser";
 import AllReviews from "../../frontend/src/component/Admin/AllReviews";
@@ -45,7 +45,7 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
-    if(isAuthenticated){
+    if (isAuthenticated) {
       Store.dispatch(loadUser());
     }
 
@@ -56,12 +56,12 @@ function App() {
       {isAuthenticated && <UserData user={user} />}
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/product/:id" component={ProductDetails} />
+        <Route exact path="/product/:id" component={ProjectDetails} />
         <Route exact path="/login" component={LoginSignup} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/project" component={Products} />
+        <Route exact path="/project" component={Projects} />
         <Route exact path="/search" component={Search} />
-        <Route exact path="/projects/:keyword" component={Products} />
+        <Route exact path="/projects/:keyword" component={Projects} />
         <Route exact path="/support" component={Support} />
         <Route exact path="/favourites" component={Favourites} />
         <Route exact path="/faq" component={Rules} />
@@ -75,9 +75,9 @@ function App() {
         <ProtectedRoute exact path="/me/update/info" component={EditProfile} />
 
         <ProtectedRoute isAdmin={true} exact path="/dashboard" component={Dashboard} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/product" component={CreateProduct} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/products" component={AllProducts} />
-        <ProtectedRoute isAdmin={true} exact path="/edit/product/:id" component={EditProduct} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/product" component={CreateProject} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/projects" component={AllProjects} />
+        <ProtectedRoute isAdmin={true} exact path="/edit/product/:id" component={EditProject} />
 
         <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />
         <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />

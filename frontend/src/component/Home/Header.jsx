@@ -60,7 +60,7 @@ const Header = () => {
             <span
               style={{
                 color: "#fff",
-              
+
               }}
             >
               Trường đại học Mỏ -Địa chất Hà Nội
@@ -97,7 +97,7 @@ const Header = () => {
           >
             <strong style={{
               padding: "0px 5px"
-            }}>Email:</strong> <a style={{color:"black"}} href="mailto:hanhchinhtonghop@humg.edu.vn">hanhchinhtonghop@humg.edu.vn</a>
+            }}>Email:</strong> <a style={{ color: "black" }} href="mailto:hanhchinhtonghop@humg.edu.vn">hanhchinhtonghop@humg.edu.vn</a>
           </span>
         </div>
       </div>
@@ -153,7 +153,7 @@ const Header = () => {
               </svg>
             </Link>
           </div>
-          <div className="heart__products flex pointer relative">
+          <div className="heart__projects flex pointer relative">
             <Link to="/favourites">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

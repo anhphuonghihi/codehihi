@@ -74,7 +74,7 @@ const UpdateProject = ({ history, match }) => {
 
     if (isUpdated) {
       toast.success("Đồ án đã được sửathành công");
-      history.push("/admin/projects");
+      history.push("/admin/project");
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }
   }, [

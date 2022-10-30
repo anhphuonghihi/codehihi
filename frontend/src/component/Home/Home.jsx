@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./Home.css";
-import ProductCard from "../Products/ProductCard";
-import  {useDispatch, useSelector} from "react-redux"
-import { clearErrors, getProduct } from "../../actions/ProductActions";
+import ProjectCard from "../Projects/ProjectCard";
+import { useDispatch, useSelector } from "react-redux"
+import { clearErrors, getProject } from "../../actions/ProjectActions";
 import Header from "./Header";
 import MetaData from "../../more/Metadata";
 import Footer from "../../Footer";
@@ -13,49 +13,49 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { products,error,loading } = useSelector(
-    (state) => state.products
+  const { projects, error, loading } = useSelector(
+    (state) => state.projects
   );
 
-   useEffect(() => {
-    if(error){ 
+  useEffect(() => {
+    if (error) {
       toast.error(error);
       dispatch(clearErrors());
- }
-  dispatch(getProduct());
-   }, [dispatch,error])
-   
+    }
+    dispatch(getProject());
+  }, [dispatch, error])
+
   return (
     <>
-    {loading ? (
-      <Loading />
-    )
-    : (
-      <>
-      <MetaData title="Trang chủ" />
-      <Header />
- 
-      <h2 className="homeHeading">Đồ án nổi bật</h2>
-      <div className="container" id="container">
-        {products && products.map((product) =>(
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div>
-      <ToastContainer 
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        />
-      <Footer />
-      <BottomTab />
-      </>    
-    )}
+      {loading ? (
+        <Loading />
+      )
+        : (
+          <>
+            <MetaData title="Trang chủ" />
+            <Header />
+
+            <h2 className="homeHeading">Đồ án nổi bật</h2>
+            <div className="container" id="container">
+              {projects && projects.map((product) => (
+                <ProjectCard key={product._id} product={product} />
+              ))}
+            </div>
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+            <Footer />
+            <BottomTab />
+          </>
+        )}
     </>
   );
 };

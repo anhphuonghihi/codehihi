@@ -75,12 +75,12 @@ const UpdateUser = ({ history, match }) => {
       <MetaData title="Update User" />
       <div className="dashboard">
         <SideBar />
-        <div className="newProductContainer">
+        <div className="newProjectContainer">
           {loading ? (
             <Loading />
           ) : (
             <form
-              className="createProductForm"
+              className="createProjectForm"
               onSubmit={updateUserSubmitHandler}
             >
               <h1>Update User</h1>
@@ -116,7 +116,7 @@ const UpdateUser = ({ history, match }) => {
               </div>
 
               <Button
-                id="createProductBtn"
+                id="createProjectBtn"
                 type="submit"
                 disabled={
                   updateLoading ? true : false || role === "" ? true : false
