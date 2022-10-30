@@ -27,7 +27,7 @@ const wishListSchema = new mongoose.Schema({
   },
   Stock: {
     type: Number,
-    required: [true, "Vui lòng nhập tên đồ án stock"],
+    required: [true, "Vui lòng nhập tên đồ án"],
   }
 });
 

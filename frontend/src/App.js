@@ -45,9 +45,8 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
-    if (isAuthenticated) {
-      Store.dispatch(loadUser());
-    }
+    Store.dispatch(loadUser());
+
 
   }, []);
   return (

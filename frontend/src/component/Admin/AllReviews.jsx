@@ -63,21 +63,21 @@ const AllReviews = ({ history }) => {
 
     {
       field: "user",
-      headerName: "User",
+      headerName: "Họ tên",
       minWidth: 200,
       flex: 0.6,
     },
 
     {
       field: "comment",
-      headerName: "Comment",
+      headerName: "Bình luận",
       minWidth: 350,
       flex: 1,
     },
 
     {
       field: "rating",
-      headerName: "Rating",
+      headerName: "Hạng",
       type: "number",
       minWidth: 180,
       flex: 0.4,
@@ -92,7 +92,7 @@ const AllReviews = ({ history }) => {
     {
       field: "actions",
       flex: 0.3,
-      headerName: "Actions",
+      headerName: "Trạng thái",
       minWidth: 150,
       type: "number",
       sortable: false,
@@ -126,7 +126,7 @@ const AllReviews = ({ history }) => {
 
   return (
     <Fragment>
-      <MetaData title={`ALL REVIEWS - Admin`} />
+      <MetaData title={`TẤT CẢ ĐÁNH GIÁ - Admin`} />
 
       <div className="dashboard">
         <SideBar />
@@ -135,13 +135,13 @@ const AllReviews = ({ history }) => {
             className="projectReviewsForm"
             onSubmit={projectReviewsSubmitHandler}
           >
-            <h1 className="projectReviewsFormHeading">ALL REVIEWS</h1>
+            <h1 className="projectReviewsFormHeading">TẤT CẢ ĐÁNH GIÁ</h1>
 
             <div>
               <Star />
               <input
                 type="text"
-                placeholder="Project Id"
+                placeholder="ID Đồ án"
                 required
                 value={projectId}
                 onChange={(e) => setProjectId(e.target.value)}
@@ -169,7 +169,7 @@ const AllReviews = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="projectReviewsFormHeading">No Reviews Found</h1>
+            <h1 className="projectReviewsFormHeading">Không tìm thấy đánh giá</h1>
           )}
         </div>
       </div>

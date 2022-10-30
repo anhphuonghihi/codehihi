@@ -59,14 +59,14 @@ const AllUsers = ({ history }) => {
     },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Tên",
       minWidth: 150,
       flex: 0.5,
     },
 
     {
       field: "role",
-      headerName: "Role",
+      headerName: "Quyền",
       type: "number",
       minWidth: 150,
       flex: 0.3,
@@ -80,7 +80,7 @@ const AllUsers = ({ history }) => {
     {
       field: "actions",
       flex: 0.3,
-      headerName: "Actions",
+      headerName: "Trạng thái",
       minWidth: 150,
       type: "number",
       sortable: false,
@@ -118,12 +118,12 @@ const AllUsers = ({ history }) => {
 
   return (
     <Fragment>
-      <MetaData title={`ALL USERS - Admin`} />
+      <MetaData title={`TẤT CẢ NGƯỜI DÙNG - Admin`} />
 
       <div className="dashboard">
         <SideBar />
         <div className="projectListContainer">
-          <h1 id="projectListHeading">ALL USERS</h1>
+          <h1 id="projectListHeading">TẤT CẢ NGƯỜI DÙNG</h1>
 
           <DataGrid
             rows={rows}

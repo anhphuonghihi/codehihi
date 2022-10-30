@@ -54,36 +54,20 @@ const AllProjects = ({ history }) => {
 
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Tên",
       minWidth: 350,
       flex: 1,
     },
     {
-      field: "stock",
-      headerName: "Stock",
-      type: "number",
-      minWidth: 150,
-      flex: 0.3,
-    },
-
-    {
-      field: "price",
-      headerName: "Price",
-      type: "number",
-      minWidth: 270,
-      flex: 0.5,
-    },
-
-    {
       field: "actions",
       flex: 0.3,
-      headerName: "Actions",
+      headerName: "Trạng thái",
       minWidth: 150,
       type: "number",
       sortable: false,
       renderCell: (params) => {
         return (
-          <Fragment>
+          <>
             <Link to={`/edit/project/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
@@ -95,7 +79,7 @@ const AllProjects = ({ history }) => {
             >
               <DeleteIcon />
             </Button>
-          </Fragment>
+          </>
         );
       },
     },
@@ -120,7 +104,7 @@ const AllProjects = ({ history }) => {
       <div className="dashboard">
         <SideBar />
         <div className="projectListContainer">
-          <h1 id="projectListHeading">ALL PROJECTS</h1>
+          <h1 id="projectListHeading">TẤT CẢ CÁC DỰ ÁN</h1>
 
           <DataGrid
             rows={rows}

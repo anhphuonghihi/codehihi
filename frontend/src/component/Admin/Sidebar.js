@@ -22,25 +22,25 @@ const Sidebar = () => {
 
       <Link to="/dashboard">
         <p className="Dashboard__item">
-          <DashboardIcon /> Dashboard
+          <DashboardIcon /> Bảng điều khiển
         </p>
       </Link>
       <Link to="/admin/projects">
-        <p className="Dashboard__item"><PostAddIcon /> All Projects</p>
+        <p className="Dashboard__item"><PostAddIcon /> Tất cả đồ án</p>
       </Link>
 
       <Link to="/admin/project">
-        <p><AddIcon />Create Project</p>
+        <p><AddIcon />Thêm đồ án</p>
       </Link>
       <Link to="/admin/users">
         <p>
-          <PeopleIcon /> Users
+          <PeopleIcon /> Người dùng
         </p>
       </Link>
       <Link to="/admin/reviews">
         <p>
           <RateReviewIcon />
-          Reviews
+          Đánh giá
         </p>
       </Link>
     </div>

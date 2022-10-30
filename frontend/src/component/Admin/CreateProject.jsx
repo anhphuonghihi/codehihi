@@ -91,7 +91,7 @@ const CreateProject = ({ history }) => {
 
   return (
     <Fragment>
-      <MetaData title="Create Project" />
+      <MetaData title="THÊM ĐỀ TÀI" />
       <div className="dashboard">
         <SideBar />
         <div className="newProjectContainer">
@@ -100,7 +100,7 @@ const CreateProject = ({ history }) => {
             encType="multipart/form-data"
             onSubmit={createProjectSubmitHandler}
           >
-            <h1>Create Project</h1>
+            <h1>THÊM ĐỀ TÀI</h1>
 
             <div>
               <SpellcheckIcon />
