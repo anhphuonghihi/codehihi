@@ -42,10 +42,10 @@ const  ForgotPassword = () => {
           <Loading />
         ) : (
           <Fragment>
-            <MetaData title="Forgot Password" />
+            <MetaData title="Quên mật khẩu" />
             <div className="forgotPasswordContainer">
               <div className="forgotPasswordBox">
-                <h2 className="forgotPasswordHeading">Forgot Password</h2>
+                <h2 className="forgotPasswordHeading">Quên mật khẩu</h2>
   
                 <form
                   className="forgotPasswordForm"
@@ -65,7 +65,7 @@ const  ForgotPassword = () => {
   
                   <input
                     type="submit"
-                    value="Send"
+                    value="Gửi"
                     className="forgotPasswordBtn"
                   />
                 </form>

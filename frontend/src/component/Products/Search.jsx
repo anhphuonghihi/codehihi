@@ -9,15 +9,15 @@ const Search = ({ history }) => {
   const searchSubmitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      history.push(`/products/${keyword}`);
+      history.push(`/projects/${keyword}`);
     } else {
-      history.push("/products");
+      history.push("/projects");
     }
   };
 
   return (
     <Fragment>
-      <MetaData title="Search" />
+      <MetaData title="Tìm kiếm" />
       <form className="searchBox" onSubmit={searchSubmitHandler}>
         <input
           type="text"

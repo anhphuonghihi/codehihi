@@ -26,7 +26,7 @@ const Support = ({history}) => {
 
     return (
        <>
-       <MetaData title="Support"/>
+       <MetaData title="Hỗ trợ"/>
        <div 
        className='support'
        style={{
@@ -37,10 +37,10 @@ const Support = ({history}) => {
        }}>
            <h2 className='support__heading' style={{
                textAlign:"center"
-           }}>Hey How can we improve our services</h2>
+           }}>Làm thế nào chúng tôi có thể cải thiện dịch vụ của mình ?</h2>
            <h2  className='support__heading' style={{
                textAlign:"center"
-           }}>Report us for something...</h2>
+           }}>Hãy báo cáo cho chúng tôi vì điều gì đó ...</h2>
            <div>
                <form style={{
                    width:"400px",
@@ -49,7 +49,7 @@ const Support = ({history}) => {
                }} ref={formRef}
                onSubmit={handleSubmit}
                >
-                   <input type="text" placeholder='Write your Name ...' required style={{
+                   <input type="text" placeholder='Tên của bạn...' required style={{
                        border:"none",
                        outline:"none",
                        width:"100%",
@@ -60,7 +60,7 @@ const Support = ({history}) => {
                    }} 
                    name='user__name'
                    />
-                    <input type="text" placeholder='Write a Subject ...' required style={{
+                    <input type="text" placeholder='Chủ đề ...' required style={{
                        border:"none",
                        outline:"none",
                        width:"100%",
@@ -71,7 +71,7 @@ const Support = ({history}) => {
                    }}
                    name='user__subject'
                    />
-                   <input type="email" placeholder='write your Email ...' required style={{
+                   <input type="email" placeholder='Email của bạn ...' required style={{
                        border:"none",
                        outline:"none",
                        width:"100%",
@@ -80,7 +80,7 @@ const Support = ({history}) => {
                        fontSize:"1.2vmax",
                        height:"40px"
                    }}/>
-                   <textarea cols="30" rows="5" required placeholder='write your message ...'
+                   <textarea cols="30" rows="5" required placeholder='Nội dung ...'
                    style={{
                     border:"none",
                     outline:"none",
@@ -102,8 +102,8 @@ const Support = ({history}) => {
                        color:"#fff",
                        fontSize:"1.2vmax"
                    }}
-                   >Submit</button>
-                   {done && toast.success("Thanks for your report we will reply it in very soon...")}
+                   >Gửi</button>
+                  {done && toast.success ("Cảm ơn báo cáo của bạn, chúng tôi sẽ trả lời báo cáo này trong thời gian rất sớm ...")}
                </form>
                <div className='animation'>
 

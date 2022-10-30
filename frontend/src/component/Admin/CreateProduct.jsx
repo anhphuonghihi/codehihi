@@ -46,7 +46,7 @@ const CreateProduct = ({ history }) => {
     }
 
     if (success) {
-      toast.success("Product Created Successfully");
+      toast.success("Đồ án đã được thêm thành công");
       history.push("/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }

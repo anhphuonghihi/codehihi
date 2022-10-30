@@ -29,21 +29,21 @@ const Favourite = ({ history }) => {
         <Loading />
       ) : (
         <>
-          <MetaData title="Favourites Items" />
+          <MetaData title="Yêu thích" />
           {favouriteItems.length === 0 ? (
             <div className="emptyCart">
               <RemoveShoppingCartIcon />
-              <Typography>No Items In Favourites</Typography>
-              <Link to="/products">View Products</Link>
+              <Typography>
+                Không có mục nào trong mục ưa thích</Typography>
+              <Link to="/project">Xem đồ án</Link>
               <BottomTab />
             </div>
           ) : (
             <>
               <div className="favouritesPage">
                 <div className="favouritesHeader">
-                  <p>Product</p>
-                  <p>Price</p>
-                  <p>Stock Status</p>
+                  <p>Đồ án</p>
+                  <p>Trạng thái</p>
                 </div>
                 {favouriteItems &&
                   favouriteItems.map((item) => (

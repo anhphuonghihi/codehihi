@@ -52,7 +52,7 @@ const AllReviews = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Review Deleted Successfully");
+      toast.success("Đánh giá đã Xóa thành công");
       history.push("/admin/reviews");
       dispatch({ type: DELETE_REVIEW_RESET });
     }
@@ -155,7 +155,7 @@ const AllReviews = ({ history }) => {
                 loading ? true : false || productId === "" ? true : false
               }
             >
-              Search
+              Tìm kiếm
             </Button>
           </form>
 

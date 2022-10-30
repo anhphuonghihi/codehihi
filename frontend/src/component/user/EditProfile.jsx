@@ -60,7 +60,7 @@ const EditProfile = ({history}) => {
     }
 
     if (isUpdated) {
-      toast.success("Profile updated successfully");
+      toast.success ("Đã cập nhật hồ sơ thành công");
       dispatch(loadUser());
 
       history.push("/me");
@@ -76,10 +76,10 @@ const EditProfile = ({history}) => {
         <>
         {loading ? (<Loading />) : (
             <>
-             <MetaData title="Update Profile" />
+             <MetaData title="Cập nhật thông tin" />
           <div className="updateProfileContainer">
             <div className="updateProfileBox">
-              <h2 className="updateProfileHeading">Update Profile</h2>
+              <h2 className="updateProfileHeading">Cập nhật thông tin</h2>
 
               <form
                 className="updateProfileForm"
@@ -90,7 +90,7 @@ const EditProfile = ({history}) => {
                   <FaceIcon />
                   <input
                     type="text"
-                    placeholder="Name"
+                    placeholder="Họ và tên"
                     required
                     name="name"
                     value={name}
@@ -120,7 +120,7 @@ const EditProfile = ({history}) => {
                 </div>
                 <input
                   type="submit"
-                  value="Update"
+                  value="Xác nhận"
                   className="updateProfileBtn"
                 />
               </form>

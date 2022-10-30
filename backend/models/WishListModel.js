@@ -3,31 +3,31 @@ const mongoose = require("mongoose");
 const wishListSchema = new mongoose.Schema({
   productName: {
     type: String,
-    required: [true, "Please enter your product name"],
+    required: [true, "Vui lòng nhập tên đồ án"],
   },
   productPrice: {
     type: Number,
-    required: [true, "Please enter your product price"],
+    required: [true, "Vui lòng nhập giá đồ án"],
   },
   productImage: {
     type: String,
-    required: [true, "Please enter your product image"],
+    required: [true, "Vui lòng nhập ảnh đồ án"],
   },
   quantity: {
     type: Number,
-    required: [true, "Please enter your product quantity"],
+    required: [true, "Vui lòng nhập số lượng đồ án"],
   },
   userId: {
     type: String,
-    required: [true, "Please enter your user id"],
+    required: [true, "Vui lòng nhập id người dùng"],
   },
   productId:{
     type: String,
-    required: [true, "Please enter your user id"],
+    required: [true, "Vui lòng nhập id đồ án"],
   },
   Stock: {
     type: Number,
-    required: [true, "Please enter your product stock"],
+    required: [true, "Vui lòng nhập tên đồ án stock"],
   }
 });
 

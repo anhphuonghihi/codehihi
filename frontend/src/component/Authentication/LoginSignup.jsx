@@ -105,13 +105,13 @@ const LoginSignup = ({ history, location }) => {
         <Loader />
       ) : (
         <>
-          <MetaData title="Login or Signup" />
+          <MetaData title="Đăng nhập" />
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>
                 <div className="login_signUp_toggle">
-                  <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                  <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
+                  <p onClick={(e) => switchTabs(e, "login")}>Đăng nhập</p>
+                  <p onClick={(e) => switchTabs(e, "register")}>Đăng kí</p>
                 </div>
                 <button ref={switcherTab}></button>
               </div>
@@ -130,16 +130,16 @@ const LoginSignup = ({ history, location }) => {
                   <LockOpenIcon />
                   <input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                     required
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
                 </div>
-                <Link to="/password/forgot">Forgot Password ?</Link>
-                <input type="submit" value="Login" className="loginBtn" />
+                <Link to="/password/forgot">Quên mật khẩu ?</Link>
+                <input type="submit" value="Đăng nhập" className="loginBtn" />
                 <Link to="/">
-                  <span>Login as a guest ?</span>
+                  <span> Đăng nhập với tư cách khách?</span>
                 </Link>
               </form>
 
@@ -153,7 +153,7 @@ const LoginSignup = ({ history, location }) => {
                   <FaceIcon />
                   <input
                     type="text"
-                    placeholder="Name"
+                    placeholder="Họ tên"
                     required
                     name="name"
                     value={name}
@@ -175,7 +175,7 @@ const LoginSignup = ({ history, location }) => {
                   <LockOpenIcon />
                   <input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                     required
                     name="password"
                     value={password}
@@ -192,7 +192,7 @@ const LoginSignup = ({ history, location }) => {
                     onChange={registerDataChange}
                   />
                 </div>
-                <input type="submit" value="Register" className="signUpBtn" />
+                <input type="submit" value="Đăng kí" className="signUpBtn" />
               </form>
             </div>
           </div>

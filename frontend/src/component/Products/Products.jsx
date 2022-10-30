@@ -116,7 +116,7 @@ const Products = ({ match }) => {
                   fontSize: "1.5rem",
                   flex: ".9",
                   textAlign: "center"
-                }}>No Product Found ....</span>
+                }}>Không tìm thấy dự án ....</span>
                 :
                 <div
                   className="products"

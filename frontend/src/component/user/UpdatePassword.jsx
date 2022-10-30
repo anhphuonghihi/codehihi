@@ -12,8 +12,8 @@ import { UPDATE_PASSWORD_RESET } from "../../constans/userContans";
 
 const UpdatePassword = ({ history }) => {
 
-const dispatch = useDispatch();
-//   const alert = useAlert();
+  const dispatch = useDispatch();
+  //   const alert = useAlert();
 
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
 
@@ -54,10 +54,10 @@ const dispatch = useDispatch();
         <Loading />
       ) : (
         <>
-          <MetaData title="Change Password" />
+          <MetaData title="Đổi mật khẩu" />
           <div className="updatePasswordContainer">
             <div className="updatePasswordBox">
-              <h2 className="updatePasswordHeading">Update Profile</h2>
+              <h2 className="updatePasswordHeading">Đổi mật khẩu</h2>
 
               <form
                 className="updatePasswordForm"
@@ -67,7 +67,7 @@ const dispatch = useDispatch();
                   <VpnKeyIcon />
                   <input
                     type="password"
-                    placeholder="Old Password"
+                    placeholder="Mật khẩu cũ"
                     required
                     value={oldPassword}
                     onChange={(e) => setOldPassword(e.target.value)}
@@ -78,7 +78,7 @@ const dispatch = useDispatch();
                   <LockOpenIcon />
                   <input
                     type="password"
-                    placeholder="New Password"
+                    placeholder="Mật khẩu mới"
                     required
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
@@ -88,7 +88,7 @@ const dispatch = useDispatch();
                   <LockIcon />
                   <input
                     type="password"
-                    placeholder="Confirm Password"
+                    placeholder="Xác nhận mật khẩu"
                     required
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
@@ -96,7 +96,7 @@ const dispatch = useDispatch();
                 </div>
                 <input
                   type="submit"
-                  value="Change"
+                  value="Đổi"
                   className="updatePasswordBtn"
                 />
               </form>

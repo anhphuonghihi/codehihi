@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Logo from "./Assets/logo.png"
 const Footer = () => {
   return (
     <div className="Footer flex space__around pz__15" style={{ "borderTop": ".3px solid rgba(21,21,21,0.5)" }}>
       {/* Footer 1st part */}
       <div className="footer1st">
         <img
-          src="download.png"
+          src={Logo}
           style={{ cursor: "pointer" }}
           alt="Lỗi"
         />
@@ -77,9 +77,12 @@ const Footer = () => {
           <a href="https://www.youtube.com/c/Tr%C6%B0%E1%BB%9Dng%C4%90HM%E1%BB%8F%C4%90%E1%BB%8Bach%E1%BA%A5t-HUMG/videos" target="_blank">
             <h3>Youtube</h3>
           </a>
-          <a href="https://www.instagram.com/" target="_blank">
+          <a href="https://www.instagram.com/humg.edu.vn/" target="_blank">
             <h3>Instargam</h3>
           </a>
+          <a href="https://www.tiktok.com/@daihocmodiachat/" target="_blank">
+            <h3>Tiktok</h3>       
+            </a>
         </div>
         {/* Footer 4th part */}
         <div className="footer__3rd__part">

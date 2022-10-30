@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import Logo from "../../Assets/logo.png"
 import { useSelector } from "react-redux";
 const Header = () => {
   const { favouriteItems } = useSelector((state) => state.favourite);
@@ -25,7 +26,7 @@ const Header = () => {
         <div className="logo pxy__10">
           <Link to="/">
             <img
-              src="download.png"
+              src={Logo}
               alt=""
               className="logo"
               style={{

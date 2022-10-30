@@ -42,12 +42,12 @@ useEffect(() => {
       }
   
       if (isDeleted) {
-        toast.success("Product Deleted Successfully");
+        toast.success("Đồ án đã được xóa thành công");
         history.push("/dashboard");
         dispatch({ type: DELETE_PRODUCT_RESET });
       }
     dispatch(getAdminProduct());
-  }, [dispatch, alert, error, history]);
+  }, [dispatch, alert, error, history,]);
 
 const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },

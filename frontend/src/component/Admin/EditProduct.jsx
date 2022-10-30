@@ -73,7 +73,7 @@ const UpdateProduct = ({ history, match }) => {
     }
 
     if (isUpdated) {
-      toast.success("Product Updated Successfully");
+      toast.success("Đồ án đã được sửathành công");
       history.push("/admin/products");
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }

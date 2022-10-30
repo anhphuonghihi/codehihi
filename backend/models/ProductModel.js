@@ -1,94 +1,94 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:[true, "Please enter a name of a product"],
+    name: {
+        type: String,
+        required: [true, "Vui lòng nhập tên đồ án"],
         trim: true,
-        maxLength:[20, "Product name not exceed than 20 characters"]
+        maxLength: [20, "Tên đồ án không quá 20 ký tự"],
     },
-    description:{
-        type:String,
-        required:[true, "Please add a description of your product"],
-        maxlength:[4000,"Description is can not exceed than 4000 characters"]
+    description: {
+        type: String,
+        required: [true, "Vui lòng thêm mô tả về đồ án của bạn"],
+        maxlength: [4000, "Mô tả không được vượt quá 4000 ký tự"]
     },
-    price:{
-        type:Number,
-        required: [true, "Please add a price for your product"],
-        maxLength:[8, "Price can not exceed than 8 characters"],
+    price: {
+        type: Number,
+        required: [true, "Vui lòng thêm giá cho đồ án của bạn"],
+        maxLength: [8, "Giá không được vượt quá 8 ký tự"],
     },
-    offerPrice:{
-        type:String,
-        maxLength: [4, "Discount price can not exceed than 4 characters"],
+    offerPrice: {
+        type: String,
+        maxLength: [4, "Giá chiết khấu không được vượt quá 4 ký tự"],
     },
-    color:{
+    color: {
         type: String,
     },
-    size:{
+    size: {
         type: String,
     },
-    ratings:{
+    ratings: {
         type: Number,
         default: 0,
     },
-    images:[
+    images: [
         {
-            public_id:{
-                type:String,
-                required:true,
+            public_id: {
+                type: String,
+                required: true,
             },
-            url:{
-                type:String,
-                required:true,
+            url: {
+                type: String,
+                required: true,
             },
         }
     ],
-    category:{
+    category: {
         type: String,
-        required:[true,"Please add a category of your product"],
+        required: [true, "Vui lòng thêm danh mục đồ án của bạn"],
     },
-    Stock:{
+    Stock: {
         type: Number,
-        required:[true,"Please add some stoke for your product"],
-        maxLength: [3, "Stock can not exceed than 3 characters"],
+        required: [true, "Vui lòng thêm một số giá đỡ cho đồ án của bạn"],
+        maxLength: [3, "Cổ phiếu không được vượt quá 3 ký tự"],
     },
-  numOfReviews:{
-      type: Number,
-      default: 0
-  },
-  reviews:[
-      {
-          user: {
-              type:mongoose.Schema.ObjectId,
-              ref:"User",
-              required: true,
-          },
-          name:{
-              type: String,
-              required: true,
-          },
-          rating:{
-              type: Number,
-              required: true,
-          },
-          comment:{
-              type:String,
-          },
-          time:{
-              type: Date,
-              default: Date.now()
-          },
-      },
-  ],
-  user:{
-      type: mongoose.Schema.ObjectId,
-      ref:"User",
-    //   required: true
-  },
-  createAt:{
-      type:Date,
-      default: Date.now()
-  }
+    numOfReviews: {
+        type: Number,
+        default: 0
+    },
+    reviews: [
+        {
+            user: {
+                type: mongoose.Schema.ObjectId,
+                ref: "User",
+                required: true,
+            },
+            name: {
+                type: String,
+                required: true,
+            },
+            rating: {
+                type: Number,
+                required: true,
+            },
+            comment: {
+                type: String,
+            },
+            time: {
+                type: Date,
+                default: Date.now()
+            },
+        },
+    ],
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        //   required: true
+    },
+    createAt: {
+        type: Date,
+        default: Date.now()
+    }
 })
 
-module.exports = mongoose.model("Product",productSchema);
+module.exports = mongoose.model("Project", productSchema);

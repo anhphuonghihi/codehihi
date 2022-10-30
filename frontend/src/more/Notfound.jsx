@@ -14,7 +14,7 @@ const Notfound = () => {
         flexDirection:"column"
       }}
       >
-      <h1>404 Not Found anything in this url</h1>
+      <h1>404 Không tìm thấy bất kỳ thứ gì trong url này</h1>
       <Link to="/"
       style={{
         color:"#3BB77E",
@@ -22,7 +22,7 @@ const Notfound = () => {
         fontFamily:"sans-serif",
         padding:"1vmax 0"
       }}
-      >Go Back to Home</Link>
+      >Quay trở lại Trang chủ</Link>
       </div>
     </div>
   )

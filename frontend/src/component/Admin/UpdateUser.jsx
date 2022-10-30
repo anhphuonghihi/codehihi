@@ -52,7 +52,7 @@ const UpdateUser = ({ history, match }) => {
     }
 
     if (isUpdated) {
-      toast.success("User Updated Successfully");
+      toast.success("Người dùng đã cập nhật thành công");
       history.push("/admin/users");
       dispatch({ type: UPDATE_USER_RESET });
     }
@@ -128,7 +128,7 @@ const UpdateUser = ({ history, match }) => {
           )}
         </div>
       </div>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -138,7 +138,7 @@ const UpdateUser = ({ history, match }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </Fragment>
   );
 };

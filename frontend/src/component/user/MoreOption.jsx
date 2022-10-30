@@ -29,7 +29,7 @@ const MoreOption = ({ history }) => {
   function logoutUser() {
     dispatch(logout());
     history.push("/login");
-    toast.success("Logout Successfully");
+    toast.success ("Đăng xuất thành công");
   }
 
   return (

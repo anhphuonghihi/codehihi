@@ -19,11 +19,6 @@ const FavouriteItemsCard = ({item, deleteFavouriteItems}) => {
             fontFamily:"cursive",
         }}>{item.name}</Link>
         </div>
-
-        <div>
-            <span>{`$ ${item.price}`}</span> 
-        </div>
-
         <div>
         <p style={{ paddingBottom: ".5vmax" }}>
               <b className={product.Stock < 1 ? "redColor" : "greenColor"}>

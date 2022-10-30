@@ -8,7 +8,7 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req,res,next) =>{
     const { token } = req.cookies;
 
   if (!token) {
-    return next(new ErrorHandler("Please Login for access this resource", 401));
+    return next(new ErrorHandler("Vui lòng Đăng nhập để truy cập", 401));
   }
 
   const decodedData = jwt.verify(token, process.env.JWT_SECRET_KEY);
@@ -22,7 +22,7 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req,res,next) =>{
 exports.authorizeRoles = (...roles) =>{
     return (req,res,next) =>{
         if(!roles.includes(req.user.role)){
-          return next(new ErrorHandler(`${req.user.role} can not access this resources`));
+          return next(new ErrorHandler(`${req.user.role} không thể truy cập`));
         };
         next();
     }

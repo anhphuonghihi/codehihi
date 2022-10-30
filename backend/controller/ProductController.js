@@ -71,7 +71,7 @@ exports.getAllProducts = catchAsyncErrors(async (req, res) => {
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
   if (!product) {
-    return next(new ErrorHandler("Product is not found with this id", 404));
+    return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
 
   let images = [];
@@ -118,7 +118,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
   if (!product) {
-    return next(new ErrorHandler("Product is not found with this id", 404));
+    return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
 
   // Deleting images from cloudinary
@@ -132,7 +132,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "Product deleted succesfully",
+    message: "Đã xóa sđồ án thành công",
   });
 });
 
@@ -140,7 +140,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
   if (!product) {
-    return next(new ErrorHandler("Product is not found with this id", 404));
+    return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
   res.status(200).json({
     success: true,
@@ -195,7 +195,7 @@ exports.getSingleProductReviews = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.query.id);
 
   if (!product) {
-    return next(new ErrorHandler("Product is not found with this id", 404));
+    return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
 
   res.status(200).json({
@@ -209,7 +209,7 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.query.productId);
 
   if (!product) {
-    return next(new ErrorHandler("Product not found with this id", 404));
+    return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
   }
 
   const reviews = product.reviews.filter(

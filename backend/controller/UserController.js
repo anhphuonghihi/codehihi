@@ -3,6 +3,7 @@ const ErrorHandler = require("../utils/ErrorHandler.js");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken.js");
 const sendMail = require("../utils/sendMail.js");
+
 const crypto = require("crypto");
 const cloudinary = require("cloudinary");
 
@@ -15,7 +16,7 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
     if (user) {
       return res
         .status(400)
-        .json({ success: false, message: "User already exists" });
+        .json({ success: false, message: "Người dùng đã tồn tại" });
     }
 
     const myCloud = await cloudinary.v2.uploader.upload(avatar, {
@@ -28,7 +29,7 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
       password,
       avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
     });
-    
+
     sendToken(user, 201, res);
 
   } catch (error) {
@@ -44,21 +45,21 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new ErrorHandler("Please enter the email & password", 400));
+    return next(new ErrorHandler("Vui lòng nhập email và mật khẩu", 400));
   }
 
   const user = await User.findOne({ email }).select("+password");
 
   if (!user) {
     return next(
-      new ErrorHandler("User is not find with this email & password", 401)
+      new ErrorHandler("Người dùng không được tìm thấy với email và mật khẩu này", 401)
     );
   }
   const isPasswordMatched = await user.comparePassword(password);
 
   if (!isPasswordMatched) {
     return next(
-      new ErrorHandler("User is not find with this email & password", 401)
+      new ErrorHandler("Người dùng không được tìm thấy với email và mật khẩu này", 401)
     );
   }
 
@@ -74,7 +75,7 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "Log out success",
+    message: "Đăng xuất thành công",
   });
 });
 
@@ -83,7 +84,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
-    return next(new ErrorHandler("User not found with this email", 404));
+    return next(new ErrorHandler("Không tìm thấy người dùng với email này", 404));
   }
 
   // Get ResetPassword Token
@@ -98,18 +99,17 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     "host"
   )}/password/reset/${resetToken}`;
 
-  const message = `Your password reset token is :- \n\n ${resetPasswordUrl}`;
-
+  const message = `Mã thông báo đặt lại mật khẩu của bạn là: - \n \n ${resetPasswordUrl}`;
   try {
     await sendMail({
       email: user.email,
-      subject: `Ecommerce Password Recovery`,
+      subject: `Khôi phục mật khẩu`,
       message,
     });
 
     res.status(200).json({
       success: true,
-      message: `Email sent to ${user.email} succesfully`,
+      message: `Đã gửi thành công email đến ${user.email}`,
     });
   } catch (error) {
     user.resetPasswordToken = undefined;
@@ -139,13 +139,13 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
   if (!user) {
     return next(
-      new ErrorHandler("Reset password url is invalid or has been expired", 400)
+      new ErrorHandler("Url đặt lại mật khẩu không hợp lệ hoặc đã hết hạn", 400)
     );
   }
 
   if (req.body.password !== req.body.confirmPassword) {
     return next(
-      new ErrorHandler("Password is not matched with the new password", 400)
+      new ErrorHandler("Mật khẩu không khớp với mật khẩu mới", 400)
     );
   }
 
@@ -171,38 +171,38 @@ exports.userDetails = catchAsyncErrors(async (req, res, next) => {
 
 // Update User Password
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
-   
-    const user = await User.findById(req.user.id).select("+password");
 
-    const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+  const user = await User.findById(req.user.id).select("+password");
 
-    if (!isPasswordMatched) {
-      return next(
-        new ErrorHandler("Old Password is incorrect", 400)
-      );
-    };
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
 
-    if(req.body.newPassword  !== req.body.confirmPassword){
-        return next(
-            new ErrorHandler("Password not matched with each other", 400)
-          );
-    }
+  if (!isPasswordMatched) {
+    return next(
+      new ErrorHandler("Mật khẩu cũ không đúng", 400)
+    );
+  };
 
-    user.password = req.body.newPassword;
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(
+      new ErrorHandler("Mật khẩu không khớp với nhau", 400)
+    );
+  }
 
-    await user.save();
+  user.password = req.body.newPassword;
 
-    sendToken(user,200,res);
+  await user.save();
+
+  sendToken(user, 200, res);
 });
 
 // Update User Profile
-exports.updateProfile = catchAsyncErrors(async(req,res,next) =>{
-    const newUserData = {
-        name: req.body.name,
-        email: req.body.email,
-    };
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
 
-   if (req.body.avatar !== "") {
+  if (req.body.avatar !== "") {
     const user = await User.findById(req.user.id);
 
     const imageId = user.avatar.public_id;
@@ -232,65 +232,65 @@ exports.updateProfile = catchAsyncErrors(async(req,res,next) =>{
 });
 
 // Get All users ---Admin
-exports.getAllUsers = catchAsyncErrors(async (req,res,next) =>{
-    const users = await User.find();
+exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
 
-    res.status(200).json({
-        success: true,
-        users,
-    });
+  res.status(200).json({
+    success: true,
+    users,
+  });
 });
 
 // Get Single User Details ---Admin
-exports.getSingleUser = catchAsyncErrors(async (req,res,next) =>{
-    const user = await User.findById(req.params.id);
-   
-    if(!user){
-        return next(new ErrorHandler("User is not found with this id",400));
-    }
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
 
-    res.status(200).json({
-        success: true,
-        user,
-    });
+  if (!user) {
+    return next(new ErrorHandler("Không tìm thấy người dùng ", 400));
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
 });
 
 // Change user Role --Admin
-exports.updateUserRole = catchAsyncErrors(async(req,res,next) =>{
-    const newUserData = {
-        name: req.body.name,
-        email: req.body.email,
-        role: req.body.role,
-    };
-    const user = await User.findByIdAndUpdate(req.params.id,newUserData, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
-    });
+exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
 
-    res.status(200).json({
-        success: true,
-        user
-    })
+  res.status(200).json({
+    success: true,
+    user
+  })
 });
 
 // Delete User ---Admin
-exports.deleteUser = catchAsyncErrors(async(req,res,next) =>{
-  
-   const user = await User.findById(req.params.id);
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
 
-   const imageId = user.avatar.public_id;
+  const user = await User.findById(req.params.id);
 
-   await cloudinary.v2.uploader.destroy(imageId);
+  const imageId = user.avatar.public_id;
 
-    if(!user){
-        return next(new ErrorHandler("User is not found with this id",400));
-    }
+  await cloudinary.v2.uploader.destroy(imageId);
 
-    await user.remove();
+  if (!user) {
+    return next(new ErrorHandler("Không tìm thấy người dùng", 400));
+  }
 
-    res.status(200).json({
-        success: true,
-        message:"User deleted successfully"
-    })
+  await user.remove();
+
+  res.status(200).json({
+    success: true,
+    message: "Đã xóa người dùng thành công"
+  })
 });

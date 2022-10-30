@@ -6,26 +6,26 @@ module.exports = (err,req,res,next) =>{
 
     // wrong mongodb id error
     if(err.name === "CastError"){
-        const message = `Resources not found with this id..Invalid ${err.path}`;
+        const message = `Không tìm thấy tài nguyên với id này..Không hợp lệ ${err.path}`;
         err = new ErrorHandler(message, 400);
     }
   
 
     // Duplicate key error
     if (err.code === 11000) {
-        const message = `Duplicate ${Object.keys(err.keyValue)} Entered`;
+        const message = `Sao chép ${Object.keys(err.keyValue)} đã được nhập`;
         err = new ErrorHandler(message, 400);
       }
 
      // Wrong Jwt error
      if (err.name === "JsonWebTokenError") {
-     const message = `Your url is invalid please try again`;
+     const message = `Url của bạn không hợp lệ, vui lòng thử lại`;
      err = new ErrorHandler(message, 400);
      }
 
       //Jwt expired error
       if (err.name === "TokenExpiredError") {
-        const message = `Your url is expired please try again`;
+        const message = `Url của bạn đã hết hạn, vui lòng thử lại`;
         err = new ErrorHandler(message, 400);
         }
 

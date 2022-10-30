@@ -45,8 +45,8 @@ const ProductDetails = ({ match, history }) => {
 
     {
       comment.length === 0
-        ? toast.error("Please fill the comment box")
-        : toast.success("Review done successfully reload for watch it");
+        ? toast.error("Vui lòng điền vào ô bình luận")
+        : toast.success("Xem xong tải lại thành công để xem")
     }
     dispatch({ type: NEW_REVIEW_RESET });
   };
@@ -68,13 +68,12 @@ const ProductDetails = ({ match, history }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
-  // Increase quantity
-  const [quantity, setQuantity] = useState(1);
+
 
 
   const addToFavouriteHandler = () => {
-    dispatch(addFavouriteItemsToCart(match.params.id, quantity));
-    toast.success("Product Added to Favourites");
+    dispatch(addFavouriteItemsToCart(match.params.id, 1));
+    toast.success("Đồ án được thêm vào danh sách yêu thích");
   };
 
   return (
@@ -180,7 +179,7 @@ const ProductDetails = ({ match, history }) => {
                 fontFamily: "Poppins,sans-serif",
               }}
             >
-              Reviews
+              Đánh giá
             </h1>
           </div>
           <div>
@@ -204,7 +203,7 @@ const ProductDetails = ({ match, history }) => {
                     fontFamily: "Poppins,sans-serif",
                   }}
                 >
-                  No Reviews Yet *
+                  Chưa có đánh giá nào *
                 </p>
               )}
               <div
@@ -224,7 +223,7 @@ const ProductDetails = ({ match, history }) => {
                     fontFamily: "Poppins,sans-serif",
                   }}
                 >
-                  Add a Review
+                  Thêm bài đánh giá
                 </span>
                 <div
                   style={{
@@ -241,7 +240,7 @@ const ProductDetails = ({ match, history }) => {
                         padding: "1vmax 0",
                       }}
                     >
-                      Your Rating*
+                      Đánh giá của bạn*
                     </span>
                     <Rating
                       onChange={(e) => setRating(e.target.value)}
@@ -259,7 +258,7 @@ const ProductDetails = ({ match, history }) => {
                 <textarea
                   cols="30"
                   rows="6"
-                  placeholder="Comment *"
+                  placeholder="Bình luận *"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   style={{
@@ -290,7 +289,7 @@ const ProductDetails = ({ match, history }) => {
                   }}
                   onClick={reviewSubmitHandler}
                 >
-                  Submit
+                  Gửi
                 </button>
               </div>
             </div>

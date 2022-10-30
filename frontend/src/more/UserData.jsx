@@ -5,11 +5,8 @@ import Backdrop from "@material-ui/core/Backdrop";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import ListAltIcon from "@material-ui/icons/ListAlt";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Support from "@material-ui/icons/ReportProblem"
 import HeartIcon from "@material-ui/icons/FavoriteBorder";
-import HeartActiveIcon from "@material-ui/icons/Favorite";
 import HomeIcon from "@material-ui/icons/Home";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,14 +20,14 @@ const UserData = ({ user }) => {
 
   const [open, setOpen] = useState(false);
   const history = useHistory();
-  
+
   const scroolEffect = useRef(null);
 
-  window.addEventListener("scroll", () =>{
-    if(window.pageYOffset > 100){
-        document.querySelector(".speedDial").classList.add("active");
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 100) {
+      document.querySelector(".speedDial").classList.add("active");
     }
-    else{
+    else {
       document.querySelector(".speedDial").classList.remove("active");
     }
   })
@@ -38,38 +35,40 @@ const UserData = ({ user }) => {
   const dispatch = useDispatch();
 
   const options = [
-    { icon: <HomeIcon />, name: "Home", func: home },
+    { icon: <HomeIcon />, name: "Trang Chủ", func: home },
     {
       icon:
-          <HeartIcon 
+        <HeartIcon
           style={{
             color: favouriteItems.length === 0 ? "" : "tomato",
-           }}
-          />,
+          }}
+        />,
       name:
-      `Favourite (${favouriteItems.length})`,
+        `Yêu thích (${favouriteItems.length})`,
       func: favourite,
     },
-    { icon: <PersonIcon />, name: "Profile", func: account },
-    { icon: <Support />, name: "Report us", func: report },
-    { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
+    { icon: <PersonIcon />, name: "Hồ sơ cá nhân", func: account },
+    { icon: <Support />, name: "Hỗ trợ", func: report },
+    { icon: <ExitToAppIcon />, name: "Đăng xuất", func: logoutUser },
   ];
 
   if (user.role === "admin") {
     options.unshift({
       icon: <DashboardIcon />,
-      name: "Dashboard",
+      name: "Bảng điểu khiển",
       func: dashboard,
     });
   }
-  if (user.role === "Creator") {
+  if (user.role === "student") {
     options.unshift({
       icon: <DashboardIcon />,
-      name: "Dashboard",
-      func: dashboard,
+      name: "Bảng điểu khiển",
+      func: student,
     });
   }
-
+  function student() {
+    history.push("/student");
+  }
   function dashboard() {
     history.push("/dashboard");
   }
@@ -89,7 +88,7 @@ const UserData = ({ user }) => {
 
   function logoutUser() {
     dispatch(logout());
-    toast.success("Logout Successfully");
+    toast.success("Đăng xuất thành công");
   }
 
   return (
@@ -110,7 +109,7 @@ const UserData = ({ user }) => {
             src={user.avatar.url ? user.avatar.url : ("/profile.png")}
             alt="Profile"
             style={{
-              position:"fixed"
+              position: "fixed"
             }}
           />
         }
@@ -125,7 +124,7 @@ const UserData = ({ user }) => {
           />
         ))}
       </SpeedDial>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -135,7 +134,7 @@ const UserData = ({ user }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </>
   );
 };
