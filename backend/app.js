@@ -24,6 +24,16 @@ const project = require("./routes/ProjectRoute");
 const user = require("./routes/UserRoute");
 const wishlist = require("./routes/WishListRoute");
 const category = require("./routes/CategoryRoute");
+const department = require("./routes/DepartmentRoute");
+const branch = require("./routes/BranchRoute");
+const specialized = require("./routes/SpecializedRoute");
+const classroom = require("./routes/ClassroomRoute");
+const trainingSystem = require("./routes/TrainingSystemRoute");
+const schoolYear = require("./routes/SchoolYearRoute");
+const notify = require("./routes/NotifyRoute");
+const support = require("./routes/SupportRoute");
+const config = require("./routes/ConfigRoute");
+const council = require("./routes/CouncilRoute");
 app.use("/api/v2", project);
 
 app.use("/api/v2", user);
@@ -31,6 +41,26 @@ app.use("/api/v2", user);
 app.use("/api/v2", category);
 
 app.use("/api/v2", wishlist);
+
+app.use("/api/v2", department);
+
+app.use("/api/v2", branch);
+
+app.use("/api/v2", specialized);
+
+app.use("/api/v2", classroom);
+
+app.use("/api/v2", trainingSystem);
+
+app.use("/api/v2", schoolYear);
+
+app.use("/api/v2", notify);
+
+app.use("/api/v2", support);
+
+app.use("/api/v2", config);
+
+app.use("/api/v2", council);
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
