@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./newProject.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -86,7 +86,7 @@ const AllUsers = ({ history }) => {
       sortable: false,
       renderCell: (params) => {
         return (
-          <Fragment>
+          <>
             <Link to={`/admin/user/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
@@ -98,7 +98,7 @@ const AllUsers = ({ history }) => {
             >
               <DeleteIcon />
             </Button>
-          </Fragment>
+          </>
         );
       },
     },
@@ -117,7 +117,7 @@ const AllUsers = ({ history }) => {
     });
 
   return (
-    <Fragment>
+    <>
       <MetaData title={`TẤT CẢ NGƯỜI DÙNG - Admin`} />
 
       <div className="dashboard">
@@ -146,7 +146,7 @@ const AllUsers = ({ history }) => {
         draggable
         pauseOnHover
       />
-    </Fragment>
+    </>
   );
 };
 

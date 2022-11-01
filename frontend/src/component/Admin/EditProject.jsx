@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./newProject.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, updateProject, getProjectDetails } from "../../actions/ProjectActions";
@@ -6,11 +6,7 @@ import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import DescriptionIcon from "@material-ui/icons/Description";
-import StorageIcon from "@material-ui/icons/Storage";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-// eslint-disable-next-line
-import DiscountIcon from "@material-ui/icons/LocalOffer";
 import SideBar from "./Sidebar";
 import { UPDATE_PROJECT_RESET } from "../../constans/ProjectConstans";
 import { ToastContainer, toast } from 'react-toastify';
@@ -59,7 +55,7 @@ const UpdateProject = ({ history, match }) => {
     }
 
     if (isUpdated) {
-      toast.success("Đồ án đã được sửathành công");
+      toast.success("Đồ án đã được sửa thành công");
       history.push("/admin/project");
       dispatch({ type: UPDATE_PROJECT_RESET });
     }
@@ -74,6 +70,24 @@ const UpdateProject = ({ history, match }) => {
     updateError,
   ]);
 
+  const createProjectImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+
+    setImages([]);
+    setImagesPreview([]);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImagesPreview((old) => [...old, reader.result]);
+          setImages((old) => [...old, reader.result]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
   const updateProjectSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -111,13 +125,13 @@ const UpdateProject = ({ history, match }) => {
 
 
   return (
-    <Fragment>
+    <>
       <MetaData title="Edit Project" />
       <div className="dashboard">
         <SideBar />
-        <div className="newProjectContainer">
+        <div className="newContainer">
           <form
-            className="createProjectForm"
+            className="createForm"
             encType="multipart/form-data"
             onSubmit={updateProjectSubmitHandler}
           >
@@ -162,7 +176,7 @@ const UpdateProject = ({ history, match }) => {
               </select>
             </div>
 
-            <div id="createProjectFormFile">
+            <div id="createFormFile">
               <input
                 type="file"
                 name="avatar"
@@ -172,21 +186,21 @@ const UpdateProject = ({ history, match }) => {
               />
             </div>
 
-            <div id="createProjectFormImage">
+            <div id="createFormImage">
               {oldImages &&
                 oldImages.map((image, index) => (
                   <img key={index} src={image.url} alt="Old Project Preview" />
                 ))}
             </div>
 
-            <div id="createProjectFormImage">
+            <div id="createFormImage">
               {imagesPreview.map((image, index) => (
                 <img key={index} src={image} alt="Project Preview" />
               ))}
             </div>
 
             <Button
-              id="createProjectBtn"
+              id="createBtn"
               type="submit"
               disabled={loading ? true : false}
             >
@@ -206,7 +220,7 @@ const UpdateProject = ({ history, match }) => {
         draggable
         pauseOnHover
       />
-    </Fragment>
+    </>
   );
 };
 

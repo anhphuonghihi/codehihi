@@ -32,6 +32,13 @@ const Sidebar = () => {
       <Link to="/admin/project">
         <p><AddIcon />Thêm đồ án</p>
       </Link>
+      <Link to="/admin/categories">
+        <p className="Dashboard__item"><PostAddIcon /> Tất cả danh mục </p>
+      </Link>
+
+      <Link to="/admin/category">
+        <p><AddIcon />Thêm danh mục </p>
+      </Link>
       <Link to="/admin/users">
         <p>
           <PeopleIcon /> Người dùng

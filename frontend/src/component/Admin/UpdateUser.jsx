@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
@@ -71,16 +71,16 @@ const UpdateUser = ({ history, match }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <MetaData title="Update User" />
       <div className="dashboard">
         <SideBar />
-        <div className="newProjectContainer">
+        <div className="newContainer">
           {loading ? (
             <Loading />
           ) : (
             <form
-              className="createProjectForm"
+              className="createForm"
               onSubmit={updateUserSubmitHandler}
             >
               <h1>Update User</h1>
@@ -116,7 +116,7 @@ const UpdateUser = ({ history, match }) => {
               </div>
 
               <Button
-                id="createProjectBtn"
+                id="createBtn"
                 type="submit"
                 disabled={
                   updateLoading ? true : false || role === "" ? true : false
@@ -139,7 +139,7 @@ const UpdateUser = ({ history, match }) => {
         draggable
         pauseOnHover
       />
-    </Fragment>
+    </>
   );
 };
 

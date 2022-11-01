@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./ResetPassword.css";
 import Loading from "../../more/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,11 +44,11 @@ const ResetPassword = ({ history, match }) => {
   }, [dispatch, error, history, success]);
 
   return (
-    <Fragment>
+    <>
       {loading ? (
         <Loading />
       ) : (
-        <Fragment>
+        <>
           <MetaData title="Lấy lại mật khẩu" />
           <div className="resetPasswordContainer">
             <div className="resetPasswordBox">
@@ -86,7 +86,7 @@ const ResetPassword = ({ history, match }) => {
               </form>
             </div>
           </div>
-        </Fragment>
+        </>
       )}
       <ToastContainer
         position="bottom-center"
@@ -99,7 +99,7 @@ const ResetPassword = ({ history, match }) => {
         draggable
         pauseOnHover
       />
-    </Fragment>
+    </>
   );
 };
 

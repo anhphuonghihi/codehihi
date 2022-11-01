@@ -28,6 +28,8 @@ import Dashboard from './component/Admin/Dashboard';
 import CreateProject from './component/Admin/CreateProject';
 import AllProjects from "../../frontend/src/component/Admin/AllProjects";
 import EditProject from "../../frontend/src/component/Admin/EditProject";
+
+import CreateCategory from './component/Admin/CreateCategory';
 import AllUsers from "../../frontend/src/component/Admin/AllUsers";
 import UpdateUser from "../../frontend/src/component/Admin/UpdateUser";
 import AllReviews from "../../frontend/src/component/Admin/AllReviews";
@@ -80,6 +82,10 @@ function App() {
         <ProtectedRoute isAdmin={true} exact path="/admin/project" component={CreateProject} />
         <ProtectedRoute isAdmin={true} exact path="/admin/projects" component={AllProjects} />
         <ProtectedRoute isAdmin={true} exact path="/edit/project/:id" component={EditProject} />
+
+        {/* <ProtectedRoute isAdmin={true} exact path="/admin/categorys" component={AllCategorys} /> */}
+        <ProtectedRoute isAdmin={true} exact path="/admin/category" component={CreateCategory} />
+        {/* <ProtectedRoute isAdmin={true} exact path="/edit/category/:id" component={EditCategory} /> */}
 
         <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />
         <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />

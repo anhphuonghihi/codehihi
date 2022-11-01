@@ -1,4 +1,4 @@
-.newProjectContainer {
+.newContainer {
   width: 100%;
   box-sizing: border-box;
   background-color: rgb(221, 221, 221);
@@ -8,13 +8,13 @@
   height: 100vh;
 }
 
-.newProjectContainer h1 {
+.newContainer h1 {
   color: rgba(0, 0, 0, 0.733);
   font: 300 2rem "Roboto";
   text-align: center;
 }
 
-.createProjectForm {
+.createForm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,15 +27,15 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
 }
 
-.createProjectForm>div {
+.createForm>div {
   display: flex;
   width: 100%;
   align-items: center;
 }
 
-.createProjectForm>div>input,
-.createProjectForm>div>select,
-.createProjectForm>div>textarea {
+.createForm>div>input,
+.createForm>div>select,
+.createForm>div>textarea {
   padding: 1vmax 4vmax;
   text-align: start;
   padding-right: 1vmax;
@@ -47,19 +47,19 @@
   outline: none;
 }
 
-.createProjectForm>div>svg {
+.createForm>div>svg {
   position: absolute;
   transform: translateX(1vmax);
   font-size: 1.6vmax;
   color: rgba(0, 0, 0, 0.623);
 }
 
-#createProjectFormFile>input {
+#createFormFile>input {
   display: flex;
   padding: 0%;
 }
 
-#createProjectFormFile>input::file-selector-button {
+#createFormFile>input::file-selector-button {
   cursor: pointer;
   width: 100%;
   z-index: 2;
@@ -73,21 +73,21 @@
   background-color: rgb(255, 255, 255);
 }
 
-#createProjectFormFile>input::file-selector-button:hover {
+#createFormFile>input::file-selector-button:hover {
   background-color: rgb(235, 235, 235);
 }
 
-#createProjectFormImage {
+#createFormImage {
   width: 100%;
   overflow: auto;
 }
 
-#createProjectFormImage>img {
+#createFormImage>img {
   width: 3vmax;
   margin: 0 0.5vmax;
 }
 
-#createProjectBtn {
+#createBtn {
   border: none;
   background-color: #3BB77E;
   ;
@@ -102,41 +102,41 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
 }
 
-#createProjectBtn:hover {
+#createBtn:hover {
   background-color: #3BB77E;
 }
 
 @media screen and (max-width: 600px) {
-  .newProjectContainer {
+  .newContainer {
     background-color: rgb(255, 255, 255);
   }
 
-  .createProjectForm {
+  .createForm {
     padding: 5vmax;
   }
 
-  .createProjectForm>div>input,
-  .createProjectForm>div>select,
-  .createProjectForm>div>textarea {
+  .createForm>div>input,
+  .createForm>div>select,
+  .createForm>div>textarea {
     padding: 2.5vmax 5vmax;
     font: 300 1.7vmax cursive;
   }
 
-  .createProjectForm>div>svg {
+  .createForm>div>svg {
     font-size: 2.8vmax;
   }
 
-  #createProjectFormFile>img {
+  #createFormFile>img {
     width: 8vmax;
     border-radius: 100%;
   }
 
-  #createProjectFormFile>input::file-selector-button {
+  #createFormFile>input::file-selector-button {
     height: 7vh;
     font: 400 1.8vmax cursive;
   }
 
-  #createProjectBtn {
+  #createBtn {
     font: 300 1.9vmax "Roboto";
     padding: 1.8vmax;
   }

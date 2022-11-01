@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./projectReviews.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -98,7 +98,7 @@ const AllReviews = ({ history }) => {
       sortable: false,
       renderCell: (params) => {
         return (
-          <Fragment>
+          <>
             <Button
               onClick={() =>
                 deleteReviewHandler(params.getValue(params.id, "id"))
@@ -106,7 +106,7 @@ const AllReviews = ({ history }) => {
             >
               <DeleteIcon />
             </Button>
-          </Fragment>
+          </>
         );
       },
     },
@@ -125,7 +125,7 @@ const AllReviews = ({ history }) => {
     });
 
   return (
-    <Fragment>
+    <>
       <MetaData title={`TẤT CẢ ĐÁNH GIÁ - Admin`} />
 
       <div className="dashboard">
@@ -149,7 +149,7 @@ const AllReviews = ({ history }) => {
             </div>
 
             <Button
-              id="createProjectBtn"
+              id="createBtn"
               type="submit"
               disabled={
                 loading ? true : false || projectId === "" ? true : false
@@ -184,7 +184,7 @@ const AllReviews = ({ history }) => {
         draggable
         pauseOnHover
       />
-    </Fragment>
+    </>
   );
 };
 

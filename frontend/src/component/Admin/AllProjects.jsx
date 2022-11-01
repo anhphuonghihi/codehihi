@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./AllProjects.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -47,7 +47,7 @@ const AllProjects = ({ history }) => {
       dispatch({ type: DELETE_PROJECT_RESET });
     }
     dispatch(getAdminProject());
-  }, [dispatch, alert, error, history,]);
+  }, [dispatch, error, history, deleteError, isDeleted]);
 
   const columns = [
     { field: "id", headerName: "Project ID", minWidth: 200, flex: 0.5 },
@@ -96,7 +96,7 @@ const AllProjects = ({ history }) => {
     });
 
   return (
-    <Fragment>
+    <>
       <MetaData title={`Danh sách đồ án- Admin`} />
 
       <div className="dashboard">
@@ -125,7 +125,7 @@ const AllProjects = ({ history }) => {
         draggable
         pauseOnHover
       />
-    </Fragment>
+    </>
   )
 }
 
