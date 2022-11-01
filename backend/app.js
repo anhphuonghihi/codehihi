@@ -33,6 +33,7 @@ const schoolYear = require("./routes/SchoolYearRoute");
 const notify = require("./routes/NotifyRoute");
 const support = require("./routes/SupportRoute");
 const config = require("./routes/ConfigRoute");
+const faq = require("./routes/FaqRoute");
 const council = require("./routes/CouncilRoute");
 app.use("/api/v2", project);
 
@@ -61,6 +62,8 @@ app.use("/api/v2", support);
 app.use("/api/v2", config);
 
 app.use("/api/v2", council);
+
+app.use("/api/v2", faq);
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 

@@ -1,21 +1,11 @@
-Department
-Branch
-Specialized
-Classroom
-TrainingSystem
-SchoolYear
-Notify
-Support
-Config
-Council
-
-Khoa
-Ngành
-Chuyên Ngành
-Lớp
-Hệ đào tạo
-Niên khóa
-Thông báo
-Hỗ trợ 
-Liên kết
-Hội đồng
+Branch	Ngành
+Classroom	Lớp
+Config	Liên kết
+Council	Hội đồng
+Department	Khoa
+Faq	Quy tắc
+Notify	Thông báo
+SchoolYear	Niên khóa
+Specialized	Chuyên Ngành
+Support	Hỗ trợ
+TrainingSystem	Hệ đào tạo

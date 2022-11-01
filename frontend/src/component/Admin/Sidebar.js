@@ -6,8 +6,8 @@ import AddIcon from "@material-ui/icons/Add";
 
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
-import RateReviewIcon from "@material-ui/icons/RateReview";
 import Logo from "../../Assets/logo.png"
+import CategoryIcon from '@material-ui/icons/Category';
 const Sidebar = () => {
 
   return (
@@ -33,7 +33,7 @@ const Sidebar = () => {
         <p><AddIcon />Thêm đồ án</p>
       </Link>
       <Link to="/admin/categories">
-        <p className="Dashboard__item"><PostAddIcon /> Tất cả danh mục </p>
+        <p className="Dashboard__item"><CategoryIcon /> Tất cả danh mục </p>
       </Link>
 
       <Link to="/admin/category">
@@ -42,12 +42,6 @@ const Sidebar = () => {
       <Link to="/admin/users">
         <p>
           <PeopleIcon /> Người dùng
-        </p>
-      </Link>
-      <Link to="/admin/reviews">
-        <p>
-          <RateReviewIcon />
-          Đánh giá
         </p>
       </Link>
     </div>

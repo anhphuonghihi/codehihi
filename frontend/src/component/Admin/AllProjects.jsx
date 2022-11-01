@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
+import Star from "@material-ui/icons/Star";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
@@ -50,7 +51,7 @@ const AllProjects = ({ history }) => {
   }, [dispatch, error, history, deleteError, isDeleted]);
 
   const columns = [
-    { field: "id", headerName: "STT", minWidth: 150, flex: 0.3 },
+    { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
 
     {
       field: "name",
@@ -67,11 +68,13 @@ const AllProjects = ({ history }) => {
       sortable: false,
       renderCell: (params) => {
         return (
-          <>
+          <div className="icon">
+            <Link to={`/admin/reviews/${params.getValue(params.id, "id")}`}>
+              <Star />
+            </Link>
             <Link to={`/edit/project/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
-
             <Button
               onClick={() =>
                 deleteProjectHandler(params.getValue(params.id, "id"))
@@ -79,7 +82,7 @@ const AllProjects = ({ history }) => {
             >
               <DeleteIcon />
             </Button>
-          </>
+          </div>
         );
       },
     },
@@ -90,7 +93,8 @@ const AllProjects = ({ history }) => {
   projects &&
     projects.forEach((item,index) => {
       rows.push({
-        id: index,
+        id:item._id,
+        index: index+1,
         name: item.name,
         category: item.category,
       });

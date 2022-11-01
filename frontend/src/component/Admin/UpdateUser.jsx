@@ -110,8 +110,9 @@ const UpdateUser = ({ history, match }) => {
                 <VerifiedUserIcon />
                 <select value={role} onChange={(e) => setRole(e.target.value)}>
                   <option value="">Choose Role</option>
-                  <option value="admin">admin</option>
-                  <option value="user">user</option>
+                  <option value="admin">Quản trị viên</option>
+                  <option value="student">Sinh viên</option>
+                  <option value="lecturers">Giảng viên</option>
                 </select>
               </div>
 

@@ -10,10 +10,19 @@ import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../../more/Metadata.js";
 import Loading from "../../more/Loader.js";
 import { getAdminProject } from "../../actions/ProjectActions.js";
-
 import { getCategory } from "../../actions/CategoryActions";
-
 import { getAllUsers } from "../../actions/userAction.js";
+import { getBranch } from "../../actions/BranchActions";
+import { getClassroom } from "../../actions/ClassroomActions";
+import { getConfig } from "../../actions/ConfigActions";
+import { getCouncil } from "../../actions/CouncilActions";
+import { getDepartment } from "../../actions/DepartmentActions";
+import { getFaq } from "../../actions/FaqActions";
+import { getNotify } from "../../actions/NotifyActions";
+import { getSchoolYear } from "../../actions/SchoolYearActions";
+import { getSpecialized } from "../../actions/SpecializedActions";
+import { getSupport } from "../../actions/SupportActions";
+import { getTrainingSystem } from "../../actions/TrainingSystemActions";
 
 const Dashboard = () => {
 
@@ -29,18 +38,35 @@ const Dashboard = () => {
     dispatch(getAdminProject());
     dispatch(getAllUsers());
     dispatch(getCategory());
+    dispatch(getBranch());
+    dispatch(getClassroom());
+    dispatch(getConfig());
+    dispatch(getCouncil());
+    dispatch(getDepartment());
+    dispatch(getFaq());
+    dispatch(getNotify());
+    dispatch(getSpecialized());
+    dispatch(getSchoolYear());
+    dispatch(getSupport());
+    dispatch(getTrainingSystem());
   }, [dispatch]);
 
 
 
   const lineState = {
-    labels: ["Số tải xuống ban đầu", "Tổng tải xuống"],
+    labels: ["ban đầu", "hiện tại"],
     datasets: [
       {
         label: "Lượt tải",
         backgroundColor: ["#3BB77E"],
         hoverBackgroundColor: ["#3BB77E"],
         data: [0, 33],
+      },
+      {
+        label: "Lượt xem",
+        backgroundColor: ["#234213"],
+        hoverBackgroundColor: ["#3BB77E"],
+        data: [0, 333],
       },
     ],
   };
@@ -78,6 +104,10 @@ const Dashboard = () => {
                   <Link to="/admin/users">
                     <p>Người dùng</p>
                     <p>{users && users.length}</p>
+                  </Link>
+                  <Link to="/admin/categories">
+                    <p>Danh mục</p>
+                    <p>{categories && categories.length}</p>
                   </Link>
                 </div>
               </div>

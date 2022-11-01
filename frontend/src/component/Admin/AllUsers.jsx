@@ -49,7 +49,7 @@ const AllUsers = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted, message]);
 
   const columns = [
-    { field: "id", headerName: "STT", minWidth: 150, flex: 0.3 },
+    { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
 
     {
       field: "email",
@@ -107,9 +107,10 @@ const AllUsers = ({ history }) => {
   const rows = [];
 
   users &&
-    users.forEach((item,index) => {
+    users.forEach((item, index) => {
       rows.push({
-        id: index+1,
+        id:item._id,
+        index: index+1,
         role: item.role,
         email: item.email,
         name: item.name,

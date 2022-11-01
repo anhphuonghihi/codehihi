@@ -15,7 +15,7 @@ import SideBar from "./Sidebar";
 import { DELETE_REVIEW_RESET } from "../../constans/ProjectConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
-const AllReviews = ({ history }) => {
+const AllReviews = ({ history, match }) => {
   const dispatch = useDispatch();
 
   const { error: deleteError, isDeleted } = useSelector(
@@ -26,16 +26,12 @@ const AllReviews = ({ history }) => {
     (state) => state.projectReviews
   );
 
-  const [projectId, setProjectId] = useState("");
+  const [projectId, setProjectId] = useState(match.params.id);
 
   const deleteReviewHandler = (reviewId) => {
     dispatch(deleteReviews(reviewId, projectId));
   };
 
-  const projectReviewsSubmitHandler = (e) => {
-    e.preventDefault();
-    dispatch(getAllReviews(projectId));
-  };
 
   useEffect(() => {
     if (projectId.length === 24) {
@@ -53,13 +49,13 @@ const AllReviews = ({ history }) => {
 
     if (isDeleted) {
       toast.success("Đánh giá đã Xóa thành công");
-      history.push("/admin/reviews");
+      history.push("/admin/projects");
       dispatch({ type: DELETE_REVIEW_RESET });
     }
   }, [dispatch, alert, error, deleteError, history, isDeleted, projectId]);
 
   const columns = [
-    { field: "id", headerName: "STT", minWidth: 150, flex: 0.3 },
+    { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
 
     {
       field: "user",
@@ -115,9 +111,10 @@ const AllReviews = ({ history }) => {
   const rows = [];
 
   reviews &&
-    reviews.forEach((item,index) => {
+    reviews.forEach((item, index) => {
       rows.push({
-        id: index+1,
+        id:item._id,
+        index: index+1,
         rating: item.rating,
         comment: item.comment,
         user: item.name,
@@ -133,30 +130,9 @@ const AllReviews = ({ history }) => {
         <div className="projectReviewsContainer">
           <form
             className="projectReviewsForm"
-            onSubmit={projectReviewsSubmitHandler}
           >
             <h1 className="projectReviewsFormHeading">TẤT CẢ ĐÁNH GIÁ</h1>
 
-            <div>
-              <Star />
-              <input
-                type="text"
-                placeholder="ID Đồ án"
-                required
-                value={projectId}
-                onChange={(e) => setProjectId(e.target.value)}
-              />
-            </div>
-
-            <Button
-              id="createBtn"
-              type="submit"
-              disabled={
-                loading ? true : false || projectId === "" ? true : false
-              }
-            >
-              Tìm kiếm
-            </Button>
           </form>
 
           {reviews && reviews.length > 0 ? (

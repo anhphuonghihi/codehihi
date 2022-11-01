@@ -48,7 +48,7 @@ const AllCategories = ({ history }) => {
   }, [dispatch, error, deleteError, history, isDeleted]);
 
   const columns = [
-    { field: "id", headerName: "STT", minWidth: 150, flex: 0.3 },
+    { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
       headerName: "Tên danh mục",
@@ -81,9 +81,10 @@ const AllCategories = ({ history }) => {
   const rows = [];
 
   categories &&
-    categories.forEach((item,index) => {
+    categories.forEach((item, index) => {
       rows.push({
-        id: index+1,
+        id: item._id, 
+        index: index + 1,
         name: item.name,
       });
     });
@@ -95,7 +96,7 @@ const AllCategories = ({ history }) => {
       <div className="dashboard">
         <SideBar />
         <div className="projectCategoriesContainer">
-        <h1 id="projectListHeading">TẤT CẢ DANH MỤC</h1>
+          <h1 id="projectListHeading">TẤT CẢ DANH MỤC</h1>
           {categories && categories.length > 0 ? (
             <DataGrid
               rows={rows}

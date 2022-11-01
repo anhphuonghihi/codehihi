@@ -56,3 +56,11 @@
     font: 300 4vw "Roboto";
   }
 }
+.icon{
+  display: flex;
+  align-items: center;
+}
+.icon a{
+  padding: 8px 20px;
+  padding-right: 0;
+}

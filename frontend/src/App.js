@@ -33,6 +33,11 @@ import CreateCategory from './component/Admin/CreateCategory';
 import AllCategories from "../../frontend/src/component/Admin/AllCategories";
 import EditCategory from "../../frontend/src/component/Admin/EditCategory";
 
+// import CreateDepartment from './component/Admin/CreateDepartment';
+// import AllDepartment from "../../frontend/src/component/Admin/AllDepartment";
+// import EditDepartment from "../../frontend/src/component/Admin/EditDepartment";
+
+
 import AllUsers from "../../frontend/src/component/Admin/AllUsers";
 import UpdateUser from "../../frontend/src/component/Admin/UpdateUser";
 import AllReviews from "../../frontend/src/component/Admin/AllReviews";
@@ -85,14 +90,18 @@ function App() {
         <ProtectedRoute isAdmin={true} exact path="/admin/project" component={CreateProject} />
         <ProtectedRoute isAdmin={true} exact path="/admin/projects" component={AllProjects} />
         <ProtectedRoute isAdmin={true} exact path="/edit/project/:id" component={EditProject} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/reviews/:id" component={AllReviews} />
 
         <ProtectedRoute isAdmin={true} exact path="/admin/categories" component={AllCategories} />
         <ProtectedRoute isAdmin={true} exact path="/admin/category" component={CreateCategory} />
         <ProtectedRoute isAdmin={true} exact path="/edit/category/:id" component={EditCategory} />
+        
+        {/* <ProtectedRoute isAdmin={true} exact path="/admin/department" component={AllDepartment} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/department" component={CreateDepartment} />
+        <ProtectedRoute isAdmin={true} exact path="/edit/department/:id" component={EditDepartment} /> */}
 
         <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />
         <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/reviews" component={AllReviews} />
         <Route exact path="*" component={Notfound} />
       </Switch>
     </Router>
