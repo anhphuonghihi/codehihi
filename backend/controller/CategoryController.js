@@ -27,7 +27,7 @@ exports.getAllCategories = catchAsyncErrors(async (req, res, next) => {
 exports.updateCategory = catchAsyncErrors(async (req, res, next) => {
     let category = await Category.findById(req.params.id);
     if (!category) {
-        return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
+        return next(new ErrorHandler("Không tìm thấy danh mục ", 404));
     }
 
     category = await Category.findByIdAndUpdate(req.params.id, req.body, {
@@ -45,20 +45,16 @@ exports.updateCategory = catchAsyncErrors(async (req, res, next) => {
 exports.deleteCategory = catchAsyncErrors(async (req, res, next) => {
     const category = await Category.findById(req.params.id);
     const project = await Project.findOne({ category: req.params.id });
-    if (project) return res.status(400).json({ msg: "Xóa tất cả đồ án của danh mục" });
-
+    if (project) {
+        return next(new ErrorHandler("Xóa tất cả đồ án của danh mục", 404));
+      }
     if (!category) {
-        return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
+        return next(new ErrorHandler("Không tìm thấy danh mục ", 404));
     }
-
-
-
     await category.remove();
-
-
     res.status(200).json({
         success: true,
-        message: "Đã xóa đồ án thành công",
+        message: "Đã xóa danh mục thành công",
     });
 });
 
@@ -66,7 +62,7 @@ exports.deleteCategory = catchAsyncErrors(async (req, res, next) => {
 exports.getCategory = catchAsyncErrors(async (req, res, next) => {
     const category = await Category.findById(req.params.id);
     if (!category) {
-        return next(new ErrorHandler("Không tìm thấy đồ án ", 404));
+        return next(new ErrorHandler("Không tìm thấy danh mục ", 404));
     }
     res.status(200).json({
         success: true,

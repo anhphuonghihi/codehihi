@@ -59,7 +59,7 @@ const AllReviews = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted, projectId]);
 
   const columns = [
-    { field: "id", headerName: "Review ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "STT", minWidth: 150, flex: 0.3 },
 
     {
       field: "user",
@@ -115,9 +115,9 @@ const AllReviews = ({ history }) => {
   const rows = [];
 
   reviews &&
-    reviews.forEach((item) => {
+    reviews.forEach((item,index) => {
       rows.push({
-        id: item._id,
+        id: index+1,
         rating: item.rating,
         comment: item.comment,
         user: item.name,

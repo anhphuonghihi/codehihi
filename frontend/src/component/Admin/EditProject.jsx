@@ -59,35 +59,8 @@ const UpdateProject = ({ history, match }) => {
       history.push("/admin/project");
       dispatch({ type: UPDATE_PROJECT_RESET });
     }
-  }, [
-    dispatch,
-    alert,
-    error,
-    history,
-    isUpdated,
-    projectId,
-    project,
-    updateError,
-  ]);
+  }, [dispatch, error, history, isUpdated, projectId, project, updateError]);
 
-  const createProjectImagesChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    setImages([]);
-    setImagesPreview([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImagesPreview((old) => [...old, reader.result]);
-          setImages((old) => [...old, reader.result]);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-  };
   const updateProjectSubmitHandler = (e) => {
     e.preventDefault();
 

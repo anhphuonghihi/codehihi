@@ -1,62 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./AllProjects.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   clearErrors,
-  deleteProject,
-  getAdminProject,
-} from "../../actions/ProjectActions";
-import { Link } from "react-router-dom";
+  getCategory,
+  deleteCategory,
+} from "../../actions/CategoryActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
+import { DELETE_CATEGORY_RESET } from "../../constans/CategoryConstans";
 import { ToastContainer, toast } from 'react-toastify';
-import { DELETE_PROJECT_RESET } from "../../constans/ProjectConstans";
 
-
-const AllProjects = ({ history }) => {
-
+const AllCategories = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { error, projects } = useSelector((state) => state.projects);
-
   const { error: deleteError, isDeleted } = useSelector(
-    (state) => state.deleteProject
+    (state) => state.deleteCategory
   );
 
-  const deleteProjectHandler = (id) => {
-    dispatch(deleteProject(id));
+  const { error, categories } = useSelector(
+    (state) => state.categories
+  );
+  const deleteCategoryHandler = (categoryId) => {
+    dispatch(deleteCategory(categoryId));
   };
+
 
   useEffect(() => {
     if (error) {
-      alert(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
+
     if (deleteError) {
       toast.error(deleteError);
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-      toast.success("Đồ án đã được xóa thành công");
-      history.push("/dashboard");
-      dispatch({ type: DELETE_PROJECT_RESET });
+      toast.success("Đánh giá đã Xóa thành công");
+      history.push("/admin/categories");
+      dispatch({ type: DELETE_CATEGORY_RESET });
     }
-    dispatch(getAdminProject());
-  }, [dispatch, error, history, deleteError, isDeleted]);
+  }, [dispatch, error, deleteError, history, isDeleted]);
 
   const columns = [
     { field: "id", headerName: "STT", minWidth: 150, flex: 0.3 },
-
     {
       field: "name",
-      headerName: "Tên",
-      minWidth: 350,
-      flex: 1,
+      headerName: "Tên danh mục",
+      minWidth: 200,
+      flex: 0.6,
     },
     {
       field: "actions",
@@ -68,13 +65,9 @@ const AllProjects = ({ history }) => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={`/edit/project/${params.getValue(params.id, "id")}`}>
-              <EditIcon />
-            </Link>
-
             <Button
               onClick={() =>
-                deleteProjectHandler(params.getValue(params.id, "id"))
+                deleteCategoryHandler(params.getValue(params.id, "id"))
               }
             >
               <DeleteIcon />
@@ -87,32 +80,34 @@ const AllProjects = ({ history }) => {
 
   const rows = [];
 
-  projects &&
-    projects.forEach((item,index) => {
+  categories &&
+    categories.forEach((item,index) => {
       rows.push({
-        id: index,
+        id: index+1,
         name: item.name,
-        category: item.category,
       });
     });
 
   return (
     <>
-      <MetaData title={`Danh sách đồ án- Admin`} />
+      <MetaData title={`TẤT CẢ ĐÁNH GIÁ - Admin`} />
 
       <div className="dashboard">
         <SideBar />
-        <div className="projectListContainer">
-          <h1 id="projectListHeading">TẤT CẢ CÁC DỰ ÁN</h1>
-
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            className="projectListTable"
-            autoHeight
-          />
+        <div className="projectCategoriesContainer">
+        <h1 id="projectListHeading">TẤT CẢ DANH MỤC</h1>
+          {categories && categories.length > 0 ? (
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              disableSelectionOnClick
+              className="projectListTable"
+              autoHeight
+            />
+          ) : (
+            <h1 className="projectCategoriesFormHeading">Không tìm thấy đánh giá</h1>
+          )}
         </div>
       </div>
       <ToastContainer
@@ -127,7 +122,7 @@ const AllProjects = ({ history }) => {
         pauseOnHover
       />
     </>
-  )
-}
+  );
+};
 
-export default AllProjects
+export default AllCategories;
