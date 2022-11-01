@@ -54,7 +54,7 @@ const CreateCategory = ({ history }) => {
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Category Name"
+                placeholder="Tên danh mục"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -66,7 +66,7 @@ const CreateCategory = ({ history }) => {
               type="submit"
               disabled={loading ? true : false}
             >
-              Create
+              Thêm
             </Button>
           </form>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./newProject.css";
+import "./newAndEdit.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, updateCategory, getCategoryDetails } from "../../actions/CategoryActions";
+import { clearErrors, updateCategory, getCategoryDetails, getCategory } from "../../actions/CategoryActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
@@ -26,7 +26,11 @@ const UpdateCategory = ({ history, match }) => {
   const categoryId = match.params.id;
 
   useEffect(() => {
-
+    if (category && category._id !== categoryId) {
+      dispatch(getCategoryDetails(categoryId));
+    } else {
+      setName(category.name);
+    }
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
@@ -39,8 +43,9 @@ const UpdateCategory = ({ history, match }) => {
 
     if (isUpdated) {
       toast.success("Danh mục đã được sửa thành công");
-      history.push("/admin/category");
+      history.push("/admin/categories");
       dispatch({ type: UPDATE_CATEGORY_RESET });
+      dispatch(getCategory())
     }
   }, [dispatch, error, history, isUpdated, categoryId, category, updateError]);
 
@@ -57,7 +62,7 @@ const UpdateCategory = ({ history, match }) => {
 
   return (
     <>
-      <MetaData title="Edit Category" />
+      <MetaData title="Sửa danh mục" />
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">
@@ -66,13 +71,13 @@ const UpdateCategory = ({ history, match }) => {
             encType="multipart/form-data"
             onSubmit={updateCategorySubmitHandler}
           >
-            <h1>Edit Category</h1>
+            <h1>Sửa danh mục</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Category Name"
+                placeholder="Tên danh mục"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -85,7 +90,7 @@ const UpdateCategory = ({ history, match }) => {
               type="submit"
               disabled={loading ? true : false}
             >
-              Update
+              Cập nhật
             </Button>
           </form>
         </div>

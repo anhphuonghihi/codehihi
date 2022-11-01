@@ -1,32 +1,34 @@
 import React, { useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import "./newAndEdit.css";
+import "./AllProjects.css";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  clearErrors,
+  deleteCouncil,
+} from "../../actions/CouncilActions";
+import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
-import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
-import { DELETE_USER_RESET } from "../../constans/userContans";
+import { DELETE_COUNCIL_RESET } from "../../constans/CouncilConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
-const AllUsers = ({ history }) => {
-
+const AllCouncils = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { error, users } = useSelector((state) => state.allUsers);
+  const { error: deleteError, isDeleted } = useSelector(
+    (state) => state.deleteCouncil
+  );
 
-  const {
-    error: deleteError,
-    isDeleted,
-    message,
-  } = useSelector((state) => state.profile);
-
-  const deleteUserHandler = (id) => {
-    dispatch(deleteUser(id));
+  const { error, councils } = useSelector(
+    (state) => state.councils
+  );
+  const deleteCouncilHandler = (councilId) => {
+    dispatch(deleteCouncil(councilId));
   };
+
 
   useEffect(() => {
     if (error) {
@@ -40,43 +42,20 @@ const AllUsers = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success(message);
-      history.push("/admin/users");
-      dispatch({ type: DELETE_USER_RESET });
+      toast.success("Ngành đã Xóa thành công");
+      history.push("/admin/councils");
+      dispatch({ type: DELETE_COUNCIL_RESET });
     }
-
-    dispatch(getAllUsers());
-  }, [dispatch, alert, error, deleteError, history, isDeleted, message]);
+  }, [dispatch, error, deleteError, history, isDeleted]);
 
   const columns = [
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
-
-    {
-      field: "email",
-      headerName: "Email",
-      minWidth: 200,
-      flex: 1,
-    },
     {
       field: "name",
-      headerName: "Tên",
-      minWidth: 150,
-      flex: 0.5,
+      headerName: "Tên ngành",
+      minWidth: 200,
+      flex: 0.6,
     },
-
-    {
-      field: "role",
-      headerName: "Quyền",
-      type: "number",
-      minWidth: 150,
-      flex: 0.3,
-      cellClassName: (params) => {
-        return params.getValue(params.id, "role") === ("admin")
-          ? "greenColor"
-          : "redColor";
-      },
-    },
-
     {
       field: "actions",
       flex: 0.3,
@@ -87,13 +66,12 @@ const AllUsers = ({ history }) => {
       renderCell: (params) => {
         return (
           <div className="icon">
-            <Link to={`/admin/user/${params.getValue(params.id, "id")}`}>
+            <Link to={`/edit/council/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
-
             <Button
               onClick={() =>
-                deleteUserHandler(params.getValue(params.id, "id"))
+                deleteCouncilHandler(params.getValue(params.id, "id"))
               }
             >
               <DeleteIcon />
@@ -106,34 +84,36 @@ const AllUsers = ({ history }) => {
 
   const rows = [];
 
-  users &&
-    users.forEach((item, index) => {
+  councils &&
+    councils.forEach((item, index) => {
       rows.push({
         id: item._id,
         index: index + 1,
-        role: item.role,
-        email: item.email,
         name: item.name,
       });
     });
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGƯỜI DÙNG - Admin`} />
+      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
 
+      <Link class="newLink" to="/admin/council">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGƯỜI DÙNG</h1>
-
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            className="listTable"
-            autoHeight
-          />
+          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          {councils && councils.length > 0 ? (
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              disableSelectionOnClick
+              className="listTable"
+              autoHeight
+            />
+          ) : (
+            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+          )}
         </div>
       </div>
       <ToastContainer
@@ -151,4 +131,4 @@ const AllUsers = ({ history }) => {
   );
 };
 
-export default AllUsers;
+export default AllCouncils;

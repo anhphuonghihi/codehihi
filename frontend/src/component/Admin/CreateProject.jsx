@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./newProject.css";
+import "./newAndEdit.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, createProject } from "../../actions/ProjectActions";
 import { Button } from "@material-ui/core";
@@ -89,7 +89,7 @@ const CreateProject = ({ history }) => {
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Project Name"
+                placeholder="Tên dự án"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -101,7 +101,7 @@ const CreateProject = ({ history }) => {
             <div>
               <DescriptionIcon />
               <textarea
-                placeholder="Project Description"
+                placeholder="Mô tả dự án"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 cols="30"
@@ -112,7 +112,7 @@ const CreateProject = ({ history }) => {
             <div>
               <AccountTreeIcon />
               <select onChange={(e) => setCategory(e.target.value)}>
-                <option value="">Choose Category</option>
+              <option value="">Chọn danh mục</option>
                 {categories.map((cate) => (
                   <option key={cate._id} value={cate._id}>
                     {cate.name}
@@ -143,7 +143,7 @@ const CreateProject = ({ history }) => {
               type="submit"
               disabled={loading ? true : false}
             >
-              Create
+              Thêm
             </Button>
           </form>
         </div>

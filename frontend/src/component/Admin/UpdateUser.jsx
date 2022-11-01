@@ -12,6 +12,7 @@ import {
   updateUser,
   clearErrors,
 } from "../../actions/userAction";
+import { Link } from "react-router-dom";
 import Loading from "../../more/Loader";
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -73,6 +74,7 @@ const UpdateUser = ({ history, match }) => {
   return (
     <>
       <MetaData title="Update User" />
+      <Link class="newLink" to="/admin/category">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">

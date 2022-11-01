@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./AllProjects.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   clearErrors,
-  getCategory,
   deleteCategory,
 } from "../../actions/CategoryActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
+import { Link } from "react-router-dom";
+import EditIcon from "@material-ui/icons/Edit";
 import { DELETE_CATEGORY_RESET } from "../../constans/CategoryConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -41,7 +42,7 @@ const AllCategories = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Đánh giá đã Xóa thành công");
+      toast.success("Danh mục đã Xóa thành công");
       history.push("/admin/categories");
       dispatch({ type: DELETE_CATEGORY_RESET });
     }
@@ -64,7 +65,10 @@ const AllCategories = ({ history }) => {
       sortable: false,
       renderCell: (params) => {
         return (
-          <>
+          <div className="icon">
+            <Link to={`/edit/category/${params.getValue(params.id, "id")}`}>
+              <EditIcon />
+            </Link>
             <Button
               onClick={() =>
                 deleteCategoryHandler(params.getValue(params.id, "id"))
@@ -72,7 +76,7 @@ const AllCategories = ({ history }) => {
             >
               <DeleteIcon />
             </Button>
-          </>
+          </div>
         );
       },
     },
@@ -83,7 +87,7 @@ const AllCategories = ({ history }) => {
   categories &&
     categories.forEach((item, index) => {
       rows.push({
-        id: item._id, 
+        id: item._id,
         index: index + 1,
         name: item.name,
       });
@@ -91,23 +95,23 @@ const AllCategories = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ ĐÁNH GIÁ - Admin`} />
-
+      <MetaData title={`TẤT CẢ DANH MỤC - Admin`} />
+      <Link class="newLink" to="/admin/category">+</Link>
       <div className="dashboard">
         <SideBar />
-        <div className="projectCategoriesContainer">
-          <h1 id="projectListHeading">TẤT CẢ DANH MỤC</h1>
+        <div className="listContainer">
+          <h1 id="listHeading">TẤT CẢ DANH MỤC</h1>
           {categories && categories.length > 0 ? (
             <DataGrid
               rows={rows}
               columns={columns}
               pageSize={10}
               disableSelectionOnClick
-              className="projectListTable"
+              className="listTable"
               autoHeight
             />
           ) : (
-            <h1 className="projectCategoriesFormHeading">Không tìm thấy đánh giá</h1>
+            <h1 className="listFormHeading">Không tìm thấy danh mục</h1>
           )}
         </div>
       </div>

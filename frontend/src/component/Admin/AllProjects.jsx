@@ -8,10 +8,10 @@ import {
   getAdminProject,
 } from "../../actions/ProjectActions";
 import { Link } from "react-router-dom";
+import EditIcon from "@material-ui/icons/Edit";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import Star from "@material-ui/icons/Star";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { ToastContainer, toast } from 'react-toastify';
@@ -91,10 +91,10 @@ const AllProjects = ({ history }) => {
   const rows = [];
 
   projects &&
-    projects.forEach((item,index) => {
+    projects.forEach((item, index) => {
       rows.push({
-        id:item._id,
-        index: index+1,
+        id: item._id,
+        index: index + 1,
         name: item.name,
         category: item.category,
       });
@@ -104,17 +104,18 @@ const AllProjects = ({ history }) => {
     <>
       <MetaData title={`Danh sách đồ án- Admin`} />
 
+      <Link class="newLink" to="/admin/category">+</Link>
       <div className="dashboard">
         <SideBar />
-        <div className="projectListContainer">
-          <h1 id="projectListHeading">TẤT CẢ CÁC DỰ ÁN</h1>
+        <div className="listContainer">
+          <h1 id="listHeading">TẤT CẢ CÁC DỰ ÁN</h1>
 
           <DataGrid
             rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
-            className="projectListTable"
+            className="listTable"
             autoHeight
           />
         </div>

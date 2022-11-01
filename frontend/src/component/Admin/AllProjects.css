@@ -1,4 +1,4 @@
-.projectListContainer {
+.listContainer {
   width: 100%;
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
@@ -9,10 +9,10 @@
 }
 
 .MuiDataGrid-columnHeader {
-  background: #3BB77E;
+  background-image: linear-gradient(rgb(84, 180, 235), rgb(47, 164, 231) 60%, rgb(29, 156, 229));
 }
 
-#projectListHeading {
+#listHeading {
   font: 400 2rem "Roboto";
   padding: 0.5vmax;
   box-sizing: border-box;
@@ -22,28 +22,37 @@
   text-align: center;
 }
 
-.projectListTable {
+.listFormHeading {
+  font: 400 2rem "Roboto";
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  transition: all 0.5s;
+  margin: 2rem;
+  text-align: center;
+}
+
+.listTable {
   background-color: white;
   border: none !important;
 }
 
-.projectListTable div {
+.listTable div {
   font: 300 1vmax "Roboto";
   color: rgba(0, 0, 0, 0.678);
   border: none !important;
 }
 
-.projectListTable a,
-.projectListTable button {
+.listTable a,
+.listTable button {
   color: rgba(0, 0, 0, 0.527);
   transition: all 0.5s;
 }
 
-.projectListTable a:hover {
+.listTable a:hover {
   color: tomato;
 }
 
-.projectListTable button:hover {
+.listTable button:hover {
   color: rgb(236, 30, 30);
 }
 
@@ -52,15 +61,33 @@
 }
 
 @media screen and (max-width: 600px) {
-  .projectListTable div {
+  .listTable div {
     font: 300 4vw "Roboto";
   }
 }
-.icon{
+
+.icon {
   display: flex;
   align-items: center;
 }
-.icon a{
+
+.icon a {
   padding: 8px 20px;
   padding-right: 0;
+}
+
+.newLink {
+  position: fixed;
+  z-index: 2;
+  bottom: 5vw;
+  right: 5vw;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: linear-gradient(rgb(84, 180, 235), rgb(47, 164, 231) 60%, rgb(29, 156, 229));
+  font-size: 30px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

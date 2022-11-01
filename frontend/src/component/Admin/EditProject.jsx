@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./newProject.css";
+import "./newAndEdit.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, updateProject, getProjectDetails } from "../../actions/ProjectActions";
+import { clearErrors, updateProject, getProjectDetails, getAdminProject } from "../../actions/ProjectActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
@@ -56,8 +56,9 @@ const UpdateProject = ({ history, match }) => {
 
     if (isUpdated) {
       toast.success("Đồ án đã được sửa thành công");
-      history.push("/admin/project");
+      history.push("/admin/projects");
       dispatch({ type: UPDATE_PROJECT_RESET });
+      dispatch(getAdminProject())
     }
   }, [dispatch, error, history, isUpdated, projectId, project, updateError]);
 
@@ -99,7 +100,7 @@ const UpdateProject = ({ history, match }) => {
 
   return (
     <>
-      <MetaData title="Edit Project" />
+      <MetaData title="Sửa đồ án" />
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">
@@ -108,13 +109,13 @@ const UpdateProject = ({ history, match }) => {
             encType="multipart/form-data"
             onSubmit={updateProjectSubmitHandler}
           >
-            <h1>Edit Project</h1>
+            <h1>Sửa đồ án</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Project Name"
+                placeholder="Tên dự án"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -126,7 +127,7 @@ const UpdateProject = ({ history, match }) => {
               <DescriptionIcon />
 
               <textarea
-                placeholder="Project Description"
+                placeholder="Mô tả dự án"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 cols="30"
@@ -140,7 +141,7 @@ const UpdateProject = ({ history, match }) => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="">Choose Category</option>
+                <option value="">Chọn danh mục</option>
                 {categories.map((cate) => (
                   <option key={cate._id} value={cate._id}>
                     {cate.name}
@@ -177,7 +178,7 @@ const UpdateProject = ({ history, match }) => {
               type="submit"
               disabled={loading ? true : false}
             >
-              Update
+              Cập nhật
             </Button>
           </form>
         </div>

@@ -33,9 +33,19 @@ import CreateCategory from './component/Admin/CreateCategory';
 import AllCategories from "../../frontend/src/component/Admin/AllCategories";
 import EditCategory from "../../frontend/src/component/Admin/EditCategory";
 
-// import CreateDepartment from './component/Admin/CreateDepartment';
-// import AllDepartment from "../../frontend/src/component/Admin/AllDepartment";
-// import EditDepartment from "../../frontend/src/component/Admin/EditDepartment";
+
+import AllBranchs from "../../frontend/src/component/Admin/AllBranchs";
+import AllClassroom from "../../frontend/src/component/Admin/AllClassroom";
+import AllConfig from "../../frontend/src/component/Admin/AllConfig";
+import AllCouncil from "../../frontend/src/component/Admin/AllCouncil";
+import AllDepartment from "../../frontend/src/component/Admin/AllDepartment";
+import AllFaq from "../../frontend/src/component/Admin/AllFaq";
+import AllNotify from "../../frontend/src/component/Admin/AllNotify";
+import AllSchoolYear from "../../frontend/src/component/Admin/AllSchoolYear";
+import AllSpecialized from "../../frontend/src/component/Admin/AllSpecialized";
+import AllSupport from "../../frontend/src/component/Admin/AllSupport";
+import AllTrainingSystem from "../../frontend/src/component/Admin/AllTrainingSystem";
+
 
 
 import AllUsers from "../../frontend/src/component/Admin/AllUsers";
@@ -92,14 +102,22 @@ function App() {
         <ProtectedRoute isAdmin={true} exact path="/edit/project/:id" component={EditProject} />
         <ProtectedRoute isAdmin={true} exact path="/admin/reviews/:id" component={AllReviews} />
 
+        <ProtectedRoute isAdmin={true} exact path="/admin/branchs" component={AllBranchs} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/classrooms" component={AllClassroom} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/configs" component={AllConfig} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/councils" component={AllCouncil} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/departments" component={AllDepartment} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/faqs" component={AllFaq} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/notifys" component={AllNotify} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/schoolyears" component={AllSchoolYear} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/specializeds" component={AllSpecialized} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/support" component={AllSupport} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/trainingsystem" component={AllTrainingSystem} />
+
         <ProtectedRoute isAdmin={true} exact path="/admin/categories" component={AllCategories} />
         <ProtectedRoute isAdmin={true} exact path="/admin/category" component={CreateCategory} />
         <ProtectedRoute isAdmin={true} exact path="/edit/category/:id" component={EditCategory} />
         
-        {/* <ProtectedRoute isAdmin={true} exact path="/admin/department" component={AllDepartment} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/department" component={CreateDepartment} />
-        <ProtectedRoute isAdmin={true} exact path="/edit/department/:id" component={EditDepartment} /> */}
-
         <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />
         <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />
         <Route exact path="*" component={Notfound} />
