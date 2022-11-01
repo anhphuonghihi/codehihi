@@ -1,7 +1,7 @@
 const Specialized = require("../models/SpecializedModel.js");
 const ErrorHandler = require("../utils/ErrorHandler.js");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-
+const Classroom = require("../models/ClassroomModel.js");
 // create Specialized --Admin
 exports.createSpecialized = catchAsyncErrors(async (req, res, next) => {
 
@@ -46,6 +46,10 @@ exports.deleteSpecialized = catchAsyncErrors(async (req, res, next) => {
     const specialized = await Specialized.findById(req.params.id);
     if (!specialized) {
         return next(new ErrorHandler("Không tìm thấy chuyên ngành ", 404));
+    }
+    const classroom = await Classroom.findOne({ category: req.params.id });
+    if (classroom) {
+        return next(new ErrorHandler("Xóa tất cả đồ án của danh mục", 404));
     }
     await specialized.remove();
     res.status(200).json({

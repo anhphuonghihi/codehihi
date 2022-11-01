@@ -5,6 +5,11 @@ const SchoolYearModelSchema = new mongoose.Schema({
         type: String,
         required: [true, "Vui lòng nhập tên niên khóa"],
     },
+    department: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Department",
+        required: true
+    },
 }, {
     timestamps: true,
 });

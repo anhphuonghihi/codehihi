@@ -5,6 +5,11 @@ const SpecializedModelSchema = new mongoose.Schema({
         type: String,
         required: [true, "Vui lòng nhập tên chuyên ngành"],
     },
+    branch: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Branch",
+        required: true
+    },
 }, {
     timestamps: true,
 });

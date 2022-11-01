@@ -1,7 +1,7 @@
 const Branch = require("../models/BranchModel.js");
 const ErrorHandler = require("../utils/ErrorHandler.js");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-
+const Specialized = require("../models/SpecializedModel.js");
 // create Branch --Admin
 exports.createBranch = catchAsyncErrors(async (req, res, next) => {
 
@@ -47,6 +47,10 @@ exports.deleteBranch = catchAsyncErrors(async (req, res, next) => {
     if (!branch) {
         return next(new ErrorHandler("Không tìm thấy ngành ", 404));
     }
+    const specialized = await Specialized.findOne({ category: req.params.id });
+    if (specialized) {
+        return next(new ErrorHandler("Xóa tất cả chuyên ngành của ngành", 404));
+      }
     await branch.remove();
     res.status(200).json({
         success: true,
