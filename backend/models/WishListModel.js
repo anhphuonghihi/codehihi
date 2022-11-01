@@ -25,10 +25,6 @@ const wishListSchema = new mongoose.Schema({
     type: String,
     required: [true, "Vui lòng nhập id đồ án"],
   },
-  Stock: {
-    type: Number,
-    required: [true, "Vui lòng nhập tên đồ án"],
-  }
 });
 
 module.exports = mongoose.model("Wishlist", wishListSchema);

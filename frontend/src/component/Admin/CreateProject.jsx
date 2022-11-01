@@ -20,24 +20,13 @@ const CreateProject = ({ history }) => {
   const { loading, error, success } = useSelector((state) => state.createProject);
 
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [Stock, setStock] = useState(0);
-  const [offerPrice, setOfferPrice] = useState("");
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = [
-    "Personal",
-    "cloth",
-    "Ladies Cloth",
-    "Gift",
-    "Food",
-    "Electronics",
-    "Sports",
-    "Others"
-  ];
+
+  const { categories } = useSelector((state) => state.categories);
 
   useEffect(() => {
     if (error) {
@@ -58,11 +47,8 @@ const CreateProject = ({ history }) => {
     const myForm = new FormData();
 
     myForm.set("name", name);
-    myForm.set("price", price);
-    myForm.set("offerPrice", offerPrice);
     myForm.set("description", description);
     myForm.set("category", category);
-    myForm.set("Stock", Stock);
 
     images.forEach((image) => {
       myForm.append("images", image);
@@ -113,24 +99,7 @@ const CreateProject = ({ history }) => {
               />
             </div>
 
-            <div>
-              <DiscountIcon />
-              <input
-                type="String"
-                placeholder="Discount Percent *optional"
-                onChange={(e) => setOfferPrice(e.target.value)}
-              />
-            </div>
 
-            <div>
-              <AttachMoneyIcon />
-              <input
-                type="number"
-                placeholder="Project Price"
-                required
-                onChange={(e) => setPrice(e.target.value)}
-              />
-            </div>
 
             <div>
               <DescriptionIcon />
@@ -148,22 +117,13 @@ const CreateProject = ({ history }) => {
               <select onChange={(e) => setCategory(e.target.value)}>
                 <option value="">Choose Category</option>
                 {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
+                  <option key={cate._id} value={cate._id}>
+                    {cate.name}
                   </option>
                 ))}
               </select>
             </div>
 
-            <div>
-              <StorageIcon />
-              <input
-                type="number"
-                placeholder="Stock"
-                required
-                onChange={(e) => setStock(e.target.value)}
-              />
-            </div>
 
             <div id="createProjectFormFile">
               <input

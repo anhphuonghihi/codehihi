@@ -11,9 +11,7 @@ export const addFavouriteItemsToCart = (id, quantity) => async (dispatch, getSta
         payload: {
             project: data.project._id,
             name: data.project.name,
-            price: data.project.price,
             image: data.project.images[0].url,
-            stock: data.project.Stock,
             quantity,
         }
     })

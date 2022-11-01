@@ -8,6 +8,8 @@ import LoginSignup from "./component/Authentication/LoginSignup";
 import UserData from './more/UserData';
 import { useSelector } from 'react-redux';
 import { loadUser } from './actions/userAction';
+import { getCategory } from './actions/CategoryActions';
+import { getProject } from './actions/ProjectActions';
 import Store from "./store";
 import ProtectedRoute from './route/ProtectedRoute';
 import Profile from "./component/user/Profile";
@@ -46,7 +48,8 @@ function App() {
       },
     });
     Store.dispatch(loadUser());
-
+    Store.dispatch(getProject());
+    Store.dispatch(getCategory());
 
   }, []);
   return (

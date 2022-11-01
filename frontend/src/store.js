@@ -10,6 +10,12 @@ import {
   projectReviewsReducer,
   projectsReducer,
 } from "./reducers/ProjectReducer";
+import {
+  deleteCategoryReducer,
+  newCategoryReducer,
+  categoryDetailsReducer,
+  categoriesReducer,
+} from "./reducers/CategoryReducer";
 import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer";
 import { favouriteReducer } from "./reducers/FavouriteReducer";
 
@@ -17,12 +23,16 @@ import { favouriteReducer } from "./reducers/FavouriteReducer";
 const reducer = combineReducers({
   projects: projectsReducer,
   projectDetails: projectDetailsReducer,
+  createProject: newProjectReducer,
+  deleteProject: deleteProjectReducer,
+  categories: categoriesReducer,
+  categoryDetails: categoryDetailsReducer,
+  createCategory: newCategoryReducer,
+  deleteCategory: deleteCategoryReducer,
   user: userReducer,
   profile: profileReducer,
   favourite: favouriteReducer,
   newReview: newReviewReducer,
-  createProject: newProjectReducer,
-  deleteProject: deleteProjectReducer,
   allUsers: allUsersReducer,
   userDetails: userDetailsReducer,
   deleteReview: deleteReviewReducer,

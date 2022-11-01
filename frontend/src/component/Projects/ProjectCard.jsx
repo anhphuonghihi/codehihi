@@ -27,7 +27,7 @@ const ProjectCard = ({ project }) => {
             justifyContent: "space-between",
           }}
         >
-          <div className="offerPriceBox">
+          <div className="downloadBox">
             <span className="p__Price">10 lượt tải xuống</span>
           </div>
         </div>

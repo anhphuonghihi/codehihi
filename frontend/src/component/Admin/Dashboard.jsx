@@ -10,6 +10,9 @@ import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../../more/Metadata.js";
 import Loading from "../../more/Loader.js";
 import { getAdminProject } from "../../actions/ProjectActions.js";
+
+import { getCategory } from "../../actions/CategoryActions";
+
 import { getAllUsers } from "../../actions/userAction.js";
 
 const Dashboard = () => {
@@ -20,9 +23,12 @@ const Dashboard = () => {
 
   const { users } = useSelector((state) => state.allUsers);
 
+  const { categories } = useSelector((state) => state.categories);
+
   useEffect(() => {
     dispatch(getAdminProject());
     dispatch(getAllUsers());
+    dispatch(getCategory());
   }, [dispatch]);
 
 

@@ -23,11 +23,12 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 const project = require("./routes/ProjectRoute");
 const user = require("./routes/UserRoute");
 const wishlist = require("./routes/WishListRoute");
-
+const category = require("./routes/CategoryRoute");
 app.use("/api/v2", project);
 
 app.use("/api/v2", user);
 
+app.use("/api/v2", category);
 
 app.use("/api/v2", wishlist);
 

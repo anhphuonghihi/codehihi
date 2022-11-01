@@ -91,8 +91,6 @@ const AllProjects = ({ history }) => {
     projects.forEach((item) => {
       rows.push({
         id: item._id,
-        stock: item.Stock,
-        price: item.price,
         name: item.name,
       });
     });

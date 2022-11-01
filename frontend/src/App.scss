@@ -263,6 +263,28 @@ label.MuiRating-label {
   display: none;
 }
 
+
+
+
+.mobile {
+  gap: 20px;
+
+  h5 {
+    font-weight: 600;
+    opacity: 1;
+    font-size: 18px;
+    padding: 8px 10px;
+    color: #000;
+    transition: .4s all ease;
+  }
+
+  h5:hover {
+    color: tomato;
+    cursor: pointer;
+
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .Header {
     display: none;
@@ -276,7 +298,7 @@ label.MuiRating-label {
     display: inline !important;
   }
 
-  .offerPriceBox {
+  .downloadBox {
     overflow: visible !important;
   }
 
@@ -362,6 +384,15 @@ label.MuiRating-label {
   .footer1st {
     img {
       display: none;
+    }
+  }
+
+  .mobile {
+    gap: 20px;
+
+    h5 {
+      font-size: 1.8vmax;
+      padding: 8px 10px;
     }
   }
 }

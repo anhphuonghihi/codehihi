@@ -12,21 +12,8 @@ const projectSchema = new mongoose.Schema({
         required: [true, "Vui lòng thêm mô tả về đồ án của bạn"],
         maxlength: [4000, "Mô tả không được vượt quá 4000 ký tự"]
     },
-    price: {
-        type: Number,
-        required: [true, "Vui lòng thêm giá cho đồ án của bạn"],
-        maxLength: [8, "Giá không được vượt quá 8 ký tự"],
-    },
-    offerPrice: {
-        type: String,
-        maxLength: [4, "Giá chiết khấu không được vượt quá 4 ký tự"],
-    },
-    color: {
-        type: String,
-    },
-    size: {
-        type: String,
-    },
+
+
     ratings: {
         type: Number,
         default: 0,
@@ -46,11 +33,6 @@ const projectSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, "Vui lòng thêm danh mục đồ án của bạn"],
-    },
-    Stock: {
-        type: Number,
-        required: [true, "Vui lòng thêm một số giá đỡ cho đồ án của bạn"],
-        maxLength: [3, "Cổ phiếu không được vượt quá 3 ký tự"],
     },
     numOfReviews: {
         type: Number,

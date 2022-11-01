@@ -65,37 +65,37 @@ const Footer = () => {
       <div className="mobile">
         <div className="footer__2nd__part">
           <h5>Tài khoản</h5>
-          <Link to="/login"><h3>Đăng nhập</h3></Link>
-          <Link to="/password/forgot"><h3>Quên mật khẩu</h3></Link>
+          <Link to="/login"><h5>Đăng nhập</h5></Link>
+          <Link to="/password/forgot"><h5>Quên mật khẩu</h5></Link>
         </div>
         {/* Footer 3rd part */}
         <div className="footer__2nd__part">
           <h5>Theo dõi</h5>
           <a href="https://www.facebook.com/humg.edu" target="_blank">
-            <h3>Facebook</h3>
+            <h5>Facebook</h5>
           </a>
           <a href="https://www.youtube.com/c/Tr%C6%B0%E1%BB%9Dng%C4%90HM%E1%BB%8F%C4%90%E1%BB%8Bach%E1%BA%A5t-HUMG/videos" target="_blank">
-            <h3>Youtube</h3>
+            <h5>Youtube</h5>
           </a>
           <a href="https://www.instagram.com/humg.edu.vn/" target="_blank">
-            <h3>Instargam</h3>
+            <h5>Instargam</h5>
           </a>
           <a href="https://www.tiktok.com/@daihocmodiachat/" target="_blank">
-            <h3>Tiktok</h3>       
-            </a>
+            <h5>Tiktok</h5>
+          </a>
         </div>
         {/* Footer 4th part */}
         <div className="footer__3rd__part">
-          <h5>Dành cho sinh viên</h5>
-          <Link to="/project"><h3>Đồ án</h3></Link>
-          <Link to="/support"><h3>Phản hồi</h3></Link>
+          <h5>Sinh viên</h5>
+          <Link to="/project"><h5>Đồ án</h5></Link>
+          <Link to="/support"><h5>Phản hồi</h5></Link>
         </div>
         {/* Footer 5th part */}
         <div className="footer__4th__part">
-          <h5>Quy tắc</h5>
-          <Link to="/faq"><h3>Quy tắc</h3></Link>
-          <Link to="/contact"><h3>Liên hệ</h3></Link>
-          <Link to="/about"><h3>Giới thiệu</h3></Link>
+          <h5>Về chúng tôi </h5>
+          <Link to="/faq"><h5>Quy tắc</h5></Link>
+          <Link to="/contact"><h5>Liên hệ</h5></Link>
+          <Link to="/about"><h5>Giới thiệu</h5></Link>
         </div>
       </div>
     </div>

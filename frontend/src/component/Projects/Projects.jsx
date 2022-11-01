@@ -12,18 +12,9 @@ import Typography from "@material-ui/core/Typography"
 import MetaData from "../../more/Metadata";
 import BottomTab from "../../more/BottomTab";
 
-const categories = [
-  "Personal",
-  "cloth",
-  "Ladies Cloth",
-  "Gift",
-  "Food",
-  "Electronics",
-  "Sports",
-  "Others"
-]
 
 const Projects = ({ match }) => {
+  const { categories } = useSelector((state) => state.categories);
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -96,10 +87,10 @@ const Projects = ({ match }) => {
                   {categories.map((category) => (
                     <li
                       className="category-link"
-                      key={category}
+                      key={category._id}
                       onClick={() => setCategory(category)}
                       type="checkbox">
-                      {category}
+                      {category.name}
                     </li>
                   ))}
                 </ul>

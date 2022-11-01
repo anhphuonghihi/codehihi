@@ -12,7 +12,6 @@ exports.addToWishlist = catchAsyncErrors(async (req, res, next) => {
     projectPrice,
     userId,
     projectId,
-    Stock,
   } = req.body;
   const wishList = await Wishlist.create({
     projectName,
@@ -21,7 +20,6 @@ exports.addToWishlist = catchAsyncErrors(async (req, res, next) => {
     projectPrice,
     userId,
     projectId,
-    Stock,
   });
 
   res.status(200).json({

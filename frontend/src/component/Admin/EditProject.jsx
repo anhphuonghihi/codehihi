@@ -28,26 +28,14 @@ const UpdateProject = ({ history, match }) => {
   } = useSelector((state) => state.deleteProject);
 
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  // eslint-disable-next-line
-  const [offerPrice, setOfferPrice] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = [
-    "Personal",
-    "cloth",
-    "Ladies Cloth",
-    "Shoes",
-    "Food",
-    "Electronics",
-    "Sports",
-    "Others"
-  ];
+
+  const { categories } = useSelector((state) => state.categories);
 
   const projectId = match.params.id;
 
@@ -57,9 +45,7 @@ const UpdateProject = ({ history, match }) => {
     } else {
       setName(project.name);
       setDescription(project.description);
-      setPrice(project.price);
       setCategory(project.category);
-      setStock(project.Stock);
       setOldImages(project.images);
     }
     if (error) {
@@ -94,12 +80,8 @@ const UpdateProject = ({ history, match }) => {
     const myForm = new FormData();
 
     myForm.set("name", name);
-    myForm.set("price", price);
-    myForm.set("offerPrice", offerPrice);
     myForm.set("description", description);
     myForm.set("category", category);
-    myForm.set("Stock", Stock);
-
     images.forEach((image) => {
       myForm.append("images", image);
     });
@@ -151,24 +133,7 @@ const UpdateProject = ({ history, match }) => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div>
-              <DiscountIcon />
-              <input
-                type="String"
-                placeholder="Discount Percent *optional"
-                onChange={(e) => setOfferPrice(e.target.value)}
-              />
-            </div>
-            <div>
-              <AttachMoneyIcon />
-              <input
-                type="number"
-                placeholder="Project Price"
-                required
-                onChange={(e) => setPrice(e.target.value)}
-                value={price}
-              />
-            </div>
+
 
             <div>
               <DescriptionIcon />
@@ -190,22 +155,11 @@ const UpdateProject = ({ history, match }) => {
               >
                 <option value="">Choose Category</option>
                 {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
+                  <option key={cate._id} value={cate._id}>
+                    {cate.name}
                   </option>
                 ))}
               </select>
-            </div>
-
-            <div>
-              <StorageIcon />
-              <input
-                type="number"
-                placeholder="Stock"
-                required
-                onChange={(e) => setStock(e.target.value)}
-                value={Stock}
-              />
             </div>
 
             <div id="createProjectFormFile">

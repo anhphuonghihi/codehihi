@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Home.css";
 import ProjectCard from "../Projects/ProjectCard";
 import { useDispatch, useSelector } from "react-redux"
-import { clearErrors, getProject } from "../../actions/ProjectActions";
+import { clearErrors } from "../../actions/ProjectActions";
 import Header from "./Header";
 import MetaData from "../../more/Metadata";
 import Footer from "../../Footer";
@@ -22,7 +22,6 @@ const Home = () => {
       toast.error(error);
       dispatch(clearErrors());
     }
-    dispatch(getProject());
   }, [dispatch, error])
 
   return (
