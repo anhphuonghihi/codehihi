@@ -41,7 +41,7 @@ const AllTrainingSystems = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Ngành đã Xóa thành công");
+      toast.success("Hệ đào tạo đã Xóa thành công");
       history.push("/admin/trainingsystems");
       dispatch({ type: DELETE_TRAININGSYSTEM_RESET });
     }
@@ -51,7 +51,7 @@ const AllTrainingSystems = ({ history }) => {
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
-      headerName: "Tên ngành",
+      headerName: "Tên hệ đào tạo",
       minWidth: 200,
       flex: 0.6,
     },
@@ -94,13 +94,13 @@ const AllTrainingSystems = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
+      <MetaData title={`TẤT CẢ HỆ ĐÀO TẠO - Admin`} />
 
       <Link class="newLink" to="/admin/trainingsystem">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          <h1 id="listHeading">TẤT CẢ HỆ ĐÀO TẠO</h1>
           {trainingsystems && trainingsystems.length > 0 ? (
             <DataGrid
               rows={rows}
@@ -111,7 +111,7 @@ const AllTrainingSystems = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+            <h1 className="listFormHeading">Không tìm thấy hệ đào tạo</h1>
           )}
         </div>
       </div>

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createCategory, getCategory } from "../../actions/CategoryActions";
+import { clearErrors, createDepartment, getDepartment } from "../../actions/DepartmentActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import SideBar from "./Sidebar";
-import { NEW_CATEGORY_RESET } from "../../constans/CategoryConstans";
+import { NEW_DEPARTMENT_RESET } from "../../constans/DepartmentConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
-const CreateCategory = ({ history }) => {
+const CreateDepartment = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { loading, error, success } = useSelector((state) => state.createCategory);
+  const { loading, error, success } = useSelector((state) => state.createDepartment);
 
   const [name, setName] = useState("");
   useEffect(() => {
@@ -21,41 +21,41 @@ const CreateCategory = ({ history }) => {
     }
 
     if (success) {
-      toast.success("Danh mục đã được thêm thành công");
-      history.push("/admin/categories");
-      dispatch({ type: NEW_CATEGORY_RESET })
-      dispatch(getCategory())
+      toast.success("Khoa đã được thêm thành công");
+      history.push("/admin/departments");
+      dispatch({ type: NEW_DEPARTMENT_RESET })
+      dispatch(getDepartment())
     }
   }, [dispatch, error, history, success]);
 
-  const createCategorySubmitHandler = (e) => {
+  const createDepartmentSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
 
     myForm.set("name", name);
 
-    dispatch(createCategory(myForm));
+    dispatch(createDepartment(myForm));
   };
 
 
   return (
     <>
-      <MetaData title="THÊM DANH MỤC" />
+      <MetaData title="THÊM KHOA" />
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">
           <form
             className="createForm"
-            onSubmit={createCategorySubmitHandler}
+            onSubmit={createDepartmentSubmitHandler}
           >
-            <h1>THÊM DANH MỤC</h1>
+            <h1>THÊM KHOA</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Tên danh mục"
+                placeholder="Tên khoa"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -87,4 +87,4 @@ const CreateCategory = ({ history }) => {
   );
 };
 
-export default CreateCategory;
+export default CreateDepartment;

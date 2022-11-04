@@ -89,7 +89,7 @@
 
 #createBtn {
   border: none;
-  background-color: #3BB77E;
+  background-image: linear-gradient(rgb(84, 180, 235), rgb(47, 164, 231) 60%, rgb(29, 156, 229));
   ;
   color: white;
   font: 300 0.9vmax "Roboto";
@@ -103,7 +103,7 @@
 }
 
 #createBtn:hover {
-  background-color: #3BB77E;
+  background-image: linear-gradient(rgb(84, 180, 235), rgb(47, 164, 231) 60%, rgb(29, 156, 229));
 }
 
 @media screen and (max-width: 600px) {

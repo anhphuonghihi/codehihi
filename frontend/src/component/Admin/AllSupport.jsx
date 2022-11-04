@@ -42,7 +42,7 @@ const AllSupports = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Ngành đã Xóa thành công");
+      toast.success("Hỗ trợ đã Xóa thành công");
       history.push("/admin/supports");
       dispatch({ type: DELETE_SUPPORT_RESET });
     }
@@ -52,7 +52,7 @@ const AllSupports = ({ history }) => {
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
-      headerName: "Tên ngành",
+      headerName: "Tên hỗ trợ",
       minWidth: 200,
       flex: 0.6,
     },
@@ -95,13 +95,13 @@ const AllSupports = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
+      <MetaData title={`TẤT CẢ HỖ TRỢ - Admin`} />
 
       <Link class="newLink" to="/admin/support">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          <h1 id="listHeading">TẤT CẢ HỖ TRỢ</h1>
           {supports && supports.length > 0 ? (
             <DataGrid
               rows={rows}
@@ -112,7 +112,7 @@ const AllSupports = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+            <h1 className="listFormHeading">Không tìm thấy hỗ trợ</h1>
           )}
         </div>
       </div>

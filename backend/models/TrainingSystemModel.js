@@ -8,7 +8,7 @@ const TrainingSystemModelSchema = new mongoose.Schema({
     department: {
         type: mongoose.Schema.ObjectId,
         ref: "Department",
-        required: true
+        required: [true, "Vui lòng chọn khoa"],
     },
 }, {
     timestamps: true,

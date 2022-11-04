@@ -42,7 +42,7 @@ const AllNotifys = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Ngành đã Xóa thành công");
+      toast.success("Thông báo đã Xóa thành công");
       history.push("/admin/notifys");
       dispatch({ type: DELETE_NOTIFY_RESET });
     }
@@ -52,7 +52,7 @@ const AllNotifys = ({ history }) => {
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
-      headerName: "Tên ngành",
+      headerName: "Tên thông báo",
       minWidth: 200,
       flex: 0.6,
     },
@@ -95,13 +95,13 @@ const AllNotifys = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
+      <MetaData title={`TẤT CẢ THÔNG BÁO - Admin`} />
 
       <Link class="newLink" to="/admin/notify">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          <h1 id="listHeading">TẤT CẢ THÔNG BÁO</h1>
           {notifys && notifys.length > 0 ? (
             <DataGrid
               rows={rows}
@@ -112,7 +112,7 @@ const AllNotifys = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+            <h1 className="listFormHeading">Không tìm thấy thông báo</h1>
           )}
         </div>
       </div>

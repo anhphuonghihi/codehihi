@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createCategory, getCategory } from "../../actions/CategoryActions";
+import { clearErrors, createCouncil, getCouncil } from "../../actions/CouncilActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import SideBar from "./Sidebar";
-import { NEW_CATEGORY_RESET } from "../../constans/CategoryConstans";
+import { NEW_COUNCIL_RESET } from "../../constans/CouncilConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
-const CreateCategory = ({ history }) => {
+const CreateCouncil = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { loading, error, success } = useSelector((state) => state.createCategory);
+  const { loading, error, success } = useSelector((state) => state.createCouncil);
 
   const [name, setName] = useState("");
   useEffect(() => {
@@ -21,41 +21,41 @@ const CreateCategory = ({ history }) => {
     }
 
     if (success) {
-      toast.success("Danh mục đã được thêm thành công");
-      history.push("/admin/categories");
-      dispatch({ type: NEW_CATEGORY_RESET })
-      dispatch(getCategory())
+      toast.success("Hội đồng đã được thêm thành công");
+      history.push("/admin/councils");
+      dispatch({ type: NEW_COUNCIL_RESET })
+      dispatch(getCouncil())
     }
   }, [dispatch, error, history, success]);
 
-  const createCategorySubmitHandler = (e) => {
+  const createCouncilSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
 
     myForm.set("name", name);
 
-    dispatch(createCategory(myForm));
+    dispatch(createCouncil(myForm));
   };
 
 
   return (
     <>
-      <MetaData title="THÊM DANH MỤC" />
+      <MetaData title="THÊM HỘI ĐỒNG" />
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">
           <form
             className="createForm"
-            onSubmit={createCategorySubmitHandler}
+            onSubmit={createCouncilSubmitHandler}
           >
-            <h1>THÊM DANH MỤC</h1>
+            <h1>THÊM HỘI ĐỒNG</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Tên danh mục"
+                placeholder="Tên hội đồng"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -87,4 +87,4 @@ const CreateCategory = ({ history }) => {
   );
 };
 
-export default CreateCategory;
+export default CreateCouncil;

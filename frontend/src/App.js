@@ -46,7 +46,17 @@ import AllSpecialized from "../../frontend/src/component/Admin/AllSpecialized";
 import AllSupport from "../../frontend/src/component/Admin/AllSupport";
 import AllTrainingSystem from "../../frontend/src/component/Admin/AllTrainingSystem";
 
-
+import CreateBranch from './component/Admin/CreateBranch';
+import CreateDepartment from './component/Admin/CreateDepartment';
+import CreateClassroom from './component/Admin/CreateClassroom';
+import CreateConfig from './component/Admin/CreateConfig';
+import CreateCouncil from './component/Admin/CreateCouncil';
+import CreateFaq from './component/Admin/CreateFaq';
+import CreateNotify from './component/Admin/CreateNotify';
+import CreateSchoolYear from './component/Admin/CreateSchoolYear';
+import CreateSpecialized from './component/Admin/CreateSpecialized';
+import CreateSupport from './component/Admin/CreateSupport';
+import CreateTrainingSystem from './component/Admin/CreateTrainingSystem';
 
 import AllUsers from "../../frontend/src/component/Admin/AllUsers";
 import UpdateUser from "../../frontend/src/component/Admin/UpdateUser";
@@ -111,13 +121,25 @@ function App() {
         <ProtectedRoute isAdmin={true} exact path="/admin/notifys" component={AllNotify} />
         <ProtectedRoute isAdmin={true} exact path="/admin/schoolyears" component={AllSchoolYear} />
         <ProtectedRoute isAdmin={true} exact path="/admin/specializeds" component={AllSpecialized} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/support" component={AllSupport} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/trainingsystem" component={AllTrainingSystem} />
-
+        <ProtectedRoute isAdmin={true} exact path="/admin/supports" component={AllSupport} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/trainingsystems" component={AllTrainingSystem} />
         <ProtectedRoute isAdmin={true} exact path="/admin/categories" component={AllCategories} />
+
         <ProtectedRoute isAdmin={true} exact path="/admin/category" component={CreateCategory} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/department" component={CreateDepartment} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/branch" component={CreateBranch} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/classroom" component={CreateClassroom} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/config" component={CreateConfig} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/council" component={CreateCouncil} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/faq" component={CreateFaq} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/notify" component={CreateNotify} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/schoolyear" component={CreateSchoolYear} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/specialized" component={CreateSpecialized} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/support" component={CreateSupport} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/trainingsystem" component={CreateTrainingSystem} />
+
         <ProtectedRoute isAdmin={true} exact path="/edit/category/:id" component={EditCategory} />
-        
+
         <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />
         <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />
         <Route exact path="*" component={Notfound} />

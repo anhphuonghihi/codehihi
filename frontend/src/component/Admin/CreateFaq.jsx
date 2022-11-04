@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createCategory, getCategory } from "../../actions/CategoryActions";
+import { clearErrors, createFaq, getFaq } from "../../actions/FaqActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import SideBar from "./Sidebar";
-import { NEW_CATEGORY_RESET } from "../../constans/CategoryConstans";
+import { NEW_FAQ_RESET } from "../../constans/FaqConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
-const CreateCategory = ({ history }) => {
+const CreateFaq = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { loading, error, success } = useSelector((state) => state.createCategory);
+  const { loading, error, success } = useSelector((state) => state.createFaq);
 
   const [name, setName] = useState("");
   useEffect(() => {
@@ -21,41 +21,41 @@ const CreateCategory = ({ history }) => {
     }
 
     if (success) {
-      toast.success("Danh mục đã được thêm thành công");
-      history.push("/admin/categories");
-      dispatch({ type: NEW_CATEGORY_RESET })
-      dispatch(getCategory())
+      toast.success("Quy tắc đã được thêm thành công");
+      history.push("/admin/faqs");
+      dispatch({ type: NEW_FAQ_RESET })
+      dispatch(getFaq())
     }
   }, [dispatch, error, history, success]);
 
-  const createCategorySubmitHandler = (e) => {
+  const createFaqSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
 
     myForm.set("name", name);
 
-    dispatch(createCategory(myForm));
+    dispatch(createFaq(myForm));
   };
 
 
   return (
     <>
-      <MetaData title="THÊM DANH MỤC" />
+      <MetaData title="THÊM QUY TẮC" />
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">
           <form
             className="createForm"
-            onSubmit={createCategorySubmitHandler}
+            onSubmit={createFaqSubmitHandler}
           >
-            <h1>THÊM DANH MỤC</h1>
+            <h1>THÊM QUY TẮC</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Tên danh mục"
+                placeholder="Tên quy tắc"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -87,4 +87,4 @@ const CreateCategory = ({ history }) => {
   );
 };
 
-export default CreateCategory;
+export default CreateFaq;

@@ -72,14 +72,19 @@ const Sidebar = () => {
       name: "Tất cả chuyên ngành",
     },
     {
-      link: "/admin/support",
+      link: "/admin/supports",
       icon: DashboardIcon,
       name: "Tất cả hỗ trợ",
     },
     {
-      link: "/admin/trainingsystem",
+      link: "/admin/trainingsystems",
       icon: DashboardIcon,
       name: "Tất cả hệ đào tạo",
+    },
+    {
+      link: "/admin/users",
+      icon: PeopleIcon,
+      name: "Người dùng",
     },
   ]
   return (

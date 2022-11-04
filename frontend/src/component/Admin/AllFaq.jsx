@@ -42,7 +42,7 @@ const AllFaqs = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Ngành đã Xóa thành công");
+      toast.success("Quy tắc đã Xóa thành công");
       history.push("/admin/faqs");
       dispatch({ type: DELETE_FAQ_RESET });
     }
@@ -52,7 +52,7 @@ const AllFaqs = ({ history }) => {
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
-      headerName: "Tên ngành",
+      headerName: "Tên quy tắc",
       minWidth: 200,
       flex: 0.6,
     },
@@ -95,13 +95,13 @@ const AllFaqs = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
+      <MetaData title={`TẤT CẢ QUY TẮC - Admin`} />
 
       <Link class="newLink" to="/admin/faq">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          <h1 id="listHeading">TẤT CẢ QUY TẮC</h1>
           {faqs && faqs.length > 0 ? (
             <DataGrid
               rows={rows}
@@ -112,7 +112,7 @@ const AllFaqs = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+            <h1 className="listFormHeading">Không tìm thấy quy tắc</h1>
           )}
         </div>
       </div>

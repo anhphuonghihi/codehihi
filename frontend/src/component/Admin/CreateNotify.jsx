@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createCategory, getCategory } from "../../actions/CategoryActions";
+import { clearErrors, createNotify, getNotify } from "../../actions/NotifyActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import SideBar from "./Sidebar";
-import { NEW_CATEGORY_RESET } from "../../constans/CategoryConstans";
+import { NEW_NOTIFY_RESET } from "../../constans/NotifyConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
-const CreateCategory = ({ history }) => {
+const CreateNotify = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { loading, error, success } = useSelector((state) => state.createCategory);
+  const { loading, error, success } = useSelector((state) => state.createNotify);
 
   const [name, setName] = useState("");
   useEffect(() => {
@@ -21,41 +21,41 @@ const CreateCategory = ({ history }) => {
     }
 
     if (success) {
-      toast.success("Danh mục đã được thêm thành công");
-      history.push("/admin/categories");
-      dispatch({ type: NEW_CATEGORY_RESET })
-      dispatch(getCategory())
+      toast.success("Thông báo đã được thêm thành công");
+      history.push("/admin/notifys");
+      dispatch({ type: NEW_NOTIFY_RESET })
+      dispatch(getNotify())
     }
   }, [dispatch, error, history, success]);
 
-  const createCategorySubmitHandler = (e) => {
+  const createNotifySubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
 
     myForm.set("name", name);
 
-    dispatch(createCategory(myForm));
+    dispatch(createNotify(myForm));
   };
 
 
   return (
     <>
-      <MetaData title="THÊM DANH MỤC" />
+      <MetaData title="THÊM THÔNG BÁO" />
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">
           <form
             className="createForm"
-            onSubmit={createCategorySubmitHandler}
+            onSubmit={createNotifySubmitHandler}
           >
-            <h1>THÊM DANH MỤC</h1>
+            <h1>THÊM THÔNG BÁO</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Tên danh mục"
+                placeholder="Tên thông báo"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -87,4 +87,4 @@ const CreateCategory = ({ history }) => {
   );
 };
 
-export default CreateCategory;
+export default CreateNotify;

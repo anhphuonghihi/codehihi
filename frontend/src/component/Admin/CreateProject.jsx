@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./newAndEdit.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createProject } from "../../actions/ProjectActions";
+import { clearErrors, createProject, getAdminProject } from "../../actions/ProjectActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
@@ -33,8 +33,9 @@ const CreateProject = ({ history }) => {
 
     if (success) {
       toast.success("Đồ án đã được thêm thành công");
-      history.push("/dashboard");
+      history.push("/admin/projects");
       dispatch({ type: NEW_PROJECT_RESET });
+      dispatch(getAdminProject())
     }
   }, [dispatch, error, history, success]);
 
@@ -96,8 +97,6 @@ const CreateProject = ({ history }) => {
               />
             </div>
 
-
-
             <div>
               <DescriptionIcon />
               <textarea
@@ -112,7 +111,7 @@ const CreateProject = ({ history }) => {
             <div>
               <AccountTreeIcon />
               <select onChange={(e) => setCategory(e.target.value)}>
-              <option value="">Chọn danh mục</option>
+                <option value="">Chọn danh mục</option>
                 {categories.map((cate) => (
                   <option key={cate._id} value={cate._id}>
                     {cate.name}

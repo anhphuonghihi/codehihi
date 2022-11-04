@@ -8,7 +8,7 @@ const SpecializedModelSchema = new mongoose.Schema({
     branch: {
         type: mongoose.Schema.ObjectId,
         ref: "Branch",
-        required: true
+        required: [true, "Vui lòng chọn ngành"],
     },
 }, {
     timestamps: true,

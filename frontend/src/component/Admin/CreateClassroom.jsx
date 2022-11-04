@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createCategory, getCategory } from "../../actions/CategoryActions";
+import { clearErrors, createClassroom, getClassroom } from "../../actions/ClassroomActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import SideBar from "./Sidebar";
-import { NEW_CATEGORY_RESET } from "../../constans/CategoryConstans";
+import { NEW_CLASSROOM_RESET } from "../../constans/ClassroomConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
-const CreateCategory = ({ history }) => {
+const CreateClassroom = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { loading, error, success } = useSelector((state) => state.createCategory);
+  const { loading, error, success } = useSelector((state) => state.createClassroom);
 
   const [name, setName] = useState("");
+  const [specialized, setSpecialized] = useState("");
+  const { specializeds } = useSelector((state) => state.specializeds);
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -21,47 +23,56 @@ const CreateCategory = ({ history }) => {
     }
 
     if (success) {
-      toast.success("Danh mục đã được thêm thành công");
-      history.push("/admin/categories");
-      dispatch({ type: NEW_CATEGORY_RESET })
-      dispatch(getCategory())
+      toast.success("Lớp đã được thêm thành công");
+      history.push("/admin/classrooms");
+      dispatch({ type: NEW_CLASSROOM_RESET })
+      dispatch(getClassroom())
     }
   }, [dispatch, error, history, success]);
 
-  const createCategorySubmitHandler = (e) => {
+  const createClassroomSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
 
     myForm.set("name", name);
-
-    dispatch(createCategory(myForm));
+    myForm.set("specialized", specialized);
+    dispatch(createClassroom(myForm));
   };
 
 
   return (
     <>
-      <MetaData title="THÊM DANH MỤC" />
+      <MetaData title="THÊM LỚP" />
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">
           <form
             className="createForm"
-            onSubmit={createCategorySubmitHandler}
+            onSubmit={createClassroomSubmitHandler}
           >
-            <h1>THÊM DANH MỤC</h1>
+            <h1>THÊM LỚP</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Tên danh mục"
+                placeholder="Tên lớp"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-
+            <div>
+              <select onChange={(e) => setSpecialized(e.target.value)}>
+                <option value="">Chọn Chuyên Ngành</option>
+                {specializeds.map((item) => (
+                  <option key={item._id} value={item._id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
             <Button
               id="createBtn"
               type="submit"
@@ -87,4 +98,4 @@ const CreateCategory = ({ history }) => {
   );
 };
 
-export default CreateCategory;
+export default CreateClassroom;

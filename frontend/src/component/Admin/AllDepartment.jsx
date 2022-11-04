@@ -42,7 +42,7 @@ const AllDepartments = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Ngành đã Xóa thành công");
+      toast.success("Khoa đã Xóa thành công");
       history.push("/admin/departments");
       dispatch({ type: DELETE_DEPARTMENT_RESET });
     }
@@ -52,7 +52,7 @@ const AllDepartments = ({ history }) => {
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
-      headerName: "Tên ngành",
+      headerName: "Tên khoa",
       minWidth: 200,
       flex: 0.6,
     },
@@ -95,13 +95,13 @@ const AllDepartments = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
+      <MetaData title={`TẤT CẢ KHOA - Admin`} />
 
       <Link class="newLink" to="/admin/department">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          <h1 id="listHeading">TẤT CẢ Khoa</h1>
           {departments && departments.length > 0 ? (
             <DataGrid
               rows={rows}
@@ -112,7 +112,7 @@ const AllDepartments = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+            <h1 className="listFormHeading">Không tìm thấy khoa</h1>
           )}
         </div>
       </div>

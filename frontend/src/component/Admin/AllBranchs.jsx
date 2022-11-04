@@ -95,7 +95,7 @@ const AllBranchs = ({ history }) => {
   return (
     <>
       <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
-      <Link class="newLink" to="/admin/category">+</Link>
+      <Link class="newLink" to="/admin/branch">+</Link>
       <div className="dashboard">
 
         <SideBar />

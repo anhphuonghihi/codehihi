@@ -42,7 +42,7 @@ const AllCouncils = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Ngành đã Xóa thành công");
+      toast.success("Hội đồng đã Xóa thành công");
       history.push("/admin/councils");
       dispatch({ type: DELETE_COUNCIL_RESET });
     }
@@ -52,7 +52,7 @@ const AllCouncils = ({ history }) => {
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
-      headerName: "Tên ngành",
+      headerName: "Tên hội đồng",
       minWidth: 200,
       flex: 0.6,
     },
@@ -95,13 +95,13 @@ const AllCouncils = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
+      <MetaData title={`TẤT CẢ HỘI ĐỒNG - Admin`} />
 
       <Link class="newLink" to="/admin/council">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          <h1 id="listHeading">TẤT CẢ HỘI ĐỒNG</h1>
           {councils && councils.length > 0 ? (
             <DataGrid
               rows={rows}
@@ -112,7 +112,7 @@ const AllCouncils = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+            <h1 className="listFormHeading">Không tìm thấy hội đồng</h1>
           )}
         </div>
       </div>

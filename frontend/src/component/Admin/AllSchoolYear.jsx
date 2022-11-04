@@ -42,7 +42,7 @@ const AllSchoolYears = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Ngành đã Xóa thành công");
+      toast.success("Niên khoá đã Xóa thành công");
       history.push("/admin/schoolyears");
       dispatch({ type: DELETE_SCHOOLYEAR_RESET });
     }
@@ -52,7 +52,7 @@ const AllSchoolYears = ({ history }) => {
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
-      headerName: "Tên ngành",
+      headerName: "Tên niên khoá",
       minWidth: 200,
       flex: 0.6,
     },
@@ -95,13 +95,13 @@ const AllSchoolYears = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
+      <MetaData title={`TẤT CẢ NIÊN KHOÁ - Admin`} />
 
       <Link class="newLink" to="/admin/schoolyear">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          <h1 id="listHeading">TẤT CẢ NIÊN KHOÁ</h1>
           {schoolyears && schoolyears.length > 0 ? (
             <DataGrid
               rows={rows}
@@ -112,7 +112,7 @@ const AllSchoolYears = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+            <h1 className="listFormHeading">Không tìm thấy niên khoá</h1>
           )}
         </div>
       </div>

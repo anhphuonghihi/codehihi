@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createCategory, getCategory } from "../../actions/CategoryActions";
+import { clearErrors, createSpecialized } from "../../actions/SpecializedActions";
 import { Button } from "@material-ui/core";
 import MetaData from "../../more/Metadata";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import SideBar from "./Sidebar";
-import { NEW_CATEGORY_RESET } from "../../constans/CategoryConstans";
+import { NEW_SPECIALIZED_RESET } from "../../constans/SpecializedConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
-const CreateCategory = ({ history }) => {
+const CreateSpecialized = ({ history }) => {
   const dispatch = useDispatch();
-
-  const { loading, error, success } = useSelector((state) => state.createCategory);
+  const { branchs } = useSelector((state) => state.branchs);
+  const { loading, error, success } = useSelector((state) => state.createSpecialized);
 
   const [name, setName] = useState("");
+  const [branch, setBranch] = useState("");
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -21,47 +22,55 @@ const CreateCategory = ({ history }) => {
     }
 
     if (success) {
-      toast.success("Danh mục đã được thêm thành công");
-      history.push("/admin/categories");
-      dispatch({ type: NEW_CATEGORY_RESET })
-      dispatch(getCategory())
+      toast.success("Đồ án đã được thêm thành công");
+      history.push("/admin/specializeds");
+      dispatch({ type: NEW_SPECIALIZED_RESET });
     }
   }, [dispatch, error, history, success]);
 
-  const createCategorySubmitHandler = (e) => {
+  const createSpecializedSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
 
     myForm.set("name", name);
-
-    dispatch(createCategory(myForm));
+    myForm.set("branch", branch);
+    dispatch(createSpecialized(myForm));
   };
 
 
   return (
     <>
-      <MetaData title="THÊM DANH MỤC" />
+      <MetaData title="THÊM CHUYÊN NGÀNH" />
       <div className="dashboard">
         <SideBar />
         <div className="newContainer">
           <form
             className="createForm"
-            onSubmit={createCategorySubmitHandler}
+            onSubmit={createSpecializedSubmitHandler}
           >
-            <h1>THÊM DANH MỤC</h1>
+            <h1>THÊM CHUYÊN NGÀNH</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Tên danh mục"
+                placeholder="Tên chuyên ngành"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-
+            <div>
+              <select onChange={(e) => setBranch(e.target.value)}>
+                <option value="">Chọn ngành</option>
+                {branchs.map((item) => (
+                  <option key={item._id} value={item._id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
             <Button
               id="createBtn"
               type="submit"
@@ -87,4 +96,4 @@ const CreateCategory = ({ history }) => {
   );
 };
 
-export default CreateCategory;
+export default CreateSpecialized;

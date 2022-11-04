@@ -104,7 +104,7 @@ const AllProjects = ({ history }) => {
     <>
       <MetaData title={`Danh sách đồ án- Admin`} />
 
-      <Link class="newLink" to="/admin/category">+</Link>
+      <Link class="newLink" to="/admin/project">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">

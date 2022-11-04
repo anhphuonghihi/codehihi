@@ -8,7 +8,7 @@ const ClassroomModelSchema = new mongoose.Schema({
     specialized: {
         type: mongoose.Schema.ObjectId,
         ref: "Specialized",
-        required: true
+        required: [true, "Vui lòng nhập chuyên ngành"],
     },
 }, {
     timestamps: true,

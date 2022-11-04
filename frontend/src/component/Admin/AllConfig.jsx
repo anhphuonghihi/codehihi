@@ -42,7 +42,7 @@ const AllConfigs = ({ history }) => {
     }
 
     if (isDeleted) {
-      toast.success("Ngành đã Xóa thành công");
+      toast.success("Liên kết đã Xóa thành công");
       history.push("/admin/configs");
       dispatch({ type: DELETE_CONFIG_RESET });
     }
@@ -52,7 +52,7 @@ const AllConfigs = ({ history }) => {
     { field: "index", headerName: "STT", minWidth: 150, flex: 0.3 },
     {
       field: "name",
-      headerName: "Tên ngành",
+      headerName: "Tên liên kết",
       minWidth: 200,
       flex: 0.6,
     },
@@ -95,13 +95,13 @@ const AllConfigs = ({ history }) => {
 
   return (
     <>
-      <MetaData title={`TẤT CẢ NGÀNH - Admin`} />
+      <MetaData title={`TẤT CẢ LIÊN KẾT - Admin`} />
 
       <Link class="newLink" to="/admin/config">+</Link>
       <div className="dashboard">
         <SideBar />
         <div className="listContainer">
-          <h1 id="listHeading">TẤT CẢ NGÀNH</h1>
+          <h1 id="listHeading">TẤT CẢ LIÊN KẾT</h1>
           {configs && configs.length > 0 ? (
             <DataGrid
               rows={rows}
@@ -112,7 +112,7 @@ const AllConfigs = ({ history }) => {
               autoHeight
             />
           ) : (
-            <h1 className="listFormHeading">Không tìm thấy ngành</h1>
+            <h1 className="listFormHeading">Không tìm thấy liên kết</h1>
           )}
         </div>
       </div>
